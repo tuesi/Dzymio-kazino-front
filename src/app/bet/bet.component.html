@@ -1,0 +1,78 @@
+<div class="bet-container">
+    <div class="spalvos-container">
+        <div class="name-container">
+            <p class="name-text">Spalvos:</p>
+            <p class="name-text">x3</p>
+        </div>
+        <div class="spalvos-button-container">
+            <button [ngClass]="colorGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('colorGreen')">Žalias</button>
+            <button [ngClass]="colorRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('colorRed')">Raudonas</button>
+            <button [ngClass]="colorBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('colorBlue')">Mėlynas</button>
+        </div>
+    </div>
+    <div class="skaiciai-container">
+        <div class="name-container">
+            <p class="name-text">Skaičiai:</p>
+            <p class="name-text">X3</p>
+        </div>
+        <div class="skaiciai-button-container">
+            <button [ngClass]="oneToSix ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('oneToSix')">1-6</button>
+            <button [ngClass]="sevenToTwelve ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('sevenToTwelve')">7-12</button>
+            <button [ngClass]="thirtheenToEighteen ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('thirtheenToEighteen')">13-18</button>
+        </div>
+    </div>
+    <div class="kiti-skaiciai-container">
+        <div class="name-container">
+            <p></p>
+            <p class="name-text">X2</p>
+        </div>
+        <div class="kiti-skaiciai-button-container">
+            <button [ngClass]="lowerThanNine ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('lowerThanNine')">Mažiau nei 9</button>
+            <button [ngClass]="moreThanNine ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('moreThanNine')">Daugiau nei 9</button>
+            <button [ngClass]="even ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('even')">Lyginis</button>
+            <button [ngClass]="odd ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('odd')">Nelyginis</button>
+        </div>
+    </div>
+    <div class="laukas-container">
+        <div class="name-container">
+            <p class="name-text">Laukas:</p>
+            <p class="name-text">x18</p>
+        </div>
+        <div class="laukas-button-container">
+            <button [ngClass]="one ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('one')">1</button>
+            <button [ngClass]="two ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('two')">2</button>
+            <button [ngClass]="three ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('three')">3</button>
+            <button [ngClass]="four ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('four')">4</button>
+            <button [ngClass]="five ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('five')">5</button>
+            <button [ngClass]="six ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('six')">6</button>
+            <button [ngClass]="seven ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('seven')">7</button>
+            <button [ngClass]="eight ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('eight')">8</button>
+            <button [ngClass]="nine ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('nine')">9</button>
+            <button [ngClass]="ten ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('ten')">10</button>
+            <button [ngClass]="eleven ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('eleven')">11</button>
+            <button [ngClass]="twelve ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('twelve')">12</button>
+            <button [ngClass]="thirtheen ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('thirtheen')">13</button>
+            <button [ngClass]="fourtheen ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('fourtheen')">14</button>
+            <button [ngClass]="fiftheen ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('fiftheen')">15</button>
+            <button [ngClass]="sixteen ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('sixteen')">16</button>
+            <button [ngClass]="seventeen ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('seventeen')">17</button>
+            <button [ngClass]="eighteen ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('eighteen')">18</button>
+            <button [ngClass]="X ? 'special-button-1 select-style' : 'special-button-1'" (click)="selectButton('X')">X</button>
+            <button [ngClass]="W ? 'special-button-2 select-style' : 'special-button-2'" (click)="selectButton('W')">W</button>
+        </div>
+    </div>
+    <div class="kitas-container">
+        <div class="name-container">
+            <p class="name-text">Kitas:</p>
+            <p class="name-text">X6</p>
+        </div>
+        <div class="kitas-button-container">
+            <button [ngClass]="eveGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('evenGreen')">Lyginis</button>
+            <button [ngClass]="evenRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('evenRed')">Lyginis</button>
+            <button [ngClass]="evenBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('evenBlue')">Lyginis</button>
+            <button [ngClass]="oddGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('oddGreen')">Nelyginis</button>
+            <button [ngClass]="oddRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('oddRed')">Nelyginis</button>
+            <button [ngClass]="oddBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('oddBlue')">Nelyginis</button>
+        </div>
+    </div>
+</div>

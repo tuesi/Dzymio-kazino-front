@@ -1,0 +1,44 @@
+<div class="pay-container">
+    <span class="main-pay-text">STATYMAS</span>
+    <div class="all-input-container">
+        <div class="input-container">
+            <div class="input-and-name-container">
+                <div class="input-and-name-inner-container">
+                    <input class="amount-input" type="number" (ngModelChange)="setMakseideriai($event)" [(ngModel)] = "makseideriai">
+                    <span class="amount-text">Makseideriai</span>
+                </div>
+            </div>
+            <div class="plus-minus-container">
+                <button class="plus-button" (click)="addMakseideriai()">+</button>
+                <button class="minus-button" (click)="removeMakseideriai()">-</button>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <div class="input-and-name-container">
+                <div class="input-and-name-inner-container">
+                    <input class="amount-input" type="number" (ngModelChange)="setPiniginiai($event)" [(ngModel)] = "piniginiai">
+                    <span class="amount-text">Piniginiai</span>
+                </div>
+            </div>
+            <div class="plus-minus-container">
+                <button class="plus-button" (click)="addPiniginiai()">+</button>
+                <button class="minus-button" (click)="removePiniginiai()">-</button>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <div class="input-and-name-container">
+                <div class="input-and-name-inner-container">
+                    <input class="amount-input" type="number" (ngModelChange)="setZetonai($event)" [(ngModel)] = "zetonai">
+                    <span class="amount-text">Zetonai</span>
+                </div>
+            </div>
+            <div class="plus-minus-container">
+                <button class="plus-button" (click)="addZetonai()">+</button>
+                <button class="minus-button" (click)="removeZetonai()">-</button>
+            </div>
+        </div>
+    </div>
+</div>
+

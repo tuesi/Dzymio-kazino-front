@@ -1,0 +1,199 @@
+@mixin button ($color, $width:120px, $height: 40px) {
+    width: $width;
+    height: $height;
+    color: white;
+    background-color: $color;
+    border: none;
+    box-shadow: 0px 1px black;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    border-style: ridge;
+    border-color: black;
+    border-width: 3px;
+    border-spacing:10px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.5;
+    } 
+
+    &.select-style {
+        outline-color: rgb(0, 0, 0);
+        outline-style: solid;
+        outline-width: 3px;
+        outline-offset: .2rem;
+        transition: all ease-out 0.1s;
+        background-color: saturate( $color, 20% );
+    }
+}
+
+.bet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.spalvos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.skaiciai-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.kiti-skaiciai-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.laukas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.kitas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50%;
+    width: 100%;
+}
+
+.spalvos-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+    min-width: 20%;
+}
+
+.skaiciai-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    min-width: 20%;
+}
+
+.kiti-skaiciai-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 90%;
+    min-width: 20%;
+}
+
+.laukas-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60%;
+    min-width: 20%;
+}
+
+.kitas-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 70%;
+    min-width: 20%;
+}
+
+.name-text {
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.green-button {
+    @include button (rgb(125, 179, 40));
+
+    
+}
+
+.red-button {
+    @include button(rgb(219, 40, 79));
+}
+
+.blue-button {
+    @include button(rgb(17, 144, 218));
+}
+
+.grey-button {
+    @include button(rgb(126, 135, 148));
+}
+
+.grey-button-large {
+    @include button(rgb(126, 135, 148), 180px, 40px);
+}
+
+.green-button-small {
+    @include button(rgb(125, 179, 40), 50px, 40px);
+    margin: 3px;
+}
+
+.red-button-small {
+    @include button(rgb(219, 40, 79), 50px, 40px);
+    margin: 3px;
+}
+
+.blue-button-small {
+    @include button(rgb(17, 144, 218), 50px, 40px);
+    margin: 3px;
+}
+
+.special-button-1 {
+    @include button(rgb(221, 148, 12), 330px, 40px);
+    margin-bottom: 6px;
+    margin-top: 3px;
+}
+
+.special-button-2 {
+    @include button(rgb(120, 12, 221), 330px, 40px);
+}

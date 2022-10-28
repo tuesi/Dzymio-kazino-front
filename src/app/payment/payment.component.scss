@@ -1,0 +1,135 @@
+@mixin button ($color, $width:120px, $height: 40px, $fontSize: 40px) {
+    width: $width;
+    height: $height;
+    color: white;
+    background-color: $color;
+    border: none;
+    box-shadow: 0px 1px black;
+    border-radius: 5px;
+    font-size: $fontSize;
+    line-height: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    border-style: ridge;
+    border-color: black;
+    border-width: 3px;
+    border-spacing:10px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+}
+
+.pay-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-and-name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-and-name-inner-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    margin: 1%;
+}
+
+.plus-minus-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    gap: 5%;
+}
+
+.all-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.amount-input {
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: start;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    text-align: center;
+
+    &:focus {
+        border-style: solid;
+        border-color: black;
+        border-width: 2px;
+        outline-color: rgb(0, 0, 0);
+        outline-style: solid;
+        outline-width: 3px;
+        outline-offset: .2rem;
+        transition: all ease-out 0.1s;;
+    }
+}
+
+.input-and-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.amount-text {
+    padding: 5%;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.main-pay-text {
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.plus-button {
+    @include button (rgb(125, 179, 40), 100%, 40px);
+}
+
+.minus-button {
+    @include button (rgb(219, 40, 79), 100%, 40px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
