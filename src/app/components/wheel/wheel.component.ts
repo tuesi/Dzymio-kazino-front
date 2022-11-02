@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BetObject } from '../Objects/betObject';
-import { BackendService } from '../services/backend.service';
+import { BetObject } from '../../objects/betObject';
+import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
   selector: 'app-wheel',

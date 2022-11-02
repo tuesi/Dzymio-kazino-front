@@ -1,0 +1,17 @@
+<div class="user-info-container">
+    <div class="user-photo-container">
+        <div *ngIf="avatar" class="oval" [ngStyle]="{'background-image': 'url(' + avatar + ')'}">
+        </div>
+    </div>
+    <div class="user-name-container">
+        {{nick}}
+    </div>
+    <div class="user-wallet-container">
+        50 zetonai
+    </div>
+    <div class="logout-container">
+        <button class="logout-button">
+            <span class="logout-button-text">Logout</span>
+        </button>
+    </div>
+</div>

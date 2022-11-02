@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BetComponent } from './bet/bet.component';
-import { CoinComponent } from './coin/coin.component';
-import { ListComponent } from './list/list.component';
-import { MainComponent } from './main/main.component';
-import { WheelComponent } from './wheel/wheel.component';
+import { CoinComponent } from './components/coin/coin.component';
+import { ListComponent } from './components/list/list.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { WheelComponent } from './components/wheel/wheel.component';
+import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
-  {path: 'wheel', component: WheelComponent},
-  {path: 'coin', component: CoinComponent},
-  {path: 'list', component: ListComponent},
-  {path: 'test', component: BetComponent}
+  {path: '', redirectTo: 'login', pathMatch:'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'main', 
+  component: MainComponent,
+  canActivate: [AuthGuard]},
+  {path: 'wheel',
+  component: WheelComponent},
+  {path: 'coin', 
+  component: CoinComponent,
+  canActivate: [AuthGuard]},
+  {path: 'list', 
+  component: ListComponent,
+  canActivate: [AuthGuard]}
 ];
 
 @NgModule({

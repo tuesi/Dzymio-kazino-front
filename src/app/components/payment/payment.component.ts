@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BetObject } from '../Objects/betObject';
-import { BackendService } from '../services/backend.service';
+import { BetObject } from '../../objects/betObject';
+import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
   selector: 'app-payment',
@@ -22,41 +22,65 @@ export class PaymentComponent implements OnInit {
   }
 
   addZetonai() {
-    this.zetonai++;
+    if(this.zetonai == 100) {
+      this.zetonai = 0;
+    } else {
+      this.zetonai++;
+    }
+    this.setBetAmount();
   }
 
   removeZetonai() {
-    this.zetonai--;
+    if(this.zetonai > 0) {
+      this.zetonai--;
+    }
+    this.setBetAmount();
   }
 
   addPiniginiai() {
-    this.piniginiai++;
+    if(this.piniginiai == 100) {
+      this.piniginiai = 0;
+    } else {
+      this.piniginiai++;
+    }
+    this.setBetAmount();
   }
 
   removePiniginiai() {
-    this.piniginiai--;
+    if(this.piniginiai > 0) {
+      this.piniginiai--;
+    }
+    this.setBetAmount();
   }
 
   addMakseideriai() {
-    this.makseideriai++;
+    if(this.makseideriai == 100) {
+      this.makseideriai = 0;
+    } else {
+      this.makseideriai++;
+    }
+    this.setBetAmount();
   }
 
   removeMakseideriai() {
-    this.makseideriai--;
+    if(this.makseideriai > 0) {
+      this.makseideriai--;
+    }
+    this.setBetAmount();
   }
 
   setZetonai(amount: number) {
-    this.zetonai = amount;
+    this.zetonai = Math.abs(amount);
     this.setBetAmount();
   }
 
   setPiniginiai(amount: number) {
-    this.piniginiai = amount;
+    this.piniginiai = Math.abs(amount);
     this.setBetAmount();
   }
 
   setMakseideriai(amount: number) {
-    this.makseideriai = amount;
+    this.makseideriai = Math.abs(amount);
     this.setBetAmount();
   }
 

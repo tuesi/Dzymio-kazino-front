@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
-import { BetObject } from '../Objects/betObject';
+import { BetObject } from '../../objects/betObject';
 
 
 @Injectable()

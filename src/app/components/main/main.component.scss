@@ -1,0 +1,13 @@
+.flexSpaceBetween {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(88, 201, 250);
+}

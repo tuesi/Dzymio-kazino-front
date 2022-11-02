@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../services/backend.service';
+import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
   selector: 'app-messages',
@@ -18,6 +18,13 @@ export class MessagesComponent implements OnInit {
       messages.forEach(message => {
         this.messageList.push(message);
       });
+      setTimeout(() => {
+        var chatHistory = document.getElementById("chat-box");
+        if(chatHistory) {
+          console.log("meesage scrol");
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+      }, 50);
     })
   }
 }
