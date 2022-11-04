@@ -9,12 +9,18 @@ import { BackendService } from '../../services/backend/backend.service';
 export class TimerComponent implements OnInit {
 
   time = 0;
+  inProgress = false;
 
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.backendService.getTimeTillNextSpin().subscribe(data => {
       this.time = data;
+      if (this.time <= 0) {
+        this.inProgress = true;
+      } else {
+        this.inProgress = false;
+      }
     })
   }
 

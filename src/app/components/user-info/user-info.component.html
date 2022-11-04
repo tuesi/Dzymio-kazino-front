@@ -6,8 +6,10 @@
     <div class="user-name-container">
         {{nick}}
     </div>
-    <div class="user-wallet-container">
-        50 zetonai
+    <div *ngIf="balance" class="user-wallet-container">
+        <span class="amount-text">{{balance.GOLD}} M </span>
+        <span class="amount-text">{{balance.SILVER}} P </span>
+        <span class="amount-text">{{balance.COPPER}} Z </span>
     </div>
     <div class="logout-container">
         <button class="logout-button">

@@ -18,6 +18,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { WheelGameComponent } from './components/wheel-game/wheel-game.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     TimerComponent,
     PaymentComponent,
     LoginComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    WheelGameComponent
   ],
   imports: [
     BrowserModule,

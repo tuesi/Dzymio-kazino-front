@@ -10,7 +10,7 @@ import { BackendService } from '../../services/backend/backend.service';
 })
 
 
-export class WheelComponent implements OnInit{
+export class WheelComponent implements OnInit {
 
   spin = false;
   wheelEl = document.getElementById("wheel");
@@ -21,17 +21,13 @@ export class WheelComponent implements OnInit{
   reset = false;
   gotNewMessages = false;
 
-  betAmount = 0;
-  betPrediction = '';
-
   constructor(private backendService: BackendService) { }
 
   ngOnInit() {
-    console.log(this.initialPosSet);
     this.getWheel();
     this.resetWheel();
     this.backendService.getInitialWheelPos().subscribe(count => {
-      if(this.wheelEl && !this.initialPosSet && !this.reset) {
+      if (this.wheelEl && !this.initialPosSet && !this.reset) {
         this.initialPos = count;
         this.setWheelRotation();
       }
@@ -39,9 +35,8 @@ export class WheelComponent implements OnInit{
 
     this.backendService.getWheelSpin().subscribe((count: number) => {
       this.wheelPos = count;
-      //console.log(count);
-      if(this.initialPosSet && !this.reset) {
-        if(this.wheelEl) {
+      if (this.initialPosSet && !this.reset) {
+        if (this.wheelEl) {
           this.spinWheel(this.wheelPos);
         }
       }
@@ -50,15 +45,12 @@ export class WheelComponent implements OnInit{
 
   resetWheel() {
     this.backendService.resetWheel().subscribe(value => {
-      if(value) {
-        console.log("HELLO");
+      if (value) {
         this.reset = true;
         this.initialPosSet = false;
-        if(this.wheelEl) {
+        if (this.wheelEl) {
           this.initialPos = 0;
-          //this.wheelEl.style.transition = "none";
           this.wheelEl.style.transform = "rotate(0deg)";
-          //this.wheelEl.style.transition = "none";
         }
         this.getSpinStart()
       }
@@ -70,18 +62,17 @@ export class WheelComponent implements OnInit{
   }
 
   setWheelRotation() {
-    if(this.wheelEl) {
+    if (this.wheelEl) {
       this.wheelEl.style.transform = `rotate(-${this.initialPos}deg)`;
-      console.log("rotate");
       setTimeout(() => {
         this.initialPosSet = true;
-      },10);
+      }, 10);
     }
   }
 
   getSpinStart() {
     this.backendService.getStartSpin().subscribe((data) => {
-      if(data) {
+      if (data) {
         this.gotNewMessages = false;
         this.reset = false;
         this.initialPosSet = true;
@@ -90,31 +81,14 @@ export class WheelComponent implements OnInit{
   }
 
   spinWheel(wheelPos: number) {
-    if(this.wheelEl) {
+    if (this.wheelEl) {
       this.wheelEl.style.transform = `rotate(-${wheelPos}deg)`;
       this.wheelEl.addEventListener('transitionend', () => {
-        if(!this.gotNewMessages) {
+        if (!this.gotNewMessages) {
           this.backendService.getNewWheelMessages();
           this.gotNewMessages = true;
         }
       });
     }
-  }
-
-  setBetAmount(amount: number) {
-    this.betAmount = amount;
-    console.log(this.betAmount);
-  }
-
-  setBetPrediction(prediction: string) {
-    this.betPrediction = prediction;
-  }
-
-  sendBet() {
-      let newBet = new BetObject();
-      newBet.clientId = "123";
-      newBet.betAmount = this.betAmount;
-      newBet.prediction = this.betPrediction;
-      this.backendService.sendBet(newBet);
   }
 }

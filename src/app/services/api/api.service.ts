@@ -15,16 +15,16 @@ export class ApiService {
     return this.httpClient.get<ClientObject>('http://localhost:3000/api/auth', {
       withCredentials: true
     }).pipe(map((response: ClientObject) => {
-      if(response) {
+      if (response) {
         return response;
       } else {
         return new ClientObject;
       }
     }),
-    catchError((err: HttpErrorResponse) => {
-      console.log(err);
-      return of(new ClientObject);
-    })
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(new ClientObject);
+      })
     );
   }
 
@@ -32,7 +32,7 @@ export class ApiService {
     return this.httpClient.get<ClientWalletObject>('http://localhost:3000/api/jimmy/balance', {
       withCredentials: true,
     }).pipe(map((response: ClientWalletObject) => {
-      if(response) {
+      if (response) {
         return response;
       } else {
         return new ClientWalletObject;

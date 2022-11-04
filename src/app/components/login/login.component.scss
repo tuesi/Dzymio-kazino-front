@@ -6,8 +6,13 @@
     height: 100%;
     background-color: rgb(88, 201, 250);
 }
+
 .login-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10%;
+    width: 100%;
 }
 
 .login-button {
@@ -15,38 +20,53 @@
     height: 100px;
     border-width: 0px;
     border-radius: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1.5vh;
+    text-transform: uppercase;
+    text-shadow:
+        -3px -3px 10px rgba(255, 255, 255, 0.4),
+        3px 3px 3px rgba(0, 0, 0, 0.08);
+    caret-color: #84e5f7;
+
     background: linear-gradient(145deg, #48b5e6, #56d7ff);
-    box-shadow:  5px 5px 13px #48b5e6,
-                -5px -5px 13px #58ddff;
+    box-shadow: 5px 5px 13px #48b5e6,
+        -5px -5px 13px #58ddff;
+
     &:hover {
         border-radius: 50px;
         background: linear-gradient(145deg, #56d7ff, #48b5e6);
-        box-shadow:  5px 5px 13px #48b5e6,
-                    -5px -5px 13px #58ddff;
+        box-shadow: 5px 5px 13px #48b5e6,
+            -5px -5px 13px #58ddff;
     }
 
     &:active {
         border-radius: 50px;
         background: #50c9ff;
         box-shadow: inset 5px 5px 13px #48b5e6,
-                    inset -5px -5px 13px #58ddff;
+            inset -5px -5px 13px #58ddff;
     }
 }
 
 .login-name {
     color: rgb(255, 255, 255);
-    font-size: 8em;
+    font-size: 8vw;
     font-weight: bold;
     font-family: sans-serif;
     text-transform: uppercase;
 
-    text-shadow: 
-    -5px -5px 15px rgba(255, 255, 255, 0.4),
-    5px 5px 5px rgba(0, 0, 0, 0.08);
-    caret-color:#fefefe;
+    text-shadow:
+        -5px -5px 15px rgba(255, 255, 255, 0.4),
+        5px 5px 5px rgba(0, 0, 0, 0.08);
+    caret-color: #fefefe;
     outline: none;
 }
 
 .login-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10%;
+    width: 100%;
 }

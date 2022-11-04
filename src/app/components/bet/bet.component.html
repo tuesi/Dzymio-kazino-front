@@ -5,9 +5,12 @@
             <p class="name-text">x3</p>
         </div>
         <div class="spalvos-button-container">
-            <button [ngClass]="colorGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('colorGreen')">Žalias</button>
-            <button [ngClass]="colorRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('colorRed')">Raudonas</button>
-            <button [ngClass]="colorBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('colorBlue')">Mėlynas</button>
+            <button [ngClass]="colorGreen ? 'green-button select-style' : 'green-button'"
+                (click)="selectButton('colorGreen')" [disabled]="disabled">Žalias</button>
+            <button [ngClass]="colorRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('colorRed')"
+                [disabled]="disabled">Raudonas</button>
+            <button [ngClass]="colorBlue ? 'blue-button select-style' : 'blue-button'"
+                (click)="selectButton('colorBlue')" [disabled]="disabled">Mėlynas</button>
         </div>
     </div>
     <div class="skaiciai-container">
@@ -16,9 +19,12 @@
             <p class="name-text">X3</p>
         </div>
         <div class="skaiciai-button-container">
-            <button [ngClass]="oneToSix ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('oneToSix')">1-6</button>
-            <button [ngClass]="sevenToTwelve ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('sevenToTwelve')">7-12</button>
-            <button [ngClass]="thirtheenToEighteen ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('thirtheenToEighteen')">13-18</button>
+            <button [ngClass]="oneToSix ? 'grey-button select-style' : 'grey-button'" (click)="selectButton('oneToSix')"
+                [disabled]="disabled">1-6</button>
+            <button [ngClass]="sevenToTwelve ? 'grey-button select-style' : 'grey-button'"
+                (click)="selectButton('sevenToTwelve')" [disabled]="disabled">7-12</button>
+            <button [ngClass]="thirtheenToEighteen ? 'grey-button select-style' : 'grey-button'"
+                (click)="selectButton('thirtheenToEighteen')" [disabled]="disabled">13-18</button>
         </div>
     </div>
     <div class="kiti-skaiciai-container">
@@ -27,10 +33,14 @@
             <p class="name-text">X2</p>
         </div>
         <div class="kiti-skaiciai-button-container">
-            <button [ngClass]="lowerThanNine ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('lowerThanNine')">Mažiau nei 9</button>
-            <button [ngClass]="moreThanNine ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('moreThanNine')">Daugiau nei 9</button>
-            <button [ngClass]="even ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('even')">Lyginis</button>
-            <button [ngClass]="odd ? 'grey-button-large select-style' : 'grey-button-large'" (click)="selectButton('odd')">Nelyginis</button>
+            <button [ngClass]="lowerThanNine ? 'grey-button-large select-style' : 'grey-button-large'"
+                (click)="selectButton('lowerThanNine')" [disabled]="disabled">Mažiau nei 9</button>
+            <button [ngClass]="moreThanNine ? 'grey-button-large select-style' : 'grey-button-large'"
+                (click)="selectButton('moreThanNine')" [disabled]="disabled">Daugiau nei 9</button>
+            <button [ngClass]="even ? 'grey-button-large select-style' : 'grey-button-large'"
+                (click)="selectButton('even')" [disabled]="disabled">Lyginis</button>
+            <button [ngClass]="odd ? 'grey-button-large select-style' : 'grey-button-large'"
+                (click)="selectButton('odd')" [disabled]="disabled">Nelyginis</button>
         </div>
     </div>
     <div class="laukas-container">
@@ -39,26 +49,46 @@
             <p class="name-text">x18</p>
         </div>
         <div class="laukas-button-container">
-            <button [ngClass]="one ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('one')">1</button>
-            <button [ngClass]="two ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('two')">2</button>
-            <button [ngClass]="three ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('three')">3</button>
-            <button [ngClass]="four ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('four')">4</button>
-            <button [ngClass]="five ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('five')">5</button>
-            <button [ngClass]="six ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('six')">6</button>
-            <button [ngClass]="seven ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('seven')">7</button>
-            <button [ngClass]="eight ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('eight')">8</button>
-            <button [ngClass]="nine ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('nine')">9</button>
-            <button [ngClass]="ten ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('ten')">10</button>
-            <button [ngClass]="eleven ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('eleven')">11</button>
-            <button [ngClass]="twelve ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('twelve')">12</button>
-            <button [ngClass]="thirtheen ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('thirtheen')">13</button>
-            <button [ngClass]="fourtheen ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('fourtheen')">14</button>
-            <button [ngClass]="fiftheen ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('fiftheen')">15</button>
-            <button [ngClass]="sixteen ? 'green-button-small select-style' : 'green-button-small'" (click)="selectButton('sixteen')">16</button>
-            <button [ngClass]="seventeen ? 'blue-button-small select-style' : 'blue-button-small'" (click)="selectButton('seventeen')">17</button>
-            <button [ngClass]="eighteen ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('eighteen')">18</button>
-            <button [ngClass]="X ? 'special-button-1 select-style' : 'special-button-1'" (click)="selectButton('X')">X</button>
-            <button [ngClass]="W ? 'special-button-2 select-style' : 'special-button-2'" (click)="selectButton('W')">W</button>
+            <button [ngClass]="one ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('one')" [disabled]="disabled">1</button>
+            <button [ngClass]="two ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('two')" [disabled]="disabled">2</button>
+            <button [ngClass]="three ? 'red-button-small select-style' : 'red-button-small'"
+                (click)="selectButton('three')" [disabled]="disabled">3</button>
+            <button [ngClass]="four ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('four')" [disabled]="disabled">4</button>
+            <button [ngClass]="five ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('five')" [disabled]="disabled">5</button>
+            <button [ngClass]="six ? 'red-button-small select-style' : 'red-button-small'" (click)="selectButton('six')"
+                [disabled]="disabled">6</button>
+            <button [ngClass]="seven ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('seven')" [disabled]="disabled">7</button>
+            <button [ngClass]="eight ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('eight')" [disabled]="disabled">8</button>
+            <button [ngClass]="nine ? 'red-button-small select-style' : 'red-button-small'"
+                (click)="selectButton('nine')" [disabled]="disabled">9</button>
+            <button [ngClass]="ten ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('ten')" [disabled]="disabled">10</button>
+            <button [ngClass]="eleven ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('eleven')" [disabled]="disabled">11</button>
+            <button [ngClass]="twelve ? 'red-button-small select-style' : 'red-button-small'"
+                (click)="selectButton('twelve')" [disabled]="disabled">12</button>
+            <button [ngClass]="thirtheen ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('thirtheen')" [disabled]="disabled">13</button>
+            <button [ngClass]="fourtheen ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('fourtheen')" [disabled]="disabled">14</button>
+            <button [ngClass]="fiftheen ? 'red-button-small select-style' : 'red-button-small'"
+                (click)="selectButton('fiftheen')" [disabled]="disabled">15</button>
+            <button [ngClass]="sixteen ? 'green-button-small select-style' : 'green-button-small'"
+                (click)="selectButton('sixteen')" [disabled]="disabled">16</button>
+            <button [ngClass]="seventeen ? 'blue-button-small select-style' : 'blue-button-small'"
+                (click)="selectButton('seventeen')" [disabled]="disabled">17</button>
+            <button [ngClass]="eighteen ? 'red-button-small select-style' : 'red-button-small'"
+                (click)="selectButton('eighteen')" [disabled]="disabled">18</button>
+            <button [ngClass]="X ? 'special-button-1 select-style' : 'special-button-1'" (click)="selectButton('X')"
+                [disabled]="disabled">X</button>
+            <button [ngClass]="W ? 'special-button-2 select-style' : 'special-button-2'" (click)="selectButton('W')"
+                [disabled]="disabled">W</button>
         </div>
     </div>
     <div class="kitas-container">
@@ -67,12 +97,18 @@
             <p class="name-text">X6</p>
         </div>
         <div class="kitas-button-container">
-            <button [ngClass]="eveGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('evenGreen')">Lyginis</button>
-            <button [ngClass]="evenRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('evenRed')">Lyginis</button>
-            <button [ngClass]="evenBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('evenBlue')">Lyginis</button>
-            <button [ngClass]="oddGreen ? 'green-button select-style' : 'green-button'" (click)="selectButton('oddGreen')">Nelyginis</button>
-            <button [ngClass]="oddRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('oddRed')">Nelyginis</button>
-            <button [ngClass]="oddBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('oddBlue')">Nelyginis</button>
+            <button [ngClass]="eveGreen ? 'green-button select-style' : 'green-button'"
+                (click)="selectButton('evenGreen')" [disabled]="disabled">Lyginis</button>
+            <button [ngClass]="evenRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('evenRed')"
+                [disabled]="disabled">Lyginis</button>
+            <button [ngClass]="evenBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('evenBlue')"
+                [disabled]="disabled">Lyginis</button>
+            <button [ngClass]="oddGreen ? 'green-button select-style' : 'green-button'"
+                (click)="selectButton('oddGreen')" [disabled]="disabled">Nelyginis</button>
+            <button [ngClass]="oddRed ? 'red-button select-style' : 'red-button'" (click)="selectButton('oddRed')"
+                [disabled]="disabled">Nelyginis</button>
+            <button [ngClass]="oddBlue ? 'blue-button select-style' : 'blue-button'" (click)="selectButton('oddBlue')"
+                [disabled]="disabled">Nelyginis</button>
         </div>
     </div>
 </div>

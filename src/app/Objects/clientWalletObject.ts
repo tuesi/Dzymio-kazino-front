@@ -1,5 +1,5 @@
 export class ClientWalletObject {
-    GOLD: string;
-    SILVER: string;
-    BRONZE: string;
-  };
+  GOLD: string;
+  SILVER: string;
+  COPPER: string;
+};

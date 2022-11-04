@@ -1,0 +1,36 @@
+<div *ngIf="betStatus == 'win' || betStatus == 'lose'"
+    [ngClass]="betStatus == 'win' ? 'status-overlay win-style' : betStatus == 'lose' ? 'status-overlay lose-style' : 'status-overlay'">
+</div>
+<div class="wheel-game-container">
+    <div class="user-info-container">
+        <app-user-info (newUserEvent)="setClientData($event)"></app-user-info>
+    </div>
+    <app-timer></app-timer>
+    <div class="first-group-container">
+        <div class="wheel-container">
+            <div>
+                <app-wheel></app-wheel>
+            </div>
+        </div>
+        <div class="messages-container">
+            <div>
+                <app-messages></app-messages>
+            </div>
+        </div>
+    </div>
+    <div class="second-group-container">
+        <div class="predictions-container">
+            <div>
+                <app-bet (newPredictionEvent)="setBetPrediction($event)" [disabled]="disabled" [reset]="reset">
+                </app-bet>
+            </div>
+        </div>
+        <div class="amout-container">
+            <div>
+                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+                    (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [bet]="betPrediction"
+                    [betMade]="betMade" [reset]="reset"></app-payment>
+            </div>
+        </div>
+    </div>
+</div>

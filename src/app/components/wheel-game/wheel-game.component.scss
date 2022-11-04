@@ -1,0 +1,206 @@
+body {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.wheel-game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(88, 201, 250);
+}
+
+.status-overlay {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.0);
+    z-index: 10;
+    height: 100vh;
+    width: 100%;
+    pointer-events: none;
+
+    &.win-style {
+        animation-name: winAnim;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 2;
+    }
+
+    &.lose-style {
+        animation-name: loseAnim;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 2;
+    }
+}
+
+.user-info-container {
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.first-group-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    .wheel-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+
+        >div {
+            width: 50%;
+        }
+    }
+
+    .messages-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        width: 50%;
+
+        >div {
+            width: 50%;
+        }
+    }
+}
+
+.second-group-container {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 10%;
+
+    .predictions-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+
+        >div {
+            width: 80%;
+        }
+    }
+
+    .amout-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+
+        >div {
+            width: 100%;
+            min-width: 60%;
+        }
+    }
+}
+
+@keyframes winAnim {
+    0% {
+        background-color: rgba(255, 255, 255, 0.0);
+    }
+
+    25% {
+        background-color: rgba(88, 250, 150, 0.4);
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0.0);
+    }
+}
+
+@keyframes loseAnim {
+    0% {
+        background-color: rgba(255, 255, 255, 0.0);
+    }
+
+    25% {
+        background-color: rgb(250, 88, 115, 0.4);
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0.0);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .first-group-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+
+        .wheel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+
+            >div {
+                width: 70%;
+            }
+        }
+
+        .messages-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 10%;
+
+            >div {
+                width: 100%;
+            }
+        }
+    }
+
+    .second-group-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+
+        .predictions-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 10%;
+
+            >div {
+                width: 100%;
+            }
+        }
+
+        .amout-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 10%;
+            background-color: yellow;
+            z-index: 10px;
+
+            >div {
+                width: 100%;
+            }
+        }
+    }
+}

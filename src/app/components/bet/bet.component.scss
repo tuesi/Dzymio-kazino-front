@@ -1,4 +1,4 @@
-@mixin button ($color, $width:120px, $height: 40px) {
+@mixin button ($color, $width: 120px, $height: 40px) {
     width: $width;
     height: $height;
     color: white;
@@ -12,7 +12,7 @@
     border-style: ridge;
     border-color: black;
     border-width: 3px;
-    border-spacing:10px;
+    border-spacing: 10px;
 
     &:hover {
         opacity: 0.8;
@@ -20,7 +20,7 @@
 
     &:active {
         opacity: 0.5;
-    } 
+    }
 
     &.select-style {
         outline-color: rgb(0, 0, 0);
@@ -28,7 +28,12 @@
         outline-width: 3px;
         outline-offset: .2rem;
         transition: all ease-out 0.1s;
-        background-color: saturate( $color, 20% );
+        background-color: saturate($color, 20%);
+    }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: desaturate($color, 50%);
     }
 }
 
@@ -97,7 +102,7 @@
 .spalvos-button-container {
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     width: 100%;
     gap: 6px;
@@ -117,7 +122,7 @@
 .kiti-skaiciai-button-container {
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px;
@@ -154,7 +159,7 @@
 .green-button {
     @include button (rgb(125, 179, 40));
 
-    
+
 }
 
 .red-button {

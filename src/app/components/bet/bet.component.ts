@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bet',
@@ -8,6 +8,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class BetComponent implements OnInit {
 
   @Output() newPredictionEvent = new EventEmitter<string>();
+
+  @Input() disabled = false;
+  @Input() set reset(value: boolean) {
+    if (value) {
+      this.resetButtonStates();
+    }
+  }
 
   colorGreen = false;
   colorRed = false;
@@ -56,13 +63,15 @@ export class BetComponent implements OnInit {
   }
 
   selectButton(buttonName: string) {
+    console.log(buttonName);
+    console.log('EMIT');
     this.newPredictionEvent.emit(buttonName);
     this.changeButtonState(buttonName);
   }
 
   changeButtonState(buttonName: string) {
     this.resetButtonStates();
-    switch(buttonName) {
+    switch (buttonName) {
       case "colorGreen":
         this.colorGreen = true;
         break;
@@ -175,46 +184,46 @@ export class BetComponent implements OnInit {
   }
 
   resetButtonStates() {
-  this.colorGreen = false;
-  this.colorRed = false;
-  this.colorBlue = false;
+    this.colorGreen = false;
+    this.colorRed = false;
+    this.colorBlue = false;
 
-  this.oneToSix = false;
-  this.sevenToTwelve = false;
-  this.thirtheenToEighteen = false;
+    this.oneToSix = false;
+    this.sevenToTwelve = false;
+    this.thirtheenToEighteen = false;
 
-  this.lowerThanNine = false;
-  this.moreThanNine = false;
-  this.even = false;
-  this.odd = false;
+    this.lowerThanNine = false;
+    this.moreThanNine = false;
+    this.even = false;
+    this.odd = false;
 
-  this.one = false;
-  this.two = false;
-  this.three = false;
-  this.four = false;
-  this.five = false;
-  this.six = false;
-  this.seven = false;
-  this.eight = false;
-  this.nine = false;
-  this.ten = false;
-  this.eleven = false;
-  this.twelve = false;
-  this.thirtheen = false;
-  this.fourtheen = false;
-  this.fiftheen = false;
-  this.sixteen = false;
-  this.seventeen = false;
-  this.eighteen = false;
-  this.X = false;
-  this.W = false;
+    this.one = false;
+    this.two = false;
+    this.three = false;
+    this.four = false;
+    this.five = false;
+    this.six = false;
+    this.seven = false;
+    this.eight = false;
+    this.nine = false;
+    this.ten = false;
+    this.eleven = false;
+    this.twelve = false;
+    this.thirtheen = false;
+    this.fourtheen = false;
+    this.fiftheen = false;
+    this.sixteen = false;
+    this.seventeen = false;
+    this.eighteen = false;
+    this.X = false;
+    this.W = false;
 
-  this.eveGreen = false;
-  this.evenRed = false;
-  this.evenBlue = false;
-  this.oddGreen = false;
-  this.oddRed = false;
-  this.oddBlue = false;
+    this.eveGreen = false;
+    this.evenRed = false;
+    this.evenBlue = false;
+    this.oddGreen = false;
+    this.oddRed = false;
+    this.oddBlue = false;
   }
 
 }

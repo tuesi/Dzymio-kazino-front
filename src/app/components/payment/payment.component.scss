@@ -1,4 +1,4 @@
-@mixin button ($color, $width:120px, $height: 40px, $fontSize: 40px) {
+@mixin button ($color, $width: 120px, $height: 40px, $fontSize: 40px) {
     width: $width;
     height: $height;
     color: white;
@@ -7,13 +7,13 @@
     box-shadow: 0px 1px black;
     border-radius: 5px;
     font-size: $fontSize;
-    line-height: 10px;
+    line-height: 10%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
     border-style: ridge;
     border-color: black;
     border-width: 3px;
-    border-spacing:10px;
+    border-spacing: 10px;
 
     &:hover {
         opacity: 0.8;
@@ -21,6 +21,11 @@
 
     &:active {
         opacity: 0.5;
+    }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: desaturate($color, 50%);
     }
 }
 
@@ -37,12 +42,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    min-width: 50px;
 }
 
 .input-and-name-inner-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .input-container {
@@ -51,6 +61,8 @@
     justify-content: center;
     align-items: center;
     width: 250px;
+    min-width: 100px;
+    min-height: 50px;
     margin: 1%;
 }
 
@@ -74,7 +86,9 @@
 .amount-input {
     width: 100px;
     height: 50px;
-    padding: 5px;
+    min-width: 5px;
+    min-height: 5px;
+    padding: 4%;
     margin: 8px 0;
     display: inline-block;
     border: none;
@@ -95,7 +109,8 @@
         outline-style: solid;
         outline-width: 3px;
         outline-offset: .2rem;
-        transition: all ease-out 0.1s;;
+        transition: all ease-out 0.1s;
+        ;
     }
 }
 
@@ -105,8 +120,9 @@
 }
 
 .amount-text {
+    color: white;
     padding: 5%;
-    font-size: 20px;
+    font-size: 2vh;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -116,22 +132,28 @@
 }
 
 .plus-button {
-    @include button (rgb(125, 179, 40), 100%, 40px);
+    @include button (rgb(125, 179, 40), 100%, 40px, 5vh);
+    min-width: 40px;
+    min-height: 20px;
 }
 
 .minus-button {
-    @include button (rgb(219, 40, 79), 100%, 40px);
+    @include button (rgb(219, 40, 79), 100%, 40px, 5vh);
+    min-width: 40px;
+    min-height: 20px;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+    -moz-appearance: textfield;
+    /* Firefox */
 }
 
 .winnings-container {
@@ -139,6 +161,86 @@ input[type=number] {
     align-items: start;
     justify-content: start;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
     margin-top: 5%;
+}
+
+.bet-button {
+    margin-top: 10%;
+    @include button(rgb(40, 214, 245), 50%, 60px, 2.5vh);
+    margin-bottom: 20%;
+}
+
+.bet-button-confirm {
+    margin-top: 10%;
+    @include button(rgb(132, 245, 40), 50%, 60px, 2.5vh);
+    margin-bottom: 20%;
+}
+
+.bet-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 90%;
+}
+
+.bet-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.bet-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 90%;
+    margin-top: 5%;
+}
+
+.win-text {
+    font-size: 30px;
+    color: rgb(168 255 171);
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+
+    text-shadow:
+        2px 2px 5px rgba(15, 94, 103, 0.4),
+        -2px -2px 5px rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+.lose-text {
+    font-size: 30px;
+    color: rgb(233, 22, 68);
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+
+    text-shadow:
+        2px 2px 5px rgba(15, 94, 103, 0.4),
+        -2px -2px 5px rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .input-and-name-inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .all-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 }

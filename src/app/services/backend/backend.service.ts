@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
+import { BetResponseObject } from 'src/app/objects/betResponseObject';
 import { BetObject } from '../../objects/betObject';
 
 
@@ -70,7 +71,7 @@ export class BackendService {
   public getInitialWheelPos(): Observable<number> {
     return this.listen('initialWheelPos').pipe(
       map((data) => {
-      return data as number;
+        return data as number;
       })
     );
   }
@@ -83,10 +84,34 @@ export class BackendService {
     );
   }
 
+  public getBetTimeEnd(): Observable<boolean> {
+    return this.listen('betTimeEnd').pipe(
+      map((data) => {
+        return data as boolean;
+      })
+    )
+  }
+
+  public getNewRound(): Observable<boolean> {
+    return this.listen('newRound').pipe(
+      map((data) => {
+        return data as boolean;
+      })
+    )
+  }
+
+  public getBetStatus(): Observable<BetResponseObject> {
+    return this.listen('betStatus').pipe(
+      map((data) => {
+        return data as BetResponseObject;
+      })
+    )
+  }
+
   public getBetError(): Observable<boolean> {
     return this.listen('betError').pipe(
       map((data) => {
-        if(data) {
+        if (data) {
           return true;
         } else {
           return false;

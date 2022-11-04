@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BetResponseObject } from 'src/app/objects/betResponseObject';
+import { ConvertZetonaiToCurrencies } from 'src/app/utils/convertZetonasToCurrencies';
 import { BetObject } from '../../objects/betObject';
 import { BackendService } from '../../services/backend/backend.service';
 
@@ -13,16 +15,52 @@ export class PaymentComponent implements OnInit {
   piniginiai = 0;
   makseideriai = 0;
   all = 0;
+  betText = '';
+  betCof: string;
+  multiply: number;
+  winAmount: string;
+  betResponse: BetResponseObject;
+  betResponseText = '';
+
+  @Input() disabled = false;
+  @Input() betMade = false;
+  @Input() set bet(value: string) {
+    console.log(value)
+    if (value) {
+      console.log(value);
+      this.betText = this.betToText(value);
+      this.betCof = this.betCofSet(value).toString() + ".00";
+      this.multiply = this.betCofSet(value);
+      this.calculateWinAmount();
+    }
+  }
+
+  @Input() set reset(value: boolean) {
+    if (value) {
+      this.resetValues();
+    }
+  }
 
   @Output() newBetAmountEvent = new EventEmitter<number>();
+  @Output() newSubmitEvent = new EventEmitter();
+  @Output() newBetResponseEvent = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
+    this.backendService.getBetStatus().subscribe(response => {
+      this.betResponse = response;
+      this.setBetResultText(response.amount);
+      if (response.status) {
+        this.newBetResponseEvent.emit(true);
+      } else {
+        this.newBetResponseEvent.emit(false);
+      }
+    })
   }
 
   addZetonai() {
-    if(this.zetonai == 100) {
+    if (this.zetonai == 100) {
       this.zetonai = 0;
     } else {
       this.zetonai++;
@@ -31,14 +69,14 @@ export class PaymentComponent implements OnInit {
   }
 
   removeZetonai() {
-    if(this.zetonai > 0) {
+    if (this.zetonai > 0) {
       this.zetonai--;
     }
     this.setBetAmount();
   }
 
   addPiniginiai() {
-    if(this.piniginiai == 100) {
+    if (this.piniginiai == 100) {
       this.piniginiai = 0;
     } else {
       this.piniginiai++;
@@ -47,14 +85,14 @@ export class PaymentComponent implements OnInit {
   }
 
   removePiniginiai() {
-    if(this.piniginiai > 0) {
+    if (this.piniginiai > 0) {
       this.piniginiai--;
     }
     this.setBetAmount();
   }
 
   addMakseideriai() {
-    if(this.makseideriai == 100) {
+    if (this.makseideriai == 100) {
       this.makseideriai = 0;
     } else {
       this.makseideriai++;
@@ -63,7 +101,7 @@ export class PaymentComponent implements OnInit {
   }
 
   removeMakseideriai() {
-    if(this.makseideriai > 0) {
+    if (this.makseideriai > 0) {
       this.makseideriai--;
     }
     this.setBetAmount();
@@ -87,11 +125,196 @@ export class PaymentComponent implements OnInit {
   convertToZetonai() {
     this.all = this.zetonai;
     this.all += (this.piniginiai * 100);
-    this.all += (this.makseideriai * 1000);
+    this.all += (this.makseideriai * 10000);
+  }
+
+  setBetResultText(value: number) {
+    this.betResponseText = "   " + ConvertZetonaiToCurrencies.getMakseider(value).toString() + " M   " + ConvertZetonaiToCurrencies.getPiniginis(value).toString() + " P   " + ConvertZetonaiToCurrencies.getZetonas(value).toString() + " Z";
   }
 
   setBetAmount() {
     this.convertToZetonai();
     this.newBetAmountEvent.emit(this.all);
+    this.calculateWinAmount();
+  }
+
+  resetValues() {
+    this.all = 0;
+    this.zetonai = 0;
+    this.piniginiai = 0;
+    this.makseideriai = 0;
+    this.betText = '';
+    this.betCof = '';
+    this.multiply = 0;
+    this.winAmount = '';
+    this.bet = '';
+  }
+
+  sendBet() {
+    this.newSubmitEvent.emit();
+    this.betMade = true;
+  }
+
+  calculateWinAmount() {
+    const amount = this.all * this.multiply;
+    this.winAmount = ConvertZetonaiToCurrencies.getMakseider(amount).toString() + " M " + ConvertZetonaiToCurrencies.getPiniginis(amount).toString() + " P " + ConvertZetonaiToCurrencies.getZetonas(amount).toString() + " Z";
+  }
+
+  betToText(betText: string): string {
+    switch (betText) {
+      case "colorGreen":
+        return "Bus išsuktas žalias";
+      case "colorRed":
+        return "Bus išsuktas raudonas";
+      case "colorBlue":
+        return "Bus išsuktas mėlynas";
+      case "oneToSix":
+        return "Bus išsukta nuo vieno iki šešių";
+      case "sevenToTwelve":
+        return "Bus išsukta nuo septynių iki dvylikos";
+      case "thirtheenToEighteen":
+        return "Bus išsukta nuo trylikos iki aštuoniolikos";
+      case "lowerThanNine":
+        return "Bus išsukta mažiau negu devyni";
+      case "moreThanNine":
+        return "Bus išsukta daugiau negu devyni";
+      case "even":
+        return "Bus išsuktas lyginis skaičius";
+      case "odd":
+        return "Bus išsuktas nelyginis skaičius";
+      case "one":
+        return "Bus išsuktas vienetas";
+      case "two":
+        return "Bus išsuktas dvejetas";
+      case "three":
+        return "Bus išsuktas trejetas";
+      case "four":
+        return "Bus išsuktas ketvertas";
+      case "five":
+        return "Bus išsuktas penketas";
+      case "six":
+        return "Bus išsuktas šešetas";
+      case "seven":
+        return "Bus išsuktas septynetas";
+      case "eight":
+        return "Bus išsuktas aštuonetas";
+      case "nine":
+        return "Bus išsuktas devynetas";
+      case "ten":
+        return "Bus išsuktas dešimt";
+      case "eleven":
+        return "Bus išsuktas venuolika";
+      case "twelve":
+        return "Bus išsuktas dvylika";
+      case "thirtheen":
+        return "Bus išsuktas trylika";
+      case "fourtheen":
+        return "Bus išsuktas keturiolika";
+      case "fiftheen":
+        return "Bus išsuktas penkiolika";
+      case "sixteen":
+        return "Bus išsuktas šešiolika";
+      case "seventeen":
+        return "Bus išsuktas septiniolika";
+      case "eighteen":
+        return "Bus išsuktas aštuoniolika";
+      case "X":
+        return "Bus išsuktas paslaptingasis X";
+      case "W":
+        return "Bus išsuktas laimingasis W";
+      case "evenGreen":
+        return "Bus išsuktas žalias lyginis";
+      case "evenRed":
+        return "Bus išsuktas raudonas lyginis";
+      case "evenBlue":
+        return "Bus išsuktas mėlynas lyginis";
+      case "oddGreen":
+        return "Bus išsuktas žalias nelyginis";
+      case "oddRed":
+        return "Bus išsuktas raudonas nelyginis";
+      case "oddBlue":
+        return "Bus išsuktas mėlynas nelyginis";
+      default:
+        return ""
+    }
+  }
+
+  betCofSet(betText: string): number {
+    switch (betText) {
+      case "colorGreen":
+        return 3;
+      case "colorRed":
+        return 3;
+      case "colorBlue":
+        return 3;
+      case "oneToSix":
+        return 2;
+      case "sevenToTwelve":
+        return 2;
+      case "thirtheenToEighteen":
+        return 2;
+      case "lowerThanNine":
+        return 2;
+      case "moreThanNine":
+        return 2;
+      case "even":
+        return 2;
+      case "odd":
+        return 2;
+      case "one":
+        return 18;
+      case "two":
+        return 18;
+      case "three":
+        return 18;
+      case "four":
+        return 18;
+      case "five":
+        return 18;
+      case "six":
+        return 18;
+      case "seven":
+        return 18;
+      case "eight":
+        return 18;
+      case "nine":
+        return 18;
+      case "ten":
+        return 18;
+      case "eleven":
+        return 18;
+      case "twelve":
+        return 18;
+      case "thirtheen":
+        return 18;
+      case "fourtheen":
+        return 18;
+      case "fiftheen":
+        return 18;
+      case "sixteen":
+        return 18;
+      case "seventeen":
+        return 18;
+      case "eighteen":
+        return 18;
+      case "X":
+        return 18;
+      case "W":
+        return 18;
+      case "evenGreen":
+        return 6;
+      case "evenRed":
+        return 6;
+      case "evenBlue":
+        return 6;
+      case "oddGreen":
+        return 6;
+      case "oddRed":
+        return 6;
+      case "oddBlue":
+        return 6;
+      default:
+        return 0
+    }
   }
 }

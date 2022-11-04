@@ -1,49 +1,67 @@
 <div class="pay-container">
     <span class="main-pay-text">STATYMAS</span>
-    <span>Pasirinktas mygtukas</span>
+    <div *ngIf="betText" class="bet-text-container">
+        <span class="amount-text">{{betText}}</span>
+        <span class="amount-text">{{betCof}}</span>
+    </div>
     <div class="all-input-container">
         <div class="input-container">
             <div class="input-and-name-container">
                 <div class="input-and-name-inner-container">
-                    <input class="amount-input" type="number" (ngModelChange)="setMakseideriai($event)" [(ngModel)] = "makseideriai">
+                    <input class="amount-input" type="number" (ngModelChange)="setMakseideriai($event)"
+                        [(ngModel)]="makseideriai" [disabled]="disabled">
                     <span class="amount-text">Makseideriai</span>
                 </div>
             </div>
             <div class="plus-minus-container">
-                <button class="plus-button" (click)="addMakseideriai()">+</button>
-                <button class="minus-button" (click)="removeMakseideriai()">-</button>
+                <button class="plus-button" (click)="addMakseideriai()" [disabled]="disabled">+</button>
+                <button class="minus-button" (click)="removeMakseideriai()" [disabled]="disabled">-</button>
             </div>
         </div>
-        
+
         <div class="input-container">
             <div class="input-and-name-container">
                 <div class="input-and-name-inner-container">
-                    <input class="amount-input" type="number" (ngModelChange)="setPiniginiai($event)" [(ngModel)] = "piniginiai">
+                    <input class="amount-input" type="number" (ngModelChange)="setPiniginiai($event)"
+                        [(ngModel)]="piniginiai" [disabled]="disabled">
                     <span class="amount-text">Piniginiai</span>
                 </div>
             </div>
             <div class="plus-minus-container">
-                <button class="plus-button" (click)="addPiniginiai()">+</button>
-                <button class="minus-button" (click)="removePiniginiai()">-</button>
+                <button class="plus-button" (click)="addPiniginiai()" [disabled]="disabled">+</button>
+                <button class="minus-button" (click)="removePiniginiai()" [disabled]="disabled">-</button>
             </div>
         </div>
 
         <div class="input-container">
             <div class="input-and-name-container">
                 <div class="input-and-name-inner-container">
-                    <input class="amount-input" type="number" (ngModelChange)="setZetonai($event)" [(ngModel)] = "zetonai">
+                    <input class="amount-input" type="number" (ngModelChange)="setZetonai($event)" [(ngModel)]="zetonai"
+                        [disabled]="disabled">
                     <span class="amount-text">Zetonai</span>
                 </div>
             </div>
             <div class="plus-minus-container">
-                <button class="plus-button" (click)="addZetonai()">+</button>
-                <button class="minus-button" (click)="removeZetonai()">-</button>
+                <button class="plus-button" (click)="addZetonai()" [disabled]="disabled">+</button>
+                <button class="minus-button" (click)="removeZetonai()" [disabled]="disabled">-</button>
             </div>
         </div>
     </div>
-    <div class="winnings-container">
-        <div>Galimas laimėjimas:</div>
-        <div>15e</div>
+    <div *ngIf="winAmount" class="winnings-container">
+        <span class="amount-text">Galimas laimėjimas:</span>
+        <span class="amount-text">{{winAmount}}</span>
     </div>
-</div>
+    <div *ngIf="betResponse && betResponse.status" class="bet-status">
+        <span class="win-text">Laimėjote {{betResponseText}} !</span>
+    </div>
+    <div *ngIf="betResponse && !betResponse.status" class="bet-status">
+        <span class="lose-text">Pralaimėjote {{betResponseText}}</span>
+    </div>
+    <div *ngIf="!betMade" class="bet-button-container">
+        <button class="bet-button" (click)="sendBet()" [disabled]="disabled">Atlikti statymą</button>
+    </div>
+    <div *ngIf="betMade" class="bet-button-container">
+        <button class="bet-button-confirm" [disabled]=true>Statymas atliktas</button>
+    </div>
 
+</div>

@@ -1,14 +1,14 @@
 .timer-text {
     color: rgb(255, 255, 255);
-    font-size: 3em;
+    font-size: 3vw;
     font-weight: bold;
     font-family: sans-serif;
     text-transform: uppercase;
 
-    text-shadow: 
-    3px 3px 4px rgba(15, 94, 103, 0.4),
-    -3px -3px 4px rgba(255, 255, 255, 0.08);
-    caret-color:#fefefe;
+    text-shadow:
+        3px 3px 4px rgba(15, 94, 103, 0.4),
+        -3px -3px 4px rgba(255, 255, 255, 0.08);
+    caret-color: #fefefe;
     outline: none;
 }
 
@@ -18,19 +18,26 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
 }
 
 .time-count {
     color: rgb(255, 255, 255);
-    font-size: 4em;
+    font-size: 6vh;
     font-weight: bold;
     font-family: sans-serif;
     text-transform: uppercase;
 
-    text-shadow: 
-    3px 3px 5px rgba(15, 94, 103, 0.4),
-    -3px -3px 5px rgba(255, 255, 255, 0.08);
-    caret-color:#fefefe;
+    text-shadow:
+        3px 3px 5px rgba(15, 94, 103, 0.4),
+        -3px -3px 5px rgba(255, 255, 255, 0.08);
+    caret-color: #fefefe;
     outline: none;
+}
+
+.count-conainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
 }

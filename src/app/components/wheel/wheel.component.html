@@ -1,37 +1,13 @@
-<div class="wheel-page-container">
-    <div class="user-info-container">
-        <app-user-info></app-user-info>
-    </div>
-    <div class="timer-container">
-        <app-timer></app-timer>
-    </div>
-    <div class="container">
-        <div class="wheel-main">
-            <div class="wheel-container">
-                <div class="arrow-container">
-                    <div class="arrow-inner-contaier">
-                        <img src="../../assets/arrow.png" class="arrow">
-                    </div>
-                </div>
-                <div class="wheel-center-container">
-                    <img src="../../assets/wheel-middle.png" class="wheel-center">
-                </div>
-                <div [ngClass]="initialPosSet ? 'wheel-transition' : 'wheel-no-transition'" id="wheel">
-                    <img src="../../assets/wheelNew.png" class="wheel-size">
-                </div>
-            </div>
-        </div>
-        <div class="chat">
-            <app-messages></app-messages>
+<div class="wheel-container">
+    <div class="arrow-container">
+        <div class="arrow-inner-contaier">
+            <img src="../../assets/arrow.png" class="arrow">
         </div>
     </div>
-    <div class="bet-and-payment-container">
-        <div class="bet">
-            <app-bet (newPredictionEvent)="setBetPrediction($event)"></app-bet>
-        </div>
-        <div class="payment">
-            <app-payment (newBetAmountEvent)="setBetAmount($event)"></app-payment>
-            <button class="bet-button" (click)="sendBet()">Atlikti statymą</button>
-        </div>
+    <div class="wheel-center-container">
+        <img src="../../assets/wheel-middle.png" class="wheel-center">
+    </div>
+    <div [ngClass]="initialPosSet ? 'wheel-transition' : 'wheel-no-transition'" id="wheel">
+        <img src="../../assets/wheelNew.png" class="wheel-size">
     </div>
 </div>

@@ -1,5 +1,6 @@
 export class BetObject {
-    clientId: string;
-    betAmount: number;
-    prediction: string;
-  };
+  clientId: string;
+  clientNick: string;
+  betAmount: number;
+  prediction: string;
+};
