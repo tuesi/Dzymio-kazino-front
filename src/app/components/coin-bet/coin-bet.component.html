@@ -1,0 +1,9 @@
+<div class="coin-bet-main-container">
+    <button (click)="selectBet(1)" [ngClass]="selectHeads ? 'coin-bet-button select-style' : 'coin-bet-button'"
+        class="coin-bet-button">
+        <img class="coin-button-image-head" src="../../../assets/coin-head.png">
+    </button>
+    <button (click)="selectBet(2)" [ngClass]="selectTails ? 'coin-bet-button select-style' : 'coin-bet-button'">
+        <img class="coin-button-image-tail" src="../../../assets/coin-tail.png">
+    </button>
+</div>

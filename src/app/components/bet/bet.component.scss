@@ -99,6 +99,14 @@
     width: 100%;
 }
 
+.name-container-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 65%;
+}
+
 .spalvos-button-container {
     display: flex;
     flex-direction: row;

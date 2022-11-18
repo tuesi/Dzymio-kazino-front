@@ -1,9 +1,11 @@
-<div class="timer-container">
-    <div *ngIf="!inProgress" class="count-conainer">
-        <div class="timer-text">IKI KITO SUKIMO LIKO</div>
-        <div class="time-count">{{time}}</div>
-    </div>
-    <div *ngIf="inProgress" class="in-progess-container">
-        <div class="timer-text">VYKSTA SUKIMAS</div>
+<div class="timer-main-container">
+    <div class="timer-container">
+        <div *ngIf="!inProgress" class="count-conainer">
+            <div class="timer-text">IKI KITO SUKIMO LIKO</div>
+            <div class="time-count">{{time}}</div>
+        </div>
+        <div *ngIf="inProgress" class="in-progess-container">
+            <div class="timer-text">VYKSTA SUKIMAS</div>
+        </div>
     </div>
 </div>

@@ -1,16 +1,17 @@
 <div class="pay-container">
     <span class="main-pay-text">STATYMAS</span>
     <div *ngIf="betText" class="bet-text-container">
-        <span class="amount-text">{{betText}}</span>
-        <span class="amount-text">{{betCof}}</span>
+        <span class="bet-prediction-text">{{betText}}</span>
+        <span class="bet-prediction-text">{{betCof}}</span>
     </div>
+    <div *ngIf="!betText" class="bet-text-space-fillcontainer"></div>
     <div class="all-input-container">
         <div class="input-container">
             <div class="input-and-name-container">
                 <div class="input-and-name-inner-container">
                     <input class="amount-input" type="number" (ngModelChange)="setMakseideriai($event)"
                         [(ngModel)]="makseideriai" [disabled]="disabled">
-                    <span class="amount-text">Makseideriai</span>
+                    <span class="amount-text">Makšeideriai</span>
                 </div>
             </div>
             <div class="plus-minus-container">
@@ -47,18 +48,25 @@
             </div>
         </div>
     </div>
-    <div *ngIf="winAmount" class="winnings-container">
-        <span class="amount-text">Galimas laimėjimas:</span>
-        <span class="amount-text">{{winAmount}}</span>
+    <div *ngIf="winAmountSet" class="winnings-container">
+        <span class="bet-prediction-text">Galimas laimėjimas:</span>
+        <span class="bet-prediction-amount-text">{{winMakseiderAmount}} M</span>
+        <span class="bet-prediction-amount-text">{{winPiniginiaiAmount}} P</span>
+        <span class="bet-prediction-amount-text">{{winZetonaiAmount}} Z</span>
     </div>
-    <div *ngIf="betResponse && betResponse.status" class="bet-status">
-        <span class="win-text">Laimėjote {{betResponseText}} !</span>
+    <div *ngIf="!winAmountSet" class="winnings-space-fill-container"></div>
+    <div *ngIf="betResponseText != '' && betResponse.status" class="bet-status">
+        <span class="win-text">Laimėjote: {{betResponseText}} !</span>
     </div>
-    <div *ngIf="betResponse && !betResponse.status" class="bet-status">
-        <span class="lose-text">Pralaimėjote {{betResponseText}}</span>
+    <div *ngIf="betResponseText != '' && !betResponse.status" class="bet-status">
+        <span class="lose-text">Pralaimėjote: {{betResponseText}}</span>
     </div>
     <div *ngIf="!betMade" class="bet-button-container">
-        <button class="bet-button" (click)="sendBet()" [disabled]="disabled">Atlikti statymą</button>
+        <div class="error-container" *ngIf="!enoughBalance">
+            <span class="error-text">Nepakankamas likutis!</span>
+        </div>
+        <button [ngClass]="enoughBalance ? 'bet-button':'bet-button invalidBalance'" (click)="sendBet()"
+            [disabled]="disabled">Atlikti statymą</button>
     </div>
     <div *ngIf="betMade" class="bet-button-container">
         <button class="bet-button-confirm" [disabled]=true>Statymas atliktas</button>

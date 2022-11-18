@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
 import { BetResponseObject } from 'src/app/objects/betResponseObject';
+import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BetObject } from '../../objects/betObject';
 
 
@@ -23,90 +24,94 @@ export class BackendService {
     });
   }
 
-  emit(eventName: string, data: any) {
-    this.socket.emit(eventName, data);
+  emit(data: SocketEventObject) {
+    this.socket.emit('event', data);
   }
 
-  public sendBet(newBet: BetObject) {
-    this.socket.emit('bet', newBet);
+  public joinRoom(roomName: string) {
+    this.socket.emit('join', roomName);
   }
 
-  public getNewWheelMessages() {
-    this.socket.emit('getWheelMessages');
-  }
+  // public sendBet(newBet: BetObject) {
+  //   this.socket.emit('bet', newBet);
+  // }
 
-  public getStartSpin(): Observable<boolean> {
-    return this.listen('startSpin').pipe(
-      map((data) => {
-        return data as boolean;
-      })
-    )
-  }
+  // public getNewWheelMessages() {
+  //   this.socket.emit('getWheelMessages');
+  // }
 
-  public resetWheel(): Observable<boolean> {
-    return this.listen('resetWheel').pipe(
-      map((data) => {
-        return data as boolean;
-      })
-    );
-  }
+  // public getStartSpin(): Observable<boolean> {
+  //   return this.listen('startSpin').pipe(
+  //     map((data) => {
+  //       return data as boolean;
+  //     })
+  //   )
+  // }
 
-  public getWheelMessages(): Observable<string[]> {
-    return this.listen('wheelMessages').pipe(
-      map((data) => {
-        return data as string[];
-      })
-    );
-  }
+  // public resetWheel(): Observable<boolean> {
+  //   return this.listen('resetWheel').pipe(
+  //     map((data) => {
+  //       return data as boolean;
+  //     })
+  //   );
+  // }
+
+  // public getWheelMessages(): Observable<string[]> {
+  //   return this.listen('wheelMessages').pipe(
+  //     map((data) => {
+  //       return data as string[];
+  //     })
+  //   );
+  // }
 
 
-  public getWheelSpin(): Observable<number> {
-    return this.listen('wheelPos').pipe(
-      map((data) => {
-        return data as number;
-      })
-    );
-  }
+  // public getWheelSpin(): Observable<number> {
+  //   return this.listen('wheelPos').pipe(
+  //     map((data) => {
+  //       return data as number;
+  //     })
+  //   );
+  // }
 
-  public getInitialWheelPos(): Observable<number> {
-    return this.listen('initialWheelPos').pipe(
-      map((data) => {
-        return data as number;
-      })
-    );
-  }
+  // public getInitialWheelPos(): Observable<number> {
+  //   return this.listen('initialWheelPos').pipe(
+  //     map((data) => {
+  //       return data as number;
+  //     })
+  //   );
+  // }
 
-  public getTimeTillNextSpin(): Observable<number> {
-    return this.listen('timeTillSpin').pipe(
-      map((data) => {
-        return data as number;
-      })
-    );
-  }
+  // public getTimeTillNextSpin(): Observable<number> {
+  //   return this.listen('timeTillSpin').pipe(
+  //     map((data) => {
+  //       return data as number;
+  //     })
+  //   );
+  // }
 
-  public getBetTimeEnd(): Observable<boolean> {
-    return this.listen('betTimeEnd').pipe(
-      map((data) => {
-        return data as boolean;
-      })
-    )
-  }
+  // public getBetTimeEnd(): Observable<boolean> {
+  //   return this.listen('betTimeEnd').pipe(
+  //     map((data) => {
+  //       return data as boolean;
+  //     })
+  //   )
+  // }
 
-  public getNewRound(): Observable<boolean> {
-    return this.listen('newRound').pipe(
-      map((data) => {
-        return data as boolean;
-      })
-    )
-  }
+  // public getNewRound(): Observable<boolean> {
+  //   return this.listen('newRound').pipe(
+  //     map((data) => {
+  //       return data as boolean;
+  //     })
+  //   )
+  // }
 
-  public getBetStatus(): Observable<BetResponseObject> {
-    return this.listen('betStatus').pipe(
-      map((data) => {
-        return data as BetResponseObject;
-      })
-    )
-  }
+  // public getBetStatus(): Observable<BetResponseObject> {
+  //   return this.listen('betStatus').pipe(
+  //     map((data) => {
+  //       return data as BetResponseObject;
+  //     })
+  //   )
+  // }
 
   public getBetError(): Observable<boolean> {
     return this.listen('betError').pipe(

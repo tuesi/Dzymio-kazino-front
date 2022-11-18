@@ -1,0 +1,62 @@
+body {
+    background-color: rgb(88, 201, 250);
+}
+
+.line-game-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(88, 201, 250);
+}
+
+.main-game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+
+    >div {
+        width: 100%;
+    }
+}
+
+.messages-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0%;
+
+    >div {
+        width: 100%;
+    }
+}
+
+.previrous-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.payment-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.user-info-container {
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}

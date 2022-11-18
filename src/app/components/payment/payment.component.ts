@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BetResponseObject } from 'src/app/objects/betResponseObject';
-import { ConvertZetonaiToCurrencies } from 'src/app/utils/convertZetonasToCurrencies';
+import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
 import { BetObject } from '../../objects/betObject';
 import { BackendService } from '../../services/backend/backend.service';
 
@@ -18,21 +18,36 @@ export class PaymentComponent implements OnInit {
   betText = '';
   betCof: string;
   multiply: number;
-  winAmount: string;
+  winAmountSet = false;
   betResponse: BetResponseObject;
   betResponseText = '';
+  enoughBalance = true;
+
+  winMakseiderAmount = 0;
+  winPiniginiaiAmount = 0;
+  winZetonaiAmount = 0;
 
   @Input() disabled = false;
   @Input() betMade = false;
-  @Input() set bet(value: string) {
-    console.log(value)
+  @Input() set wheelBet(value: string) {
     if (value) {
-      console.log(value);
+      this.betResponseText = '';
       this.betText = this.betToText(value);
       this.betCof = this.betCofSet(value).toString() + ".00";
       this.multiply = this.betCofSet(value);
       this.calculateWinAmount();
     }
+  }
+  @Input() set coinBet(value: number) {
+    this.betResponseText = '';
+    if (value == 1) {
+      this.betText = "Iškris Džminio neutrono moneta";
+    } else if (value == 2) {
+      this.betText = "Iškris Noooo moneta";
+    }
+    this.betCof = "2.00";
+    this.multiply = 2;
+    this.calculateWinAmount();
   }
 
   @Input() set reset(value: boolean) {
@@ -41,6 +56,8 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  @Input() clientWalletInZeton = 0;
+
   @Output() newBetAmountEvent = new EventEmitter<number>();
   @Output() newSubmitEvent = new EventEmitter();
   @Output() newBetResponseEvent = new EventEmitter<boolean>();
@@ -48,15 +65,15 @@ export class PaymentComponent implements OnInit {
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.backendService.getBetStatus().subscribe(response => {
-      this.betResponse = response;
-      this.setBetResultText(response.amount);
-      if (response.status) {
+    this.backendService.listen('betStatus').subscribe(response => {
+      this.betResponse = response as BetResponseObject;
+      this.setBetResultText(this.betResponse.amount);
+      if (this.betResponse.status) {
         this.newBetResponseEvent.emit(true);
       } else {
         this.newBetResponseEvent.emit(false);
       }
-    })
+    });
   }
 
   addZetonai() {
@@ -129,7 +146,7 @@ export class PaymentComponent implements OnInit {
   }
 
   setBetResultText(value: number) {
-    this.betResponseText = "   " + ConvertZetonaiToCurrencies.getMakseider(value).toString() + " M   " + ConvertZetonaiToCurrencies.getPiniginis(value).toString() + " P   " + ConvertZetonaiToCurrencies.getZetonas(value).toString() + " Z";
+    this.betResponseText = "   " + ConvertCurrencies.getMakseider(value).toString() + " M   " + ConvertCurrencies.getPiniginis(value).toString() + " P   " + ConvertCurrencies.getZetonas(value).toString() + " Z";
   }
 
   setBetAmount() {
@@ -146,18 +163,35 @@ export class PaymentComponent implements OnInit {
     this.betText = '';
     this.betCof = '';
     this.multiply = 0;
-    this.winAmount = '';
-    this.bet = '';
+    this.winMakseiderAmount = 0;
+    this.winPiniginiaiAmount = 0;
+    this.winZetonaiAmount = 0;
+    this.wheelBet = '';
+    this.enoughBalance = true;
+    this.betResponse = new BetResponseObject;
+    this.winAmountSet = false;
   }
 
   sendBet() {
-    this.newSubmitEvent.emit();
-    this.betMade = true;
+    console.log(this.clientWalletInZeton);
+    console.log(this.all);
+    if (this.clientWalletInZeton >= this.all && this.all != 0) {
+      this.newSubmitEvent.emit();
+      this.betMade = true;
+      this.enoughBalance = true;
+    } else {
+      this.enoughBalance = false;
+    }
   }
 
   calculateWinAmount() {
-    const amount = this.all * this.multiply;
-    this.winAmount = ConvertZetonaiToCurrencies.getMakseider(amount).toString() + " M " + ConvertZetonaiToCurrencies.getPiniginis(amount).toString() + " P " + ConvertZetonaiToCurrencies.getZetonas(amount).toString() + " Z";
+    if (this.all && this.multiply) {
+      const amount = this.all * this.multiply;
+      this.winMakseiderAmount = ConvertCurrencies.getMakseider(amount);
+      this.winPiniginiaiAmount = ConvertCurrencies.getPiniginis(amount);
+      this.winZetonaiAmount = ConvertCurrencies.getZetonas(amount);
+      this.winAmountSet = true;
+    }
   }
 
   betToText(betText: string): string {

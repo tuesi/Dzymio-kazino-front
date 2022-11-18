@@ -14,14 +14,14 @@ export class TimerComponent implements OnInit {
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.backendService.getTimeTillNextSpin().subscribe(data => {
-      this.time = data;
+    this.backendService.listen('timeTillSpin').subscribe(time => {
+      this.time = time as number;
       if (this.time <= 0) {
         this.inProgress = true;
       } else {
         this.inProgress = false;
       }
-    })
+    });
   }
 
 }

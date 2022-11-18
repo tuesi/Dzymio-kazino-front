@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoinComponent } from './components/coin/coin.component';
-import { ListComponent } from './components/list/list.component';
+import { CoinGameComponent } from './components/coin-game/coin-game.component';
+import { CrashGameComponent } from './components/crash-game/crash-game.component';
+import { LineGameComponent } from './components/line-game/line-game.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { WheelGameComponent } from './components/wheel-game/wheel-game.component';
@@ -21,13 +22,15 @@ const routes: Routes = [
   },
   {
     path: 'coin',
-    component: CoinComponent,
-    canActivate: [AuthGuard]
+    component: CoinGameComponent
   },
   {
     path: 'list',
-    component: ListComponent,
-    canActivate: [AuthGuard]
+    component: LineGameComponent
+  },
+  {
+    path: 'crash',
+    component: CrashGameComponent
   }
 ];
 

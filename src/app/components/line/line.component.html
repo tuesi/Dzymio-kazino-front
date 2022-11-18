@@ -1,0 +1,14 @@
+<div class="line-main-contaier">
+    <div class="line-box-container">
+        <div class="black-line-container">
+            <div class="black-line"></div>
+        </div>
+        <div class="line-items-container" #itemListComponent id="itemListComponent">
+            <div *ngFor="let item of itemList">
+                <div class="item-list-container">
+                    <img src={{item}} class="image-size">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
+import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
 @Component({
@@ -15,20 +16,26 @@ export class WheelGameComponent implements OnInit {
   betAmount = 0;
   betPrediction = '';
   clientData: ClientObject;
+  clientWalletInZeton = 0;
   disabled = false;
   betMade = false;
   reset = false;
   betStatus = 'none';
 
+  socketSubscribeEvents = ['betTimeEnd', 'newRound'];
+
   ngOnInit(): void {
-    this.backendService.getBetTimeEnd().subscribe(endTime => {
+
+    this.backendService.joinRoom('wheel');
+
+    this.backendService.listen('betTimeEnd').subscribe(endTime => {
       if (endTime) {
         this.disabled = true;
         this.reset = false;
       }
     });
 
-    this.backendService.getNewRound().subscribe(newRound => {
+    this.backendService.listen('newRound').subscribe(newRound => {
       if (newRound) {
         this.disabled = false;
         this.betMade = false;
@@ -40,7 +47,9 @@ export class WheelGameComponent implements OnInit {
   }
 
   setBetAmount(amount: number) {
-    this.betAmount = amount;
+    if (this.clientWalletInZeton >= amount) {
+      this.betAmount = amount;
+    }
   }
 
   setBetPrediction(prediction: string) {
@@ -49,6 +58,10 @@ export class WheelGameComponent implements OnInit {
 
   setClientData(clientData: ClientObject) {
     this.clientData = clientData;
+  }
+
+  setClientWalletInZeton(amount: number) {
+    this.clientWalletInZeton = amount;
   }
 
   setBetStatus(status: boolean) {
@@ -66,7 +79,7 @@ export class WheelGameComponent implements OnInit {
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betPrediction;
     if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction) {
-      this.backendService.sendBet(newBet);
+      this.backendService.emit(new SocketEventObject('wheel', 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

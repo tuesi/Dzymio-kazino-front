@@ -1,15 +1,22 @@
-<div class="user-info-container">
-    <div class="user-photo-container">
-        <div *ngIf="avatar" class="oval" [ngStyle]="{'background-image': 'url(' + avatar + ')'}">
+<div class="header-container">
+    <div class="back-button-container">
+        <button class="logout-button">
+            <span class="logout-button-text" (click)="goBackToMenu()"> back </span>
+        </button>
+    </div>
+    <div class="user-info-container">
+        <div class="user-photo-container">
+            <div *ngIf="avatar" class="oval" [ngStyle]="{'background-image': 'url(' + avatar + ')'}">
+            </div>
         </div>
-    </div>
-    <div class="user-name-container">
-        {{nick}}
-    </div>
-    <div *ngIf="balance" class="user-wallet-container">
-        <span class="amount-text">{{balance.GOLD}} M </span>
-        <span class="amount-text">{{balance.SILVER}} P </span>
-        <span class="amount-text">{{balance.COPPER}} Z </span>
+        <div class="user-name-container">
+            {{nick}}
+        </div>
+        <div *ngIf="balance" class="user-wallet-container">
+            <span class="amount-text">{{balance.GOLD}} M </span>
+            <span class="amount-text">{{balance.SILVER}} P </span>
+            <span class="amount-text">{{balance.COPPER}} Z </span>
+        </div>
     </div>
     <div class="logout-container">
         <button class="logout-button">

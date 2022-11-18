@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
-    background-color: rgb(88, 201, 250);
+    background: rgb(88, 201, 250);
 }
 
 .login-button-container {
@@ -28,24 +28,25 @@
     text-shadow:
         -3px -3px 10px rgba(255, 255, 255, 0.4),
         3px 3px 3px rgba(0, 0, 0, 0.08);
-    caret-color: #84e5f7;
+    caret-color: #363636;
 
-    background: linear-gradient(145deg, #48b5e6, #56d7ff);
-    box-shadow: 5px 5px 13px #48b5e6,
-        -5px -5px 13px #58ddff;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #5ed7ff, #4fb5e1);
+    box-shadow: 6px 6px 10px #4db1dc,
+        -6px -6px 10px #63e1ff;
 
     &:hover {
         border-radius: 50px;
-        background: linear-gradient(145deg, #56d7ff, #48b5e6);
-        box-shadow: 5px 5px 13px #48b5e6,
-            -5px -5px 13px #58ddff;
+        background: linear-gradient(145deg, #4fb5e1, #5ed7ff);
+        box-shadow: 6px 6px 10px #4db1dc,
+            -6px -6px 10px #63e1ff;
     }
 
     &:active {
         border-radius: 50px;
-        background: #50c9ff;
-        box-shadow: inset 5px 5px 13px #48b5e6,
-            inset -5px -5px 13px #58ddff;
+        background: #58c9fa;
+        box-shadow: inset 6px 6px 10px #4db1dc,
+            inset -6px -6px 10px #63e1ff;
     }
 }
 

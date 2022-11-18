@@ -3,9 +3,14 @@
 </div>
 <div class="wheel-game-container">
     <div class="user-info-container">
-        <app-user-info (newUserEvent)="setClientData($event)"></app-user-info>
+        <app-user-info (newUserEvent)="setClientData($event)"
+            (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
     </div>
-    <app-timer></app-timer>
+    <div class="timer-container">
+        <div>
+            <app-timer></app-timer>
+        </div>
+    </div>
     <div class="first-group-container">
         <div class="wheel-container">
             <div>
@@ -18,6 +23,11 @@
             </div>
         </div>
     </div>
+    <div class="previous-result-container">
+        <div>
+            <app-previous-results></app-previous-results>
+        </div>
+    </div>
     <div class="second-group-container">
         <div class="predictions-container">
             <div>
@@ -28,8 +38,8 @@
         <div class="amout-container">
             <div>
                 <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
-                    (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [bet]="betPrediction"
-                    [betMade]="betMade" [reset]="reset"></app-payment>
+                    (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [wheelBet]="betPrediction"
+                    [betMade]="betMade" [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
             </div>
         </div>
     </div>

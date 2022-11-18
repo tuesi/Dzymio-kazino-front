@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgb(88, 201, 250);
 }
 
 .wheel-game-container {
@@ -66,10 +66,10 @@ body {
         justify-content: center;
         flex-direction: column;
         height: 100%;
-        width: 50%;
+        width: 0%;
 
         >div {
-            width: 50%;
+            width: 60%;
         }
     }
 }
@@ -90,7 +90,7 @@ body {
         width: 50%;
 
         >div {
-            width: 80%;
+            width: 60%;
         }
     }
 
@@ -100,11 +100,37 @@ body {
         justify-content: center;
         flex-direction: column;
         width: 50%;
+        height: 50%;
 
         >div {
-            width: 100%;
-            min-width: 60%;
+            width: 40%;
+            height: 50%;
+            min-width: 10%;
         }
+    }
+}
+
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+
+    >div {
+        width: 100%;
+    }
+}
+
+.previous-result-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+
+    >div {
+        width: 100%;
     }
 }
 
@@ -149,10 +175,10 @@ body {
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            width: 100%;
+            width: 50%;
 
             >div {
-                width: 70%;
+                width: 100%;
             }
         }
 
@@ -161,7 +187,7 @@ body {
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            width: 100%;
+            width: 80%;
             margin-top: 10%;
 
             >div {
@@ -181,7 +207,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            width: 90%;
             margin-top: 10%;
 
             >div {
@@ -193,9 +219,8 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            width: 90%;
             margin-top: 10%;
-            background-color: yellow;
             z-index: 10px;
 
             >div {

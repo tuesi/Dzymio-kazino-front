@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageObject } from 'src/app/objects/messageObject';
+import { MessageShowObject } from 'src/app/objects/messageShowObject';
+import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from '../../services/backend/backend.service';
+
+const wheelAvatar = '../../../assets/wheelAvatar.png';
 
 @Component({
   selector: 'app-messages',
@@ -7,24 +12,30 @@ import { BackendService } from '../../services/backend/backend.service';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
-  
-  messageList: string[] = [];
+
+  messageList: MessageShowObject[] = [];
 
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.backendService.getWheelMessages().subscribe((messages: string[]) => {
+    this.backendService.listen('clientBetHistory').subscribe((messages) => {
+      console.log(messages);
+      let wheelMessages = messages as Array<MessageObject>;
       this.messageList = [];
-      messages.forEach(message => {
-        this.messageList.push(message);
+      wheelMessages.forEach(message => {
+        var avatar = wheelAvatar;
+        if (message.clientId && message.avatar) {
+          avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
+        }
+        this.messageList.push(new MessageShowObject(avatar, message.message));
       });
       setTimeout(() => {
         var chatHistory = document.getElementById("chat-box");
-        if(chatHistory) {
+        if (chatHistory) {
           console.log("meesage scrol");
           chatHistory.scrollTop = chatHistory.scrollHeight;
         }
       }, 50);
-    })
+    });
   }
 }

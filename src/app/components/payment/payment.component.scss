@@ -1,18 +1,18 @@
 @mixin button ($color, $width: 120px, $height: 40px, $fontSize: 40px) {
     width: $width;
     height: $height;
-    color: white;
+    color: rgb(0, 0, 0);
     background-color: $color;
     border: none;
-    box-shadow: 0px 1px black;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.26);
     border-radius: 5px;
     font-size: $fontSize;
     line-height: 10%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
-    border-style: ridge;
-    border-color: black;
-    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
     border-spacing: 10px;
 
     &:hover {
@@ -42,7 +42,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 50%;
     min-width: 50px;
 }
 
@@ -60,7 +60,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 250px;
+    width: 100px;
     min-width: 100px;
     min-height: 50px;
     margin: 1%;
@@ -71,8 +71,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     gap: 5%;
+    margin-top: 5%;
 }
 
 .all-input-container {
@@ -100,6 +101,10 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 
     &:focus {
         border-style: solid;
@@ -120,10 +125,23 @@
 }
 
 .amount-text {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 5%;
     font-size: 2vh;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.bet-prediction-text {
+    font-size: 2.5vh;
+    color: rgb(0, 0, 0);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.bet-prediction-amount-text {
+    font-size: 2.5vh;
+    color: rgb(0, 0, 0);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-left: 10px;
 }
 
 .main-pay-text {
@@ -132,14 +150,18 @@
 }
 
 .plus-button {
-    @include button (rgb(125, 179, 40), 100%, 40px, 5vh);
-    min-width: 40px;
+    @include button (rgba(255, 255, 255, 0), 50%, 40px, 5vh);
+    min-width: 20px;
     min-height: 20px;
 }
 
 .minus-button {
-    @include button (rgb(219, 40, 79), 100%, 40px, 5vh);
-    min-width: 40px;
+    @include button (rgba(255, 255, 255, 0), 50%, 40px, 5vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6%;
+    min-width: 20px;
     min-height: 20px;
 }
 
@@ -159,21 +181,30 @@ input[type=number] {
 .winnings-container {
     display: flex;
     align-items: start;
-    justify-content: start;
+    justify-content: space-between;
     flex-direction: row;
-    width: 90%;
+    width: 100%;
     margin-top: 5%;
+    height: 100px;
 }
 
 .bet-button {
-    margin-top: 10%;
-    @include button(rgb(40, 214, 245), 50%, 60px, 2.5vh);
+    @include button(rgba(58, 58, 58, 0), 100%, 60px, 2.5vh);
     margin-bottom: 20%;
+
+    &.invalidBalance {
+        &:active {
+            animation: shake 0.1s cubic-bezier(.36, .07, .19, .97);
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+    }
 }
 
 .bet-button-confirm {
     margin-top: 10%;
-    @include button(rgb(132, 245, 40), 50%, 60px, 2.5vh);
+    @include button(rgba(132, 245, 40, 0.438), 100%, 60px, 2.5vh);
     margin-bottom: 20%;
 }
 
@@ -182,14 +213,17 @@ input[type=number] {
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    width: 90%;
+    width: 100%;
+    height: 100px;
 }
 
 .bet-button-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
+    margin-top: 5%;
 }
 
 .bet-status {
@@ -197,34 +231,55 @@ input[type=number] {
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    width: 90%;
+    width: 80%;
     margin-top: 5%;
 }
 
 .win-text {
-    font-size: 30px;
-    color: rgb(168 255 171);
-    font-weight: bold;
-    font-family: sans-serif;
-    text-transform: uppercase;
-
-    text-shadow:
-        2px 2px 5px rgba(15, 94, 103, 0.4),
-        -2px -2px 5px rgba(255, 255, 255, 0.08);
-    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 3vh;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .lose-text {
-    font-size: 30px;
-    color: rgb(233, 22, 68);
-    font-weight: bold;
-    font-family: sans-serif;
-    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-size: 3vh;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
-    text-shadow:
-        2px 2px 5px rgba(15, 94, 103, 0.4),
-        -2px -2px 5px rgba(255, 255, 255, 0.08);
-    outline: none;
+.bet-text-space-fillcontainer {
+    height: 100px;
+}
+
+.winnings-space-fill-container {
+    margin-top: 5%;
+    height: 100px;
+}
+
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .error-text {
+        font-weight: bold;
+        color: rgba(253, 55, 55, 0.61);
+    }
+}
+
+@keyframes shake {
+
+    0% {
+        -webkit-transform: translate(12px, 0);
+    }
+
+    50% {
+        -webkit-transform: translate(-12px, 0);
+    }
+
+    100% {
+        -webkit-transform: translate(12px, 0);
+    }
 }
 
 @media only screen and (max-width: 800px) {

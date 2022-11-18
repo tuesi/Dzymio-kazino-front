@@ -1,0 +1,34 @@
+<div class="main-coin-game-container">
+    <div class="user-info-container">
+        <app-user-info></app-user-info>
+    </div>
+    <app-timer></app-timer>
+    <div class="first-group-container">
+        <div class="coin-container">
+            <div>
+                <app-coin></app-coin>
+            </div>
+        </div>
+        <div class="message-container">
+            <div>
+                <app-messages></app-messages>
+            </div>
+        </div>
+    </div>
+    <div>
+        <app-previous-results></app-previous-results>
+    </div>
+    <div class="main-activity-container">
+        <div class="coin-bet-container">
+            <div>
+                <app-coin-bet (newPredictionEvent)="setBetValue($event)"></app-coin-bet>
+            </div>
+
+        </div>
+        <div class="payment-container">
+            <div>
+                <app-payment [coinBet]="betValue"></app-payment>
+            </div>
+        </div>
+    </div>
+</div>

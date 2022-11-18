@@ -1,0 +1,61 @@
+.coin-bet-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+.coin-button-image-head {
+    transform: rotate(90deg);
+    width: 120%;
+}
+
+.coin-button-image-tail {
+    transform: rotate(-90deg);
+    width: 120%;
+}
+
+.coin-bet-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+
+    min-width: 50px;
+    min-height: 50px;
+
+    box-shadow: 0px 0px 0px 0px;
+
+
+    &:hover {
+        opacity: 0.8;
+        box-shadow: 0px 0px 20px 1px;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    &.select-style {
+        outline-color: rgb(0, 0, 0);
+        outline-style: solid;
+        outline-width: 3px;
+        outline-offset: .2rem;
+        transition: all ease-out 0.1s;
+
+        >img {
+            filter: saturate(1) brightness(1.2);
+        }
+    }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: desaturate(white, 50%);
+    }
+}

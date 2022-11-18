@@ -1,12 +1,14 @@
 <div class="chat-container">
-    <div class="chat-box" id="chat-box">
-        <div class="messages-container">
-            <div *ngFor="let message of messageList">
-                <span class="chat-text">
-                    {{message}}
-                </span>
+    <div class="chat-box">
+        <div class="messages-container" id="chat-box">
+            <div *ngFor="let message of messageList" class="message-text-container">
+                <div class="message-text-container">
+                    <span class="message-avatar-container"><img class="message-avatar" src={{message.avatar}}></span>
+                    <span class="chat-text">
+                        {{message.message}}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
