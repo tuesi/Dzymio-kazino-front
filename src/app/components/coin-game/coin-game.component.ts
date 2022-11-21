@@ -22,6 +22,14 @@ export class CoinGameComponent implements OnInit {
   betAmount = 0;
   reset = false;
 
+  itemsLoaded = new Map<string, boolean>([
+    ["messages", false],
+    ["previous", false],
+    ["clientData", false],
+    ["clientWallet", false],
+  ]);
+  loading = true;
+
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
@@ -44,6 +52,14 @@ export class CoinGameComponent implements OnInit {
         this.betStatus = 'none';
       }
     });
+
+    this.backendService.listen('initialButtonState').subscribe(state => {
+      if (!state) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
+      }
+    });
   }
 
   setBetPrediction(value: number) {
@@ -58,10 +74,12 @@ export class CoinGameComponent implements OnInit {
 
   setClientData(clientData: ClientObject) {
     this.clientData = clientData;
+    this.setLoaded('clientData');
   }
 
   setClientWalletInZeton(amount: number) {
     this.clientWalletInZeton = amount;
+    this.setLoaded('clientWallet');
   }
 
   setBetStatus(status: boolean) {
@@ -70,6 +88,28 @@ export class CoinGameComponent implements OnInit {
     } else {
       this.betStatus = "lose";
     }
+  }
+
+  setLoaded(loadName: string) {
+    console.log(loadName);
+    this.itemsLoaded.forEach((value, key) => {
+      if (key === loadName) {
+        this.itemsLoaded.set(key, true);
+      }
+    });
+    console.log(!this.checkLoadingStatus());
+    this.loading = !this.checkLoadingStatus();
+  }
+
+  checkLoadingStatus(): boolean {
+    let count = 0;
+    this.itemsLoaded.forEach((value, key) => {
+      if (value === true) {
+        count++;
+      }
+    });
+    console.log(count);
+    return count === this.itemsLoaded.size;
   }
 
   sendBet() {

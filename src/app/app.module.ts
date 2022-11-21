@@ -8,6 +8,7 @@ import { WheelComponent } from './components/wheel/wheel.component';
 import { MainComponent } from './components/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { BackendService } from './services/backend/backend.service';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -54,6 +55,7 @@ import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     FormsModule,
     HttpClientModule
   ],

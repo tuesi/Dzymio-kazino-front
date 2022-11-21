@@ -13,12 +13,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'main',
-    component: MainComponent,
-    canActivate: [AuthGuard]
+    component: MainComponent
   },
   {
     path: 'wheel',
-    component: WheelGameComponent
+    component: WheelGameComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'coin',

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
@@ -44,6 +44,8 @@ export class PreviousResultsComponent implements OnInit {
 
   @Input() roomName: string;
 
+  @Output() loadingComplete = new EventEmitter();
+
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
@@ -51,7 +53,6 @@ export class PreviousResultsComponent implements OnInit {
     this.backendService.emit(new SocketEventObject(this.roomName, 'getPreviousResults', null));
 
     this.backendService.listen('previousCoins').subscribe((previous) => {
-      console.log('coin');
       let previousResponse = previous as Array<number>;
       this.previousEventList = [];
       previousResponse.forEach(value => {
@@ -61,36 +62,34 @@ export class PreviousResultsComponent implements OnInit {
           this.previousEventList.push(coinTail);
         }
       });
-
       setTimeout(() => {
+        console.log('TIMEOUT');
         var chatHistory = document.getElementById("item-box");
         if (chatHistory) {
-          console.log("meesage scrol");
           chatHistory.scrollLeft = chatHistory.scrollWidth;
+          this.loadingComplete.emit('previous');
         }
       }, 50);
     });
 
     this.backendService.listen('previousWheelResults').subscribe(previous => {
-      console.log('wheel');
-      console.log(previous);
       let previousResponse = previous as Array<string>;
       this.previousEventList = [];
       previousResponse.forEach(value => {
         this.previousEventList.push(this.getWheelResultImage(value));
       });
+
       setTimeout(() => {
         var chatHistory = document.getElementById("item-box");
         if (chatHistory) {
-          console.log("meesage scrol");
+          console.log(chatHistory);
           chatHistory.scrollLeft = chatHistory.scrollWidth;
+          this.loadingComplete.emit('previous');
         }
       }, 50);
     });
 
     this.backendService.listen('previousLineResults').subscribe(previous => {
-      console.log('line');
-      console.log(previous);
       let previousResponse = previous as Array<number>;
       this.previousEventList = [];
       previousResponse.forEach(value => {
@@ -99,8 +98,8 @@ export class PreviousResultsComponent implements OnInit {
       setTimeout(() => {
         var chatHistory = document.getElementById("item-box");
         if (chatHistory) {
-          console.log("meesage scrol");
           chatHistory.scrollLeft = chatHistory.scrollWidth;
+          this.loadingComplete.emit('previous');
         }
       }, 50);
     });

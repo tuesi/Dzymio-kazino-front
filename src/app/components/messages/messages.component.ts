@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageObject } from 'src/app/objects/messageObject';
 import { MessageShowObject } from 'src/app/objects/messageShowObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
@@ -12,6 +12,8 @@ const wheelAvatar = '../../../assets/wheelAvatar.png';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
+
+  @Output() loadingComplete = new EventEmitter();
 
   messageList: MessageShowObject[] = [];
 
@@ -34,6 +36,7 @@ export class MessagesComponent implements OnInit {
         if (chatHistory) {
           console.log("meesage scrol");
           chatHistory.scrollTop = chatHistory.scrollHeight;
+          this.loadingComplete.emit('messages');
         }
       }, 50);
     });

@@ -24,6 +24,15 @@ export class WheelGameComponent implements OnInit {
   reset = false;
   betStatus = 'none';
 
+  itemsLoaded = new Map<string, boolean>([
+    ["wheel", false],
+    ["messages", false],
+    ["previous", false],
+    ["clientData", false],
+    ["clientWallet", false],
+  ]);
+  loading = true;
+
   ngOnInit(): void {
 
     this.backendService.joinRoom(this.roomName);
@@ -45,6 +54,14 @@ export class WheelGameComponent implements OnInit {
         this.betStatus = 'none';
       }
     });
+
+    this.backendService.listen('initialButtonState').subscribe(state => {
+      if (!state) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
+      }
+    });
   }
 
   setBetAmount(amount: number) {
@@ -59,10 +76,12 @@ export class WheelGameComponent implements OnInit {
 
   setClientData(clientData: ClientObject) {
     this.clientData = clientData;
+    this.setLoaded('clientData');
   }
 
   setClientWalletInZeton(amount: number) {
     this.clientWalletInZeton = amount;
+    this.setLoaded('clientWallet');
   }
 
   setBetStatus(status: boolean) {
@@ -71,6 +90,25 @@ export class WheelGameComponent implements OnInit {
     } else {
       this.betStatus = "lose";
     }
+  }
+
+  setLoaded(loadName: string) {
+    this.itemsLoaded.forEach((value, key) => {
+      if (key === loadName) {
+        this.itemsLoaded.set(key, true);
+      }
+    });
+    this.loading = !this.checkLoadingStatus();
+  }
+
+  checkLoadingStatus(): boolean {
+    let count = 0;
+    this.itemsLoaded.forEach((value, key) => {
+      if (value === true) {
+        count++;
+      }
+    });
+    return count === this.itemsLoaded.size;
   }
 
   sendBet() {

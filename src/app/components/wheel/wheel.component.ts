@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from '../../services/backend/backend.service';
 
@@ -20,6 +20,8 @@ export class WheelComponent implements OnInit {
   initialPosSet = false;
   reset = false;
   gotNewMessages = false;
+
+  @Output() loadingComplete = new EventEmitter();
 
   constructor(private backendService: BackendService) { }
 
@@ -74,7 +76,8 @@ export class WheelComponent implements OnInit {
       this.wheelEl.style.transform = `rotate(-${this.initialPos}deg)`;
       setTimeout(() => {
         this.initialPosSet = true;
-      }, 10);
+        this.loadingComplete.emit('wheel');
+      }, 60);
     }
   }
 

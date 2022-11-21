@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class LineComponent implements OnInit {
   itemCollection = [this.zeroX, this.oneX, this.oneFiveX, this.twoX, this.fourX, this.tenX];
   lineList: number[] = [];
 
+  @Output() loadingComplete = new EventEmitter();
+
   @ViewChild('itemListComponent')
   private itemListComponent: ElementRef;
 
@@ -32,7 +34,7 @@ export class LineComponent implements OnInit {
       this.itemListComponent.nativeElement.style.transform = `translateX(${(0)}px)`;
       setTimeout(() => {
         this.itemListComponent.nativeElement.style.transition = 'all ease-out 5s';
-      }, 10);
+      }, 20);
       this.itemList = [];
       this.lineList.forEach(element => {
         this.itemList.push(this.itemCollection[element]);
@@ -41,6 +43,15 @@ export class LineComponent implements OnInit {
 
     this.backendService.listen('linePos').subscribe(linePos => {
       this.spin(linePos as number);
+    });
+
+    this.backendService.listen('initialLinePos').subscribe(linePos => {
+      this.itemListComponent.nativeElement.style.transition = 'none';
+      this.itemListComponent.nativeElement.style.transform = `translateX(${(linePos)}px)`;
+      setTimeout(() => {
+        this.itemListComponent.nativeElement.style.transition = 'all ease-out 5s';
+        this.loadingComplete.emit('line');
+      }, 20);
     });
   }
 

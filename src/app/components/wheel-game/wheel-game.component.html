@@ -1,3 +1,6 @@
+<div class="loading-container" *ngIf="loading">
+    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
 <div *ngIf="betStatus == 'win' || betStatus == 'lose'"
     [ngClass]="betStatus == 'win' ? 'status-overlay win-style' : betStatus == 'lose' ? 'status-overlay lose-style' : 'status-overlay'">
 </div>
@@ -14,18 +17,18 @@
     <div class="first-group-container">
         <div class="wheel-container">
             <div>
-                <app-wheel></app-wheel>
+                <app-wheel (loadingComplete)="setLoaded($event)"></app-wheel>
             </div>
         </div>
         <div class="messages-container">
             <div>
-                <app-messages></app-messages>
+                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
             </div>
         </div>
     </div>
     <div class="previous-result-container">
         <div>
-            <app-previous-results [roomName]="roomName"></app-previous-results>
+            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
         </div>
     </div>
     <div class="second-group-container">

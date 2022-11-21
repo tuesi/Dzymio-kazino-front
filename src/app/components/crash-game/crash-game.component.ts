@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
@@ -24,6 +24,15 @@ export class CrashGameComponent implements OnInit {
 
   betAutoStopNuber: number;
 
+  itemsLoaded = new Map<string, boolean>([
+    ["chrash", false],
+    ["messages", false],
+    ["previous", false],
+    ["clientData", false],
+    ["clientWallet", false],
+  ]);
+  loading = true;
+
   ngOnInit(): void {
     this.backendService.joinRoom(this.roomName);
 
@@ -40,6 +49,14 @@ export class CrashGameComponent implements OnInit {
         this.betMade = false;
         this.reset = true;
         this.betAmount = 0;
+      }
+    });
+
+    this.backendService.listen('initialButtonState').subscribe(state => {
+      if (!state) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
       }
     });
   }
@@ -60,6 +77,28 @@ export class CrashGameComponent implements OnInit {
 
   setAutoStopAmount(amount: number) {
     this.betAutoStopNuber = amount;
+  }
+
+  setLoaded(loadName: string) {
+    console.log(loadName);
+    this.itemsLoaded.forEach((value, key) => {
+      if (key === loadName) {
+        this.itemsLoaded.set(key, true);
+      }
+    });
+    console.log(!this.checkLoadingStatus());
+    this.loading = !this.checkLoadingStatus();
+  }
+
+  checkLoadingStatus(): boolean {
+    let count = 0;
+    this.itemsLoaded.forEach((value, key) => {
+      if (value === true) {
+        count++;
+      }
+    });
+    console.log(count);
+    return count === this.itemsLoaded.size;
   }
 
   sendBet() {
