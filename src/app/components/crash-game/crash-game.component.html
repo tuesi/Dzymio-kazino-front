@@ -1,14 +1,19 @@
 <div class="crash-game-container">
     <div class="user-info-container">
-        <app-user-info></app-user-info>
+        <app-user-info (newUserEvent)="setClientData($event)"
+            (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
     </div>
     <app-timer></app-timer>
     <div class="crash-main-container">
+        <div class="crash-bet-container">
+            <div>
+                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)"></app-crash-bet>
+            </div>
+        </div>
         <div class="crash-container">
             <div>
                 <app-crash></app-crash>
             </div>
-
         </div>
         <div class="messages-container">
             <div>
@@ -18,19 +23,15 @@
         </div>
     </div>
     <div class="previous-results-container">
-        <app-previous-results></app-previous-results>
+        <app-previous-results [roomName]="roomName"></app-previous-results>
     </div>
 
     <div class="secondary-component-container">
-        <div class="crash-bet-container">
-            <div>
-                <app-crash-bet></app-crash-bet>
-            </div>
-
-        </div>
         <div class="payment-container">
             <div>
-                <app-payment></app-payment>
+                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+                    [disabled]="disabled" [betMade]="betMade" [reset]="reset"
+                    [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true"></app-payment>
             </div>
 
         </div>

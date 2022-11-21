@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
@@ -26,6 +26,13 @@ const wheelResult18 = '../../../assets/wheel/results/wheelResult18.png';
 const wheelResultX = '../../../assets/wheel/results/wheelResultX.png';
 const wheelResultW = '../../../assets/wheel/results/wheelResultW.png';
 
+const zeroResult = '../../../assets/0X.png';
+const oneResult = '../../../assets/1X.png';
+const oneFiveResult = '../../../assets/1,5X.png';
+const twoResult = '../../../assets/2X.png';
+const fourResult = '../../../assets/4X.png';
+const tenResult = '../../../assets/10X.png';
+
 @Component({
   selector: 'app-previous-results',
   templateUrl: './previous-results.component.html',
@@ -35,12 +42,14 @@ export class PreviousResultsComponent implements OnInit {
 
   previousEventList: String[] = [];
 
+  @Input() roomName: string;
+
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
 
-    this.backendService.emit(new SocketEventObject('wheel', 'getPreviousWheelResult', null));
-    console.log('INIT');
+    this.backendService.emit(new SocketEventObject(this.roomName, 'getPreviousResults', null));
+
     this.backendService.listen('previousCoins').subscribe((previous) => {
       console.log('coin');
       let previousResponse = previous as Array<number>;
@@ -78,6 +87,42 @@ export class PreviousResultsComponent implements OnInit {
         }
       }, 50);
     });
+
+    this.backendService.listen('previousLineResults').subscribe(previous => {
+      console.log('line');
+      console.log(previous);
+      let previousResponse = previous as Array<number>;
+      this.previousEventList = [];
+      previousResponse.forEach(value => {
+        this.previousEventList.push(this.getLineResultImage(value));
+      });
+      setTimeout(() => {
+        var chatHistory = document.getElementById("item-box");
+        if (chatHistory) {
+          console.log("meesage scrol");
+          chatHistory.scrollLeft = chatHistory.scrollWidth;
+        }
+      }, 50);
+    });
+  }
+
+  getLineResultImage(resultNumber: number): string {
+    switch (resultNumber) {
+      case 0:
+        return zeroResult;
+      case 1:
+        return oneResult;
+      case 1.5:
+        return oneFiveResult;
+      case 2:
+        return twoResult;
+      case 4:
+        return fourResult;
+      case 10:
+        return tenResult;
+      default:
+        return '';
+    }
   }
 
   getWheelResultImage(resultnumber: string): string {

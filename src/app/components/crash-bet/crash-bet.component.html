@@ -1,16 +1,15 @@
 <div class="crash-bet-main-container">
-    <div>
-        <span>Automatinio sustabdymo įvedimas</span>
-    </div>
-    <div class="stop-bet-amount-input-container">
-        <input class="stop-bet-amount-input">
-        <button class="stop-bet-amount-confirm-button">PATVIRTINTI</button>
-    </div>
-
-    <div class="top-bet-button-container">
-        <div>
-            <span>Rankinis sustabymas</span>
+    <div class="auto-stop-conteiner">
+        <span class="stop-bet-text">Automatinio sustabdymo įvedimas</span>
+        <div class="stop-bet-amount-input-container">
+            <input type="number" class="stop-bet-amount-input" [(ngModel)]="autoStopAmount">
+            <button class="stop-bet-amount-confirm-button" (click)="setAutoStop()">PATVIRTINTI</button>
         </div>
-        <button class="stop-bet-button">STABDYTI</button>
+    </div>
+    <div class="stop-bet-button-container">
+        <div>
+            <span class="stop-bet-text">Rankinis sustabymas</span>
+        </div>
+        <button class="stop-bet-button" (click)="stopCrash()">STABDYTI</button>
     </div>
 </div>

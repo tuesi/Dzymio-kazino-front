@@ -1,7 +1,7 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BetResponseObject } from 'src/app/objects/betResponseObject';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
-import { BetObject } from '../../objects/betObject';
 import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
   betResponse: BetResponseObject;
   betResponseText = '';
   enoughBalance = true;
+  everythingIsSelected = true;
 
   winMakseiderAmount = 0;
   winPiniginiaiAmount = 0;
@@ -49,6 +50,9 @@ export class PaymentComponent implements OnInit {
     this.multiply = 2;
     this.calculateWinAmount();
   }
+
+  @Input() lineBet = false;
+  @Input() crashBet = false;
 
   @Input() set reset(value: boolean) {
     if (value) {
@@ -167,21 +171,31 @@ export class PaymentComponent implements OnInit {
     this.winPiniginiaiAmount = 0;
     this.winZetonaiAmount = 0;
     this.wheelBet = '';
+    this.coinBet = -1;
     this.enoughBalance = true;
     this.betResponse = new BetResponseObject;
     this.winAmountSet = false;
+    this.everythingIsSelected = true;
+    this.betMade = false;
   }
 
   sendBet() {
-    console.log(this.clientWalletInZeton);
-    console.log(this.all);
-    if (this.clientWalletInZeton >= this.all && this.all != 0) {
+    if (this.clientWalletInZeton >= this.all && this.all != 0 && this.isBetMade()) {
       this.newSubmitEvent.emit();
       this.betMade = true;
       this.enoughBalance = true;
-    } else {
+      this.everythingIsSelected = true;
+    }
+    if (!this.isBetMade || this.all == 0) {
+      this.everythingIsSelected = false;
+    }
+    if (this.clientWalletInZeton < this.all) {
       this.enoughBalance = false;
     }
+  }
+
+  isBetMade(): boolean {
+    return ((this.wheelBet !== '' || this.coinBet !== -1 || this.wheelBet !== undefined || this.coinBet !== undefined) || this.lineBet == true || this.crashBet == true);
   }
 
   calculateWinAmount() {

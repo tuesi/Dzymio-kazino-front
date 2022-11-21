@@ -1,6 +1,10 @@
+<div *ngIf="betStatus == 'win' || betStatus == 'lose'"
+    [ngClass]="betStatus == 'win' ? 'status-overlay win-style' : betStatus == 'lose' ? 'status-overlay lose-style' : 'status-overlay'">
+</div>
 <div class="main-coin-game-container">
     <div class="user-info-container">
-        <app-user-info></app-user-info>
+        <app-user-info (newUserEvent)="setClientData($event)"
+            (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
     </div>
     <app-timer></app-timer>
     <div class="first-group-container">
@@ -16,18 +20,21 @@
         </div>
     </div>
     <div>
-        <app-previous-results></app-previous-results>
+        <app-previous-results [roomName]="roomName"></app-previous-results>
     </div>
     <div class="main-activity-container">
         <div class="coin-bet-container">
             <div>
-                <app-coin-bet (newPredictionEvent)="setBetValue($event)"></app-coin-bet>
+                <app-coin-bet (newPredictionEvent)="setBetPrediction($event)" [disabled]="disabled" [reset]="reset">
+                </app-coin-bet>
             </div>
 
         </div>
         <div class="payment-container">
             <div>
-                <app-payment [coinBet]="betValue"></app-payment>
+                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newBetResponseEvent)="setBetStatus($event)"
+                    (newSubmitEvent)="sendBet()" [disabled]="disabled" [coinBet]="betPrediction" [betMade]="betMade"
+                    [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
             </div>
         </div>
     </div>

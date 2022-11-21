@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { BackendService } from 'src/app/services/backend/backend.service';
 
 @Component({
   selector: 'app-crash-bet',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrashBetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private backendService: BackendService) { }
+
+  autoStopAmount = 0;
+  @Output() newAutoStopEvent = new EventEmitter();
 
   ngOnInit(): void {
+  }
+
+  stopCrash() {
+    this.backendService.emit(new SocketEventObject('crash', 'stop', null));
+  }
+
+  setAutoStop() {
+    //send auto stop number to payment
+    this.newAutoStopEvent.emit(this.autoStopAmount);
   }
 
 }

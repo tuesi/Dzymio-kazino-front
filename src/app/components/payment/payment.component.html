@@ -65,6 +65,9 @@
         <div class="error-container" *ngIf="!enoughBalance">
             <span class="error-text">Nepakankamas likutis!</span>
         </div>
+        <div class="error-container" *ngIf="!everythingIsSelected">
+            <span class="error-text">Yra nepasirinktų laukų!</span>
+        </div>
         <button [ngClass]="enoughBalance ? 'bet-button':'bet-button invalidBalance'" (click)="sendBet()"
             [disabled]="disabled">Atlikti statymą</button>
     </div>

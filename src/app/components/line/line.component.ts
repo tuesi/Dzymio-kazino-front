@@ -26,7 +26,6 @@ export class LineComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.listen('lineSet').subscribe(lineValues => {
-      console.log(lineValues);
       this.lineList = [];
       this.lineList = lineValues as Array<number>;
       this.itemListComponent.nativeElement.style.transition = 'none';
@@ -46,7 +45,6 @@ export class LineComponent implements OnInit {
   }
 
   spin(spinPos: number) {
-    console.log(spinPos);
     this.itemListComponent.nativeElement.style.transform = `translateX(-${(spinPos)}px)`;
   }
 }

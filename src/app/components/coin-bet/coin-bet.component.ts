@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-coin-bet',
@@ -8,6 +8,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class CoinBetComponent implements OnInit {
 
   @Output() newPredictionEvent = new EventEmitter<number>();
+
+  @Input() disabled = false;
+  @Input() set reset(value: boolean) {
+    if (value) {
+      this.resetButtonStates();
+    }
+  }
 
   selectTails = false;
   selectHeads = false;
@@ -27,6 +34,11 @@ export class CoinBetComponent implements OnInit {
       this.selectHeads = false;
       this.newPredictionEvent.emit(2);
     }
+  }
+
+  resetButtonStates() {
+    this.selectHeads = false;
+    this.selectTails = false;
   }
 
 }

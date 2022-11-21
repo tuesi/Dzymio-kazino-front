@@ -13,6 +13,8 @@ export class WheelGameComponent implements OnInit {
 
   constructor(private backendService: BackendService) { }
 
+  roomName = 'wheel';
+
   betAmount = 0;
   betPrediction = '';
   clientData: ClientObject;
@@ -22,11 +24,9 @@ export class WheelGameComponent implements OnInit {
   reset = false;
   betStatus = 'none';
 
-  socketSubscribeEvents = ['betTimeEnd', 'newRound'];
-
   ngOnInit(): void {
 
-    this.backendService.joinRoom('wheel');
+    this.backendService.joinRoom(this.roomName);
 
     this.backendService.listen('betTimeEnd').subscribe(endTime => {
       if (endTime) {
@@ -42,6 +42,7 @@ export class WheelGameComponent implements OnInit {
         this.reset = true;
         this.betAmount = 0;
         this.betPrediction = '';
+        this.betStatus = 'none';
       }
     });
   }
