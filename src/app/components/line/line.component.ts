@@ -17,6 +17,7 @@ export class LineComponent implements OnInit {
   tenX: string = '../../../assets/10X.png';
 
   itemCollection = [this.zeroX, this.oneX, this.oneFiveX, this.twoX, this.fourX, this.tenX];
+  itemValues = [0, 1, 1.5, 2, 4, 10];
   lineList: number[] = [];
 
   @Output() loadingComplete = new EventEmitter();
@@ -31,13 +32,13 @@ export class LineComponent implements OnInit {
       this.lineList = [];
       this.lineList = lineValues as Array<number>;
       this.itemListComponent.nativeElement.style.transition = 'none';
-      this.itemListComponent.nativeElement.style.transform = `translateX(${(0)}px)`;
+      this.itemListComponent.nativeElement.style.transform = `translateX(${(-85)}%)`;
       setTimeout(() => {
         this.itemListComponent.nativeElement.style.transition = 'all ease-out 5s';
       }, 20);
       this.itemList = [];
       this.lineList.forEach(element => {
-        this.itemList.push(this.itemCollection[element]);
+        this.itemList.push(this.itemCollection[this.itemValues.indexOf(element)]);
       });
     });
 
@@ -47,7 +48,7 @@ export class LineComponent implements OnInit {
 
     this.backendService.listen('initialLinePos').subscribe(linePos => {
       this.itemListComponent.nativeElement.style.transition = 'none';
-      this.itemListComponent.nativeElement.style.transform = `translateX(${(linePos)}px)`;
+      this.itemListComponent.nativeElement.style.transform = `translateX(-${(linePos)}%)`;
       setTimeout(() => {
         this.itemListComponent.nativeElement.style.transition = 'all ease-out 5s';
         this.loadingComplete.emit('line');
@@ -56,6 +57,6 @@ export class LineComponent implements OnInit {
   }
 
   spin(spinPos: number) {
-    this.itemListComponent.nativeElement.style.transform = `translateX(-${(spinPos)}px)`;
+    this.itemListComponent.nativeElement.style.transform = `translateX(-${(spinPos)}%)`;
   }
 }

@@ -123,7 +123,6 @@ export class CoinComponent implements OnInit, AfterViewInit {
     //scene.add(new THREE.CameraHelper(directionalLight.shadow.camera));
     const animate = () => {
       requestAnimationFrame(animate);
-      //console.log(coin.rotation.x);
       if (this.animate) {
         this.coin.rotation.x += 0.1;
         if (this.coin.position.z < 100 && this.coin.rotation.x < this.rotationNumber) {
@@ -206,7 +205,6 @@ export class CoinComponent implements OnInit, AfterViewInit {
     } else {
       this.rotationNumber = 15.6;
     }
-    console.log(this.sideNumber);
     this.animate = true;
   }
 

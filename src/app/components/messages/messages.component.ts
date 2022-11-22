@@ -21,7 +21,6 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.listen('clientBetHistory').subscribe((messages) => {
-      console.log(messages);
       let wheelMessages = messages as Array<MessageObject>;
       this.messageList = [];
       wheelMessages.forEach(message => {
@@ -34,7 +33,6 @@ export class MessagesComponent implements OnInit {
       setTimeout(() => {
         var chatHistory = document.getElementById("chat-box");
         if (chatHistory) {
-          console.log("meesage scrol");
           chatHistory.scrollTop = chatHistory.scrollHeight;
           this.loadingComplete.emit('messages');
         }

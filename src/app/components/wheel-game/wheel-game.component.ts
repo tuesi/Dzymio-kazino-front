@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-wheel-game',
@@ -12,6 +13,9 @@ import { BackendService } from 'src/app/services/backend/backend.service';
 export class WheelGameComponent implements OnInit {
 
   constructor(private backendService: BackendService) { }
+
+  @ViewChild(UserInfoComponent)
+  private userInforComponent!: UserInfoComponent;
 
   roomName = 'wheel';
 
@@ -85,6 +89,7 @@ export class WheelGameComponent implements OnInit {
   }
 
   setBetStatus(status: boolean) {
+    this.userInforComponent.updateClientBalance();
     if (status) {
       this.betStatus = "win";
     } else {

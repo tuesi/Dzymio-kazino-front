@@ -156,7 +156,9 @@ export class PaymentComponent implements OnInit {
   setBetAmount() {
     this.convertToZetonai();
     this.newBetAmountEvent.emit(this.all);
-    this.calculateWinAmount();
+    if (this.lineBet != true || this.crashBet != true) {
+      this.calculateWinAmount();
+    }
   }
 
   resetValues() {

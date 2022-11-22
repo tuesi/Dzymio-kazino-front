@@ -29,7 +29,6 @@ export class WheelComponent implements OnInit {
     this.getWheel();
 
     this.backendService.listen('resetWheel').subscribe(value => {
-      console.log('resetWheel');
       if (value) {
         this.reset = true;
         this.initialPosSet = false;
@@ -41,7 +40,6 @@ export class WheelComponent implements OnInit {
     });
 
     this.backendService.listen('startSpin').subscribe((data) => {
-      console.log('startSping');
       if (data) {
         this.gotNewMessages = false;
         this.reset = false;
@@ -50,7 +48,6 @@ export class WheelComponent implements OnInit {
     });
 
     this.backendService.listen('initialWheelPos').subscribe((pos) => {
-      console.log(pos);
       if (this.wheelEl && !this.initialPosSet && !this.reset) {
         this.initialPos = pos as number;
         this.setWheelRotation();

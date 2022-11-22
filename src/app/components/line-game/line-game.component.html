@@ -6,7 +6,11 @@
         <app-user-info (newUserEvent)="setClientData($event)"
             (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
     </div>
-    <app-timer></app-timer>
+    <div class="timer-container">
+        <div>
+            <app-timer></app-timer>
+        </div>
+    </div>
     <div class="main-game-container">
         <div class="line-container">
             <div>
@@ -21,14 +25,20 @@
 
         </div>
     </div>
-    <div class="previrous-results-container">
-        <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
+    <div class="previous-result-container">
+        <div>
+            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
+        </div>
     </div>
 
     <div class="payment-container">
-        <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()" [disabled]="disabled"
-            [betMade]="betMade" [reset]="reset" [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true">
-        </app-payment>
+        <div>
+            <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+                (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade" [reset]="reset"
+                [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true">
+            </app-payment>
+        </div>
+
     </div>
 
 </div>

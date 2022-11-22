@@ -63,7 +63,6 @@ export class PreviousResultsComponent implements OnInit {
         }
       });
       setTimeout(() => {
-        console.log('TIMEOUT');
         var chatHistory = document.getElementById("item-box");
         if (chatHistory) {
           chatHistory.scrollLeft = chatHistory.scrollWidth;
@@ -82,7 +81,6 @@ export class PreviousResultsComponent implements OnInit {
       setTimeout(() => {
         var chatHistory = document.getElementById("item-box");
         if (chatHistory) {
-          console.log(chatHistory);
           chatHistory.scrollLeft = chatHistory.scrollWidth;
           this.loadingComplete.emit('previous');
         }

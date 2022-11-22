@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-crash-game',
@@ -12,6 +13,9 @@ import { BackendService } from 'src/app/services/backend/backend.service';
 export class CrashGameComponent implements OnInit {
 
   constructor(private backendService: BackendService) { }
+
+  @ViewChild(UserInfoComponent)
+  private userInforComponent!: UserInfoComponent;
 
   roomName = 'crash';
 
@@ -80,14 +84,16 @@ export class CrashGameComponent implements OnInit {
   }
 
   setLoaded(loadName: string) {
-    console.log(loadName);
     this.itemsLoaded.forEach((value, key) => {
       if (key === loadName) {
         this.itemsLoaded.set(key, true);
       }
     });
-    console.log(!this.checkLoadingStatus());
     this.loading = !this.checkLoadingStatus();
+  }
+
+  setBetStatus(value: boolean) {
+    this.userInforComponent.updateClientBalance();
   }
 
   checkLoadingStatus(): boolean {
@@ -97,7 +103,6 @@ export class CrashGameComponent implements OnInit {
         count++;
       }
     });
-    console.log(count);
     return count === this.itemsLoaded.size;
   }
 

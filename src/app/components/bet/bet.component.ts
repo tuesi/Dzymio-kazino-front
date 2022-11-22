@@ -63,8 +63,6 @@ export class BetComponent implements OnInit {
   }
 
   selectButton(buttonName: string) {
-    console.log(buttonName);
-    console.log('EMIT');
     this.newPredictionEvent.emit(buttonName);
     this.changeButtonState(buttonName);
   }

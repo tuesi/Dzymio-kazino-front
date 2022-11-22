@@ -15,5 +15,4 @@ export class LoginComponent implements OnInit {
   discordAuth() {
     window.location.href = 'http://localhost:3000/api/auth/discord';
   }
-
 }

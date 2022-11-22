@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from 'src/app/services/backend/backend.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-coin-game',
@@ -10,6 +11,9 @@ import { BackendService } from 'src/app/services/backend/backend.service';
   styleUrls: ['./coin-game.component.scss']
 })
 export class CoinGameComponent implements OnInit {
+
+  @ViewChild(UserInfoComponent)
+  private userInforComponent!: UserInfoComponent;
 
   roomName = 'coin';
 
@@ -83,6 +87,7 @@ export class CoinGameComponent implements OnInit {
   }
 
   setBetStatus(status: boolean) {
+    this.userInforComponent.updateClientBalance();
     if (status) {
       this.betStatus = "win";
     } else {
@@ -91,13 +96,11 @@ export class CoinGameComponent implements OnInit {
   }
 
   setLoaded(loadName: string) {
-    console.log(loadName);
     this.itemsLoaded.forEach((value, key) => {
       if (key === loadName) {
         this.itemsLoaded.set(key, true);
       }
     });
-    console.log(!this.checkLoadingStatus());
     this.loading = !this.checkLoadingStatus();
   }
 
@@ -108,7 +111,6 @@ export class CoinGameComponent implements OnInit {
         count++;
       }
     });
-    console.log(count);
     return count === this.itemsLoaded.size;
   }
 

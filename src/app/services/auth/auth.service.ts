@@ -13,16 +13,16 @@ export class AuthService {
     return this.httpClient.get('http://localhost:3000/api/auth', {
       withCredentials: true
     }).pipe(map(response => {
-      if(response) {
+      if (response) {
         return true;
       } else {
         return false;
       }
     }),
-    catchError((err: HttpErrorResponse) => {
-      console.log(err);
-      return of(false);
-    })
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
     );
   }
 }

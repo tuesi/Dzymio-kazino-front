@@ -9,7 +9,11 @@
         <app-user-info (newUserEvent)="setClientData($event)"
             (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
     </div>
-    <app-timer></app-timer>
+    <div class="timer-container">
+        <div>
+            <app-timer></app-timer>
+        </div>
+    </div>
     <div class="first-group-container">
         <div class="coin-container">
             <div>
@@ -22,8 +26,10 @@
             </div>
         </div>
     </div>
-    <div>
-        <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
+    <div class="previous-result-container">
+        <div>
+            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
+        </div>
     </div>
     <div class="main-activity-container">
         <div class="coin-bet-container">

@@ -41,8 +41,9 @@ body {
 }
 
 .first-group-container {
+    margin-left: 20%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-direction: row;
     width: 100%;
@@ -56,20 +57,17 @@ body {
         width: 50%;
 
         >div {
+            height: 100%;
             width: 50%;
         }
     }
 
     .messages-container {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100%;
-        width: 0%;
+        width: 20%;
 
         >div {
-            width: 60%;
+            width: 90%;
         }
     }
 }
@@ -169,6 +167,7 @@ body {
         justify-content: center;
         flex-direction: column;
         width: 100%;
+        margin-left: 0;
 
         .wheel-container {
             display: flex;
@@ -184,10 +183,8 @@ body {
 
         .messages-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 80%;
+            width: 50%;
+            height: 400px;
             margin-top: 10%;
 
             >div {

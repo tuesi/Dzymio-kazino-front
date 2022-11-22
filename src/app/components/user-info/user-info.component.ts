@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { ClientWalletObject } from 'src/app/objects/clientWalletObject';
@@ -31,11 +31,7 @@ export class UserInfoComponent implements OnInit {
       this.setUserInfo();
     });
 
-    this.apiService.getUserBalance().subscribe(data => {
-      this.balance = data;
-      this.clientWalletInZeton = ConvertCurrencies.convertToZetonai(parseInt(data.GOLD), parseInt(data.SILVER), parseInt(data.COPPER));
-      this.newClientWalletInZetonEvent.emit(this.clientWalletInZeton);
-    });
+    this.updateClientBalance();
   }
 
   setUserInfo() {
@@ -44,5 +40,17 @@ export class UserInfoComponent implements OnInit {
 
   goBackToMenu() {
     this.router.navigate(['/main'])
+  }
+
+  updateClientBalance() {
+    this.apiService.getUserBalance().subscribe(data => {
+      this.balance = data;
+      this.clientWalletInZeton = ConvertCurrencies.convertToZetonai(parseInt(data.GOLD), parseInt(data.SILVER), parseInt(data.COPPER));
+      this.newClientWalletInZetonEvent.emit(this.clientWalletInZeton);
+    });
+  }
+
+  logout() {
+    window.location.href = 'http://localhost:3000/api/auth/logout';
   }
 }

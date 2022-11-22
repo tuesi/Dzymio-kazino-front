@@ -13,3 +13,11 @@
     color: white;
     font-size: 10vw;
 }
+
+@media only screen and (max-width: 900px) {
+    .crash-number {
+        font-weight: bold;
+        color: white;
+        font-size: 10vh;
+    }
+}

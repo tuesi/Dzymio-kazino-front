@@ -4,10 +4,11 @@
             <img src="../../assets/arrow.png" class="arrow">
         </div>
     </div>
-    <div class="wheel-center-container">
-        <img src="../../assets/wheel-middle.png" class="wheel-center">
-    </div>
+
     <div [ngClass]="initialPosSet ? 'wheel-transition' : 'wheel-no-transition'" id="wheel">
         <img src="../../assets/wheelNew.png" class="wheel-size">
+        <div class="wheel-center-container">
+            <img src="../../assets/wheel-middle.png" class="wheel-center">
+        </div>
     </div>
 </div>
