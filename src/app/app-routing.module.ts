@@ -10,6 +10,7 @@ import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '/', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'main',
@@ -18,19 +19,23 @@ const routes: Routes = [
   },
   {
     path: 'wheel',
-    component: WheelGameComponent
+    component: WheelGameComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'coin',
-    component: CoinGameComponent
+    component: CoinGameComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'list',
-    component: LineGameComponent
+    component: LineGameComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'crash',
-    component: CrashGameComponent
+    component: CrashGameComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
