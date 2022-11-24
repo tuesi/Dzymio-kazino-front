@@ -9,8 +9,8 @@
 
 .coin-canvas {
     display: flex;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: column;
     width: 500px;
     height: 500px;
@@ -19,8 +19,8 @@
 @media only screen and (max-width: 800px) {
     .coin-canvas {
         display: flex;
-        align-items: start;
-        justify-content: start;
+        align-items: flex-start;
+        justify-content: flex-start;
         flex-direction: column;
         width: 350px;
         height: 350px;
