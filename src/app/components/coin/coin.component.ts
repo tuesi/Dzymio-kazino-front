@@ -86,6 +86,17 @@ export class CoinComponent implements OnInit, AfterViewInit {
     const sideTexture = new THREE.TextureLoader().load('../../../assets/side.png');
     const headTexture = new THREE.TextureLoader().load('../../../assets/coin-head.png');
     const tailTexture = new THREE.TextureLoader().load('../../../assets/coin-tail.png');
+    sideTexture.wrapS = THREE.RepeatWrapping;
+    sideTexture.repeat.set(10, 2);
+
+    headTexture.center.x = 0.5;
+    headTexture.center.y = 0.5;
+    headTexture.rotation = 1.57;
+
+    tailTexture.rotation = -1.57;
+    tailTexture.center.x = 0.5;
+    tailTexture.center.y = 0.5;
+
     const geometry = new THREE.CylinderGeometry(1, 1, 0.4, 100);
     const sideMat = new THREE.MeshLambertMaterial({ map: sideTexture });
     const headMat = new THREE.MeshLambertMaterial({ map: headTexture });
