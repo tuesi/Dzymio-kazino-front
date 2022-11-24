@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { ClientObject } from 'src/app/objects/clientObject';
-import { ClientWalletObject } from 'src/app/objects/clientWalletObject';
-import { environment } from 'src/environments/environment.prod';
+import { ClientObject } from '../../objects/clientObject';
+import { ClientWalletObject } from '../../objects/clientWalletObject';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
