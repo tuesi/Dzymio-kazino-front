@@ -25,9 +25,15 @@ export class UserInfoComponent implements OnInit {
   @Output() newClientWalletInZetonEvent = new EventEmitter<number>();
 
   ngOnInit(): void {
+    this.balance = new ClientWalletModel("0", "0", "0");
     this.apiService.getUserData().subscribe(data => {
       this.client = data;
-      this.avatar = "https://cdn.discordapp.com/avatars/" + this.client.discordId + "/" + this.client.avatar + ".jpg";
+      console.log(data);
+      if (data.avatar) {
+        this.avatar = "https://cdn.discordapp.com/avatars/" + this.client.discordId + "/" + this.client.avatar + ".jpg";
+      } else {
+        this.avatar = "/assets/bugule.png";
+      }
       this.nick = data.guildNick;
       this.setUserInfo();
     });

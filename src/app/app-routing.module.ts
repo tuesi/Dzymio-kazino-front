@@ -18,8 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'wheel',
-    component: WheelGameComponent,
-    canActivate: [AuthGuard]
+    component: WheelGameComponent
   },
   {
     path: 'coin',

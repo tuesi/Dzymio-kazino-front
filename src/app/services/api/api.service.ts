@@ -36,7 +36,7 @@ export class ApiService {
       if (response) {
         return response;
       } else {
-        return new ClientWalletModel;
+        return new ClientWalletModel("0", "0", "0");
       }
     }))
   }
