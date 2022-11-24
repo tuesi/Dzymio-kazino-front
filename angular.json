@@ -70,10 +70,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "casino:build:production"
+              "browserTarget": "casino:build:production",
+              "port": 5216
             },
             "development": {
-              "browserTarget": "casino:build:development"
+              "browserTarget": "casino:build:development",
+              "port": 5216
             }
           },
           "defaultConfiguration": "development"
