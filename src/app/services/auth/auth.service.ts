@@ -12,7 +12,7 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.httpClient.get(environment.backendUrl + '/api/auth', {
-      withCredentials: true
+      withCredentials: true,
     }).pipe(map(response => {
       if (response) {
         return true;
