@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,6 @@ export class LoginComponent implements OnInit {
   }
 
   discordAuth() {
-    window.location.href = 'http://localhost:3000/api/auth/discord';
+    window.location.href = environment.backendUrl + '/api/auth/discord';
   }
 }

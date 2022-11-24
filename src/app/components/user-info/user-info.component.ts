@@ -4,6 +4,7 @@ import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-user-info',
@@ -51,6 +52,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   logout() {
-    window.location.href = 'http://localhost:3000/api/auth/logout';
+    window.location.href = environment.backendUrl + '/api/auth/logout';
   }
 }
