@@ -2,8 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
+import { environment } from 'src/environments/environment.prod';
 import { UserInfoComponent } from '../user-info/user-info.component';
+
+const debilsAudio = "/assets/audio/debils.wav";
+const nepaejoAudio = "/assets/audio/nepaejo.wav";
 
 @Component({
   selector: 'app-crash-game',
@@ -12,7 +17,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 })
 export class CrashGameComponent implements OnInit {
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService, private audioService: AudioService) { }
 
   @ViewChild(UserInfoComponent)
   private userInforComponent!: UserInfoComponent;
@@ -94,6 +99,11 @@ export class CrashGameComponent implements OnInit {
 
   setBetStatus(value: boolean) {
     this.userInforComponent.updateClientBalance();
+    if (value) {
+      this.audioService.playWinSound();
+    } else {
+      this.audioService.playLoseSound();
+    }
   }
 
   checkLoadingStatus(): boolean {
@@ -111,7 +121,7 @@ export class CrashGameComponent implements OnInit {
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;
-    newBet.prediction = this.betAutoStopNuber.toString();
+    newBet.prediction = this.betAutoStopNuber > 1 ? this.betAutoStopNuber.toString() : '0';
     if (newBet.clientId && newBet.clientNick && newBet.betAmount) {
       this.backendService.emit(new SocketEventObject('crash', 'bet', newBet));
       this.disabled = true;

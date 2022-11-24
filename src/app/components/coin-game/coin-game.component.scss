@@ -76,7 +76,6 @@ body {
 
 
 .first-group-container {
-    margin-left: 20%;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -91,6 +90,7 @@ body {
         flex-direction: row;
         height: 100%;
         width: 50%;
+        margin-left: 20%;
 
         >div {
             display: flex;
@@ -165,7 +165,6 @@ body {
 
 @media only screen and (max-width: 800px) {
     .first-group-container {
-        margin-left: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -174,6 +173,7 @@ body {
         height: 100%;
 
         .coin-container {
+            margin-left: 0;
             display: flex;
         }
 

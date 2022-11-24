@@ -2,7 +2,8 @@
     <div class="previous-result-container" id="item-box">
         <div *ngFor="let value of previousEventList">
             <div class="previous-item">
-                <img class="item-image" src={{value}}>
+                <img *ngIf="!crash" class="item-image" src={{value}}>
+                <span *ngIf="crash" class="crash-item">{{value}}X</span>
             </div>
         </div>
     </div>

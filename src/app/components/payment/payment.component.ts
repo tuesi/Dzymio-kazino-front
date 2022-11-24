@@ -1,4 +1,3 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BetResponseObject } from 'src/app/objects/betResponseObject';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';

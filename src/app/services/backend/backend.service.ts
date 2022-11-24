@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
-import { BetResponseObject } from 'src/app/objects/betResponseObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
-import { BetObject } from '../../objects/betObject';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BackendService {
 
   private socket: Socket;

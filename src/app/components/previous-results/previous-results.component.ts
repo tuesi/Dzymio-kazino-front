@@ -40,6 +40,8 @@ const tenResult = '../../../assets/10X.png';
 })
 export class PreviousResultsComponent implements OnInit {
 
+  crash = false;
+
   previousEventList: String[] = [];
 
   @Input() roomName: string;
@@ -101,6 +103,18 @@ export class PreviousResultsComponent implements OnInit {
         }
       }, 50);
     });
+
+    this.backendService.listen('previousCrashResults').subscribe(previous => {
+      this.crash = true;
+      this.previousEventList = previous as Array<string>;
+      setTimeout(() => {
+        var chatHistory = document.getElementById("item-box");
+        if (chatHistory) {
+          chatHistory.scrollLeft = chatHistory.scrollWidth;
+          this.loadingComplete.emit('previous');
+        }
+      }, 50);
+    })
   }
 
   getLineResultImage(resultNumber: number): string {

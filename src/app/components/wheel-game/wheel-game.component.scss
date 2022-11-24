@@ -7,6 +7,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
     background-color: rgb(88, 201, 250);
 }
 
@@ -41,7 +42,6 @@ body {
 }
 
 .first-group-container {
-    margin-left: 20%;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -50,6 +50,7 @@ body {
     height: 100%;
 
     .wheel-container {
+        margin-left: 20%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -167,9 +168,9 @@ body {
         justify-content: center;
         flex-direction: column;
         width: 100%;
-        margin-left: 0;
 
         .wheel-container {
+            margin-left: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,7 +205,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 90%;
+            width: 80%;
             margin-top: 10%;
 
             >div {
@@ -216,7 +217,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 90%;
+            width: 80%;
             margin-top: 10%;
             z-index: 10px;
 

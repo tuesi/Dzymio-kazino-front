@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { BetObject } from 'src/app/objects/betObject';
 import { ClientObject } from 'src/app/objects/clientObject';
 import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 
@@ -12,7 +13,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 })
 export class WheelGameComponent implements OnInit {
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService, private audioService: AudioService) { }
 
   @ViewChild(UserInfoComponent)
   private userInforComponent!: UserInfoComponent;
@@ -92,8 +93,10 @@ export class WheelGameComponent implements OnInit {
     this.userInforComponent.updateClientBalance();
     if (status) {
       this.betStatus = "win";
+      this.audioService.playWinSound();
     } else {
       this.betStatus = "lose";
+      this.audioService.playLoseSound();
     }
   }
 

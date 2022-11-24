@@ -36,9 +36,10 @@
 .wheel-center {
   width: 40%;
   height: 40%;
-  max-width: 180px;
+  max-width: 200px;
   min-width: 120px;
   z-index: 2;
+  margin-bottom: -4%;
   object-fit: contain;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -84,6 +85,7 @@
     max-width: 150px;
     min-width: 100px;
     z-index: 2;
+    margin-bottom: -4%;
     object-fit: contain;
     -moz-user-select: none;
     -webkit-user-select: none;

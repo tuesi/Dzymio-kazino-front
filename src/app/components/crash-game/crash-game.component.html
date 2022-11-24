@@ -14,7 +14,8 @@
     <div class="crash-main-container" id="largeScreen">
         <div class="crash-bet-container">
             <div>
-                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)"></app-crash-bet>
+                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)" [resetCrashBet]="reset"
+                    [disabled]="disabled"></app-crash-bet>
             </div>
         </div>
         <div class="crash-container">
@@ -37,7 +38,8 @@
         </div>
         <div class="crash-bet-container">
             <div>
-                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)"></app-crash-bet>
+                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)" [resetCrashBet]="reset"
+                    [disabled]="disabled"></app-crash-bet>
             </div>
         </div>
         <div class="messages-container">

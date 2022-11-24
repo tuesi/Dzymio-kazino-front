@@ -23,6 +23,15 @@
         opacity: 0.5;
     }
 
+    &.select-style {
+        outline-color: rgb(0, 0, 0);
+        outline-style: solid;
+        outline-width: 3px;
+        outline-offset: .2rem;
+        transition: all ease-out 0.1s;
+        background-color: saturate($color, 20%);
+    }
+
     &:disabled {
         color: rgba(255, 255, 255, 0.363);
         background-color: desaturate($color, 50%);
@@ -99,6 +108,20 @@
 .stop-bet-text {
     color: rgb(0, 0, 0);
     font-size: 2vh;
+    font-weight: bold;
+    font-family: 'Consolas';
+    text-transform: uppercase;
+
+    text-shadow:
+        3px 3px 5px rgba(15, 94, 103, 0.4),
+        -3px -3px 5px rgba(255, 255, 255, 0.08);
+    caret-color: #fefefe;
+    outline: none;
+}
+
+.small-text {
+    color: rgb(0, 0, 0);
+    font-size: 1vh;
     font-weight: bold;
     font-family: 'Consolas';
     text-transform: uppercase;
