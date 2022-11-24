@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
 import { BackendService } from '../../services/backend/backend.service';
 
 @Component({
@@ -81,12 +80,6 @@ export class WheelComponent implements OnInit {
   spinWheel(wheelPos: number) {
     if (this.wheelEl) {
       this.wheelEl.style.transform = `rotate(-${wheelPos}deg)`;
-      // this.wheelEl.addEventListener('transitionend', () => {
-      //   if (!this.gotNewMessages) {
-      //     this.backendService.emit(new SocketEventObject('wheel', 'previousWheelResult', null));
-      //     this.gotNewMessages = true;
-      //   }
-      // });
     }
   }
 }

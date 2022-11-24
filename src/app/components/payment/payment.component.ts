@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BetResponseObject } from 'src/app/objects/betResponseObject';
+import { BetResponseModel } from 'src/app/models/betResponse.model';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
 import { BackendService } from '../../services/backend/backend.service';
 
@@ -18,7 +18,7 @@ export class PaymentComponent implements OnInit {
   betCof: string;
   multiply: number;
   winAmountSet = false;
-  betResponse: BetResponseObject;
+  betResponse: BetResponseModel;
   betResponseText = '';
   enoughBalance = true;
   everythingIsSelected = true;
@@ -69,7 +69,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.listen('betStatus').subscribe(response => {
-      this.betResponse = response as BetResponseObject;
+      this.betResponse = response as BetResponseModel;
       this.setBetResultText(this.betResponse.amount);
       if (this.betResponse.status) {
         this.newBetResponseEvent.emit(true);
@@ -174,7 +174,7 @@ export class PaymentComponent implements OnInit {
     this.wheelBet = '';
     this.coinBet = -1;
     this.enoughBalance = true;
-    this.betResponse = new BetResponseObject;
+    this.betResponse = new BetResponseModel;
     this.winAmountSet = false;
     this.everythingIsSelected = true;
     this.betMade = false;

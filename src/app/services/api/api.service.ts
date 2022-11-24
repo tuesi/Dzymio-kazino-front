@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { ClientObject } from '../../objects/clientObject';
-import { ClientWalletObject } from '../../objects/clientWalletObject';
+import { ClientModel } from '../../models/client.model';
+import { ClientWalletModel } from '../../models/clientWallet.model';
 import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
@@ -12,31 +12,31 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUserData(): Observable<ClientObject> {
-    return this.httpClient.get<ClientObject>(environment.backendUrl + '/api/auth', {
+  getUserData(): Observable<ClientModel> {
+    return this.httpClient.get<ClientModel>(environment.backendUrl + '/api/auth', {
       withCredentials: true
-    }).pipe(map((response: ClientObject) => {
+    }).pipe(map((response: ClientModel) => {
       if (response) {
         return response;
       } else {
-        return new ClientObject;
+        return new ClientModel;
       }
     }),
       catchError((err: HttpErrorResponse) => {
         console.log(err);
-        return of(new ClientObject);
+        return of(new ClientModel);
       })
     );
   }
 
-  getUserBalance(): Observable<ClientWalletObject> {
-    return this.httpClient.get<ClientWalletObject>(environment.backendUrl + '/api/jimmy/balance', {
+  getUserBalance(): Observable<ClientWalletModel> {
+    return this.httpClient.get<ClientWalletModel>(environment.backendUrl + '/api/jimmy/balance', {
       withCredentials: true,
-    }).pipe(map((response: ClientWalletObject) => {
+    }).pipe(map((response: ClientWalletModel) => {
       if (response) {
         return response;
       } else {
-        return new ClientWalletObject;
+        return new ClientWalletModel;
       }
     }))
   }

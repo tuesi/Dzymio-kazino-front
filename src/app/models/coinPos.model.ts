@@ -1,4 +1,4 @@
-export class CoinPosObject {
+export class CoinPosModel {
     rotation: number;
     positionZ: number;
 };

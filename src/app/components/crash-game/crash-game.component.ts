@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BetObject } from 'src/app/objects/betObject';
-import { ClientObject } from 'src/app/objects/clientObject';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { BetModel } from 'src/app/models/bet.model';
+import { ClientModel } from 'src/app/models/client.model';
+import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { environment } from 'src/environments/environment.prod';
@@ -25,7 +25,7 @@ export class CrashGameComponent implements OnInit {
   roomName = 'crash';
 
   betAmount = 0;
-  clientData: ClientObject;
+  clientData: ClientModel;
   clientWalletInZeton = 0;
   disabled = false;
   betMade = false;
@@ -76,7 +76,7 @@ export class CrashGameComponent implements OnInit {
     }
   }
 
-  setClientData(clientData: ClientObject) {
+  setClientData(clientData: ClientModel) {
     this.clientData = clientData;
   }
 
@@ -117,13 +117,13 @@ export class CrashGameComponent implements OnInit {
   }
 
   sendBet() {
-    let newBet = new BetObject();
+    let newBet = new BetModel();
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betAutoStopNuber > 1 ? this.betAutoStopNuber.toString() : '0';
     if (newBet.clientId && newBet.clientNick && newBet.betAmount) {
-      this.backendService.emit(new SocketEventObject('crash', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel('crash', 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

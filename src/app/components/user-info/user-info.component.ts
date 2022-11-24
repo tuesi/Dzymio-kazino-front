@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientObject } from 'src/app/objects/clientObject';
-import { ClientWalletObject } from 'src/app/objects/clientWalletObject';
+import { ClientModel } from 'src/app/models/client.model';
+import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
 
@@ -14,13 +14,13 @@ export class UserInfoComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router) { }
 
-  client: ClientObject;
+  client: ClientModel;
   avatar: string;
   nick: string;
-  balance: ClientWalletObject;
+  balance: ClientWalletModel;
   clientWalletInZeton = 0;
 
-  @Output() newUserEvent = new EventEmitter<ClientObject>();
+  @Output() newUserEvent = new EventEmitter<ClientModel>();
   @Output() newClientWalletInZetonEvent = new EventEmitter<number>();
 
   ngOnInit(): void {

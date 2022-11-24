@@ -1,4 +1,4 @@
-export class SocketResponseObject {
+export class SocketResponseModel {
     event: string
     response: any;
 };

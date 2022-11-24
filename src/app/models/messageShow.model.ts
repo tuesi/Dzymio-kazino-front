@@ -1,4 +1,4 @@
-export class MessageShowObject {
+export class MessageShowModel {
     avatar: string;
     message: string;
 

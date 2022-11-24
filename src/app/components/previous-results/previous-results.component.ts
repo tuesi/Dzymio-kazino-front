@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
 const coinHead = '../../../assets/coin-head.png';
@@ -52,7 +52,7 @@ export class PreviousResultsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.backendService.emit(new SocketEventObject(this.roomName, 'getPreviousResults', null));
+    this.backendService.emit(new SocketEventModel(this.roomName, 'getPreviousResults', null));
 
     this.backendService.listen('previousCoins').subscribe((previous) => {
       let previousResponse = previous as Array<number>;

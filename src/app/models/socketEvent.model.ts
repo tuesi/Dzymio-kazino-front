@@ -1,4 +1,4 @@
-export class SocketEventObject {
+export class SocketEventModel {
     room: string;
     event: string;
     data: any;

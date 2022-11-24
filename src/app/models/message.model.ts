@@ -1,4 +1,4 @@
-export class MessageObject {
+export class MessageModel {
     clientId: string;
     avatar: string;
     message: string;

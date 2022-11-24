@@ -1,4 +1,4 @@
-export class BetResponseObject {
+export class BetResponseModel {
     status: boolean;
     amount: number;
 };

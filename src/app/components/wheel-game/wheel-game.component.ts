@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { BetObject } from 'src/app/objects/betObject';
-import { ClientObject } from 'src/app/objects/clientObject';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { BetModel } from 'src/app/models/bet.model';
+import { ClientModel } from 'src/app/models/client.model';
+import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
@@ -22,7 +22,7 @@ export class WheelGameComponent implements OnInit {
 
   betAmount = 0;
   betPrediction = '';
-  clientData: ClientObject;
+  clientData: ClientModel;
   clientWalletInZeton = 0;
   disabled = false;
   betMade = false;
@@ -79,7 +79,7 @@ export class WheelGameComponent implements OnInit {
     this.betPrediction = prediction;
   }
 
-  setClientData(clientData: ClientObject) {
+  setClientData(clientData: ClientModel) {
     this.clientData = clientData;
     this.setLoaded('clientData');
   }
@@ -120,13 +120,13 @@ export class WheelGameComponent implements OnInit {
   }
 
   sendBet() {
-    let newBet = new BetObject();
+    let newBet = new BetModel();
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betPrediction;
     if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction) {
-      this.backendService.emit(new SocketEventObject('wheel', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel('wheel', 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

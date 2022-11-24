@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MessageObject } from 'src/app/objects/messageObject';
-import { MessageShowObject } from 'src/app/objects/messageShowObject';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { MessageModel } from 'src/app/models/message.model';
+import { MessageShowModel } from 'src/app/models/messageShow.model';
+import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { BackendService } from '../../services/backend/backend.service';
 
 const wheelAvatar = '../../../assets/wheelAvatar.png';
@@ -15,20 +15,20 @@ export class MessagesComponent implements OnInit {
 
   @Output() loadingComplete = new EventEmitter();
 
-  messageList: MessageShowObject[] = [];
+  messageList: MessageShowModel[] = [];
 
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.backendService.listen('clientBetHistory').subscribe((messages) => {
-      let wheelMessages = messages as Array<MessageObject>;
+      let wheelMessages = messages as Array<MessageModel>;
       this.messageList = [];
       wheelMessages.forEach(message => {
         var avatar = wheelAvatar;
         if (message.clientId && message.avatar) {
           avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
         }
-        this.messageList.push(new MessageShowObject(avatar, message.message));
+        this.messageList.push(new MessageShowModel(avatar, message.message));
       });
       setTimeout(() => {
         var chatHistory = document.getElementById("chat-box");

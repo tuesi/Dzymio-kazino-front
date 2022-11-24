@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { CoinPosObject } from 'src/app/objects/coinPosObject';
+import { CoinPosModel } from 'src/app/models/coinPos.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import * as THREE from "three";
-import { Quaternion, Vector3 } from 'three';
+import { Vector3 } from 'three';
 
 @Component({
   selector: 'app-coin',
@@ -40,14 +40,14 @@ export class CoinComponent implements OnInit, AfterViewInit {
   rotationNumber = 0;
   sideNumber = 1;
 
-  coinPos: CoinPosObject;
+  coinPos: CoinPosModel;
 
 
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.backendService.listen('coinPos').subscribe(data => {
-      this.coinPos = data as CoinPosObject;
+      this.coinPos = data as CoinPosModel;
       this.animateCoin(this.coinPos.rotation, this.coinPos.positionZ);
     });
   }

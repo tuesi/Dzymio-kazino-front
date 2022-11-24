@@ -1,4 +1,4 @@
-export class BetObject {
+export class BetModel {
   clientId: string;
   clientNick: string;
   betAmount: number;

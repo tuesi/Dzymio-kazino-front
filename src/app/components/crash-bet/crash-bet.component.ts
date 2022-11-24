@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SocketEventObject } from 'src/app/objects/socketEventObject';
+import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class CrashBetComponent implements OnInit {
   }
 
   stopCrash() {
-    this.backendService.emit(new SocketEventObject('crash', 'stop', null));
+    this.backendService.emit(new SocketEventModel('crash', 'stop', null));
   }
 
   resetValues() {

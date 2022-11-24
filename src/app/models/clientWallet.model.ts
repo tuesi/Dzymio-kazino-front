@@ -1,4 +1,4 @@
-export class ClientWalletObject {
+export class ClientWalletModel {
   GOLD: string;
   SILVER: string;
   COPPER: string;

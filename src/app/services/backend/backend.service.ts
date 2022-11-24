@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
-import { SocketEventObject } from '../../objects/socketEventObject';
+import { SocketEventModel } from '../../models/socketEvent.model';
 import { environment } from '../../../environments/environment.prod';
 
 
@@ -25,7 +25,7 @@ export class BackendService {
     });
   }
 
-  emit(data: SocketEventObject) {
+  emit(data: SocketEventModel) {
     this.socket.emit('event', data);
   }
 
