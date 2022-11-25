@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "https://dzymio-kazino-back-production.up.railway.app"
+  backendUrl: "https://back.debils.gay"
 };
 
 /*
