@@ -10,7 +10,10 @@ import { WheelGameComponent } from './components/wheel-game/wheel-game.component
 import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: '', component: MainComponent,
+    canActivate: [AuthGuard], pathMatch: 'full'
+  },
   { path: 'login', component: LoginComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   {

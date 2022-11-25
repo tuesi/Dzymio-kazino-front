@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { UserDataService } from 'src/app/services/user/user-data.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-info',

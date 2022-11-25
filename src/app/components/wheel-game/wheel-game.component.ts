@@ -19,7 +19,7 @@ export class WheelGameComponent implements OnInit {
 
   betAmount = 0;
   betPrediction = '';
-  clientData: ClientModel;
+  clientData = new ClientModel();
   clientWalletInZeton = 0;
   disabled = false;
   betMade = false;
@@ -65,11 +65,10 @@ export class WheelGameComponent implements OnInit {
 
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
-      console.log(clientWallet);
     });
 
-    this.userDataService.client.subscribe(clientData => {
-      this.clientData = clientData;
+    this.userDataService.client.subscribe(newClientData => {
+      this.clientData = newClientData;
     });
   }
 
@@ -115,6 +114,7 @@ export class WheelGameComponent implements OnInit {
 
   sendBet() {
     let newBet = new BetModel();
+    console.log(this.clientData);
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;

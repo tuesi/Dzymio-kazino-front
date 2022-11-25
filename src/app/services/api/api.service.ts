@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { ClientModel } from '../../models/client.model';
 import { ClientWalletModel } from '../../models/clientWallet.model';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,12 @@ export class ApiService {
       if (response) {
         return response;
       } else {
-        return new ClientModel;
+        return new ClientModel();
       }
     }),
       catchError((err: HttpErrorResponse) => {
         console.log(err);
-        return of(new ClientModel);
+        return of(new ClientModel());
       })
     );
   }

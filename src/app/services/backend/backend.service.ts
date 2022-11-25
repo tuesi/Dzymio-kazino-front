@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { io, Socket } from "socket.io-client";
 import { SocketEventModel } from '../../models/socketEvent.model';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({

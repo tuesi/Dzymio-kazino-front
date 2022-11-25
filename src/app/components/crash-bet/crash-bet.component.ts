@@ -35,7 +35,6 @@ export class CrashBetComponent implements OnInit {
   }
 
   setAutoStop() {
-    console.log('send number');
     //send auto stop number to payment
     this.newAutoStopEvent.emit(this.autoStopAmount);
     this.autoStopPressed = true;
