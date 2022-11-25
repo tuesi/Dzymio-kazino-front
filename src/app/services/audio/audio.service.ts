@@ -35,4 +35,11 @@ export class AudioService {
     this.audio.play();
   }
 
+  playNepaejo() {
+    this.audio.src = nepaejoSound;
+
+    this.audio.load();
+    this.audio.play();
+  }
+
 }

@@ -15,6 +15,6 @@ export class AppComponent {
   }
 
   hasRoute(): boolean {
-    return !this.router.url.includes('login');
+    return !this.router.url.includes('login') && !this.router.url.includes('unauthorized');
   }
 }

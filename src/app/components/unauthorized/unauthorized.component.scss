@@ -1,0 +1,65 @@
+@mixin button ($color, $width: 120px, $height: 40px, $fontSize: 40px) {
+    width: $width;
+    height: $height;
+    color: rgb(0, 0, 0);
+    background-color: $color;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    font-size: $fontSize;
+    line-height: 10%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+    border-spacing: 10px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: desaturate($color, 50%);
+    }
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 5%;
+}
+
+.text-style {
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Consolas';
+    text-transform: uppercase;
+
+    text-shadow:
+        3px 3px 4px rgba(15, 94, 103, 0.4),
+        -3px -3px 4px rgba(255, 255, 255, 0.08);
+    caret-color: #fefefe;
+    outline: none;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.image-style {
+    &:hover {
+        filter: opacity(0.8);
+    }
+
+    &:active {
+        filter: opacity(0.7);
+    }
+}

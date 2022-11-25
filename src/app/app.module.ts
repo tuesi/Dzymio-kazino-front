@@ -28,6 +28,7 @@ import { LineComponent } from './components/line/line.component';
 import { CrashComponent } from './components/crash/crash.component';
 import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
 import { UserDataService } from './services/user/user-data.service';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UserDataService } from './services/user/user-data.service';
     CoinBetComponent,
     LineComponent,
     CrashComponent,
-    CrashBetComponent
+    CrashBetComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

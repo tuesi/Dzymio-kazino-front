@@ -5,12 +5,14 @@ import { CrashGameComponent } from './components/crash-game/crash-game.component
 import { LineGameComponent } from './components/line-game/line-game.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { WheelGameComponent } from './components/wheel-game/wheel-game.component';
 import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
   {
     path: 'main',
     component: MainComponent,
