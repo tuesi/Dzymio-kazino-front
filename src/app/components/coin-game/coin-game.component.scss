@@ -101,14 +101,13 @@ body {
         }
     }
 
-    .messages-container {
+    .message-container {
         display: flex;
         width: 20%;
-        min-width: 300px;
         height: 500px;
 
         >div {
-            width: 90%;
+            width: 100%;
         }
     }
 }
