@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
+import { environment } from 'src/environments/environment.prod';
 import { ApiService } from '../api/api.service';
 
 @Injectable({
@@ -17,12 +18,14 @@ export class UserDataService {
   clientWalletInZeton: Subject<number> = new Subject<number>();
 
   init(): void {
-    this.balance.next(new ClientWalletModel("0", "0", "0"));
-    this.apiService.getUserData().subscribe(data => {
-      this.client.next(data);
-    });
+    if (document.cookie.indexOf(environment.cookieName) !== -1) {
+      this.balance.next(new ClientWalletModel("0", "0", "0"));
+      this.apiService.getUserData().subscribe(data => {
+        this.client.next(data);
+      });
 
-    this.updateClientBalance();
+      this.updateClientBalance();
+    }
   }
 
   updateClientBalance() {

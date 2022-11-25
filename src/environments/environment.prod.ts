@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: "https://back.debils.gay"
+  backendUrl: "http://localhost:3000",
+  cookieName: "SausainiukasGuminiukas="
 };
