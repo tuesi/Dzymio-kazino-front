@@ -113,8 +113,8 @@ export class WheelGameComponent implements OnInit {
   }
 
   sendBet() {
+    this.userDataService.updateClientData();
     let newBet = new BetModel();
-    console.log(this.clientData);
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;

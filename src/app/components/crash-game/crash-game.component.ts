@@ -108,6 +108,7 @@ export class CrashGameComponent implements OnInit {
   }
 
   sendBet() {
+    this.userDataService.updateClientData();
     let newBet = new BetModel();
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;

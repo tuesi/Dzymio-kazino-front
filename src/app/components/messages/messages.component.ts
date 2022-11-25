@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageModel } from 'src/app/models/message.model';
 import { MessageShowModel } from 'src/app/models/messageShow.model';
-import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { BackendService } from '../../services/backend/backend.service';
 
 const wheelAvatar = '../../../assets/wheelAvatar.png';

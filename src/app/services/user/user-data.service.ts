@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
-import { environment } from 'src/environments/environment';
 import { ApiService } from '../api/api.service';
 
 @Injectable({
@@ -18,11 +17,14 @@ export class UserDataService {
   clientWalletInZeton: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   init(): void {
+    this.updateClientData();
+    this.updateClientBalance();
+  }
+
+  updateClientData() {
     this.apiService.getUserData().subscribe(data => {
       this.client.next(data);
     });
-
-    this.updateClientBalance();
   }
 
   updateClientBalance() {
@@ -32,5 +34,6 @@ export class UserDataService {
         this.clientWalletInZeton.next(ConvertCurrencies.convertToZetonai(parseInt(data.GOLD), parseInt(data.SILVER), parseInt(data.COPPER)));
       }
     });
+
   }
 }
