@@ -18,9 +18,11 @@ export class UserDataService {
   clientWalletInZeton: Subject<number> = new Subject<number>();
 
   init(): void {
+    console.log("init");
     if (document.cookie.indexOf(environment.cookieName) !== -1) {
       this.balance.next(new ClientWalletModel("0", "0", "0"));
       this.apiService.getUserData().subscribe(data => {
+        console.log(data);
         this.client.next(data);
       });
 
@@ -33,6 +35,7 @@ export class UserDataService {
       if (data) {
         this.balance.next(data);
         this.clientWalletInZeton.next(ConvertCurrencies.convertToZetonai(parseInt(data.GOLD), parseInt(data.SILVER), parseInt(data.COPPER)));
+        console.log(this.clientWalletInZeton);
       }
     });
   }

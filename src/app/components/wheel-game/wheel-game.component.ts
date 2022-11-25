@@ -65,6 +65,7 @@ export class WheelGameComponent implements OnInit {
 
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
+      console.log(clientWallet);
     });
 
     this.userDataService.client.subscribe(clientData => {
