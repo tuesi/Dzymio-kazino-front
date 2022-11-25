@@ -181,6 +181,7 @@ export class PaymentComponent implements OnInit {
   }
 
   sendBet() {
+    console.log(this.clientWalletInZeton);
     if (this.clientWalletInZeton >= this.all && this.all != 0 && this.isBetMade()) {
       this.newSubmitEvent.emit();
       this.betMade = true;
