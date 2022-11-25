@@ -27,7 +27,6 @@ export class CrashGameComponent implements OnInit {
   betAutoStopNuber: number;
 
   itemsLoaded = new Map<string, boolean>([
-    ["crash", false],
     ["messages", false],
     ["previous", false]
   ]);

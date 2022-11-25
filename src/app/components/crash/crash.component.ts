@@ -18,11 +18,6 @@ export class CrashComponent implements OnInit {
     this.backendService.listen('crashValue').subscribe(crashValue => {
       this.crashNumber = crashValue as number;
     });
-
-    this.backendService.listen('initialCrashValue').subscribe(crashValue => {
-      this.crashNumber = crashValue as number;
-      this.loadingComplete.emit('crash');
-    });
   }
 
 }
