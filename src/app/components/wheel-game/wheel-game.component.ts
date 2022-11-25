@@ -29,8 +29,7 @@ export class WheelGameComponent implements OnInit {
   itemsLoaded = new Map<string, boolean>([
     ["wheel", false],
     ["messages", false],
-    ["previous", false],
-    ["clientData", false]
+    ["previous", false]
   ]);
   loading = true;
 
@@ -67,6 +66,10 @@ export class WheelGameComponent implements OnInit {
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
     });
+
+    this.userDataService.client.subscribe(clientData => {
+      this.clientData = clientData;
+    });
   }
 
   setBetAmount(amount: number) {
@@ -77,11 +80,6 @@ export class WheelGameComponent implements OnInit {
 
   setBetPrediction(prediction: string) {
     this.betPrediction = prediction;
-  }
-
-  setClientData(clientData: ClientModel) {
-    this.clientData = clientData;
-    this.setLoaded('clientData');
   }
 
   setBetStatus(status: boolean) {

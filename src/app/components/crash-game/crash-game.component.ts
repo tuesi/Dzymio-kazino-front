@@ -29,8 +29,7 @@ export class CrashGameComponent implements OnInit {
   itemsLoaded = new Map<string, boolean>([
     ["chrash", false],
     ["messages", false],
-    ["previous", false],
-    ["clientData", false]
+    ["previous", false]
   ]);
   loading = true;
 
@@ -64,17 +63,16 @@ export class CrashGameComponent implements OnInit {
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
     });
+
+    this.userDataService.client.subscribe(clientData => {
+      this.clientData = clientData;
+    });
   }
 
   setBetAmount(amount: number) {
     if (this.clientWalletInZeton >= amount) {
       this.betAmount = amount;
     }
-  }
-
-  setClientData(clientData: ClientModel) {
-    this.clientData = clientData;
-    this.setLoaded('clientData');
   }
 
   setAutoStopAmount(amount: number) {

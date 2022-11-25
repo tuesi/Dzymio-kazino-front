@@ -27,8 +27,7 @@ export class LineGameComponent implements OnInit {
   itemsLoaded = new Map<string, boolean>([
     ["line", false],
     ["messages", false],
-    ["previous", false],
-    ["clientData", false]
+    ["previous", false]
   ]);
   loading = true;
 
@@ -62,17 +61,16 @@ export class LineGameComponent implements OnInit {
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
     });
+
+    this.userDataService.client.subscribe(clientData => {
+      this.clientData = clientData;
+    });
   }
 
   setBetAmount(amount: number) {
     if (this.clientWalletInZeton >= amount) {
       this.betAmount = amount;
     }
-  }
-
-  setClientData(clientData: ClientModel) {
-    this.clientData = clientData;
-    this.setLoaded('clientData');
   }
 
   setLoaded(loadName: string) {

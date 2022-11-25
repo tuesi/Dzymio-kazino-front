@@ -26,8 +26,7 @@ export class CoinGameComponent implements OnInit {
 
   itemsLoaded = new Map<string, boolean>([
     ["messages", false],
-    ["previous", false],
-    ["clientData", false]
+    ["previous", false]
   ]);
   loading = true;
 
@@ -65,6 +64,10 @@ export class CoinGameComponent implements OnInit {
     this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
       this.clientWalletInZeton = clientWallet;
     });
+
+    this.userDataService.client.subscribe(clientData => {
+      this.clientData = clientData;
+    });
   }
 
   setBetPrediction(value: number) {
@@ -75,11 +78,6 @@ export class CoinGameComponent implements OnInit {
     if (this.clientWalletInZeton >= amount) {
       this.betAmount = amount;
     }
-  }
-
-  setClientData(clientData: ClientModel) {
-    this.clientData = clientData;
-    this.setLoaded('clientData');
   }
 
   setBetStatus(status: boolean) {
