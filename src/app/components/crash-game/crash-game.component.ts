@@ -24,7 +24,7 @@ export class CrashGameComponent implements OnInit {
   betMade = false;
   reset = false;
 
-  betAutoStopNuber: number;
+  betAutoStopNuber = 0;
 
   itemsLoaded = new Map<string, boolean>([
     ["messages", false],
@@ -48,6 +48,7 @@ export class CrashGameComponent implements OnInit {
         this.betMade = false;
         this.reset = true;
         this.betAmount = 0;
+        this.betAutoStopNuber = 0;
       }
     });
 
