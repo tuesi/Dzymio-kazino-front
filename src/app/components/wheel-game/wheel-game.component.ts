@@ -4,7 +4,7 @@ import { ClientModel } from 'src/app/models/client.model';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
-import { UserInfoComponent } from '../user-info/user-info.component';
+import { UserDataService } from 'src/app/services/user/user-data.service';
 
 @Component({
   selector: 'app-wheel-game',
@@ -13,10 +13,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 })
 export class WheelGameComponent implements OnInit {
 
-  constructor(private backendService: BackendService, private audioService: AudioService) { }
-
-  @ViewChild(UserInfoComponent)
-  private userInforComponent!: UserInfoComponent;
+  constructor(private backendService: BackendService, private audioService: AudioService, private userDataService: UserDataService) { }
 
   roomName = 'wheel';
 
@@ -33,8 +30,7 @@ export class WheelGameComponent implements OnInit {
     ["wheel", false],
     ["messages", false],
     ["previous", false],
-    ["clientData", false],
-    ["clientWallet", false],
+    ["clientData", false]
   ]);
   loading = true;
 
@@ -67,6 +63,10 @@ export class WheelGameComponent implements OnInit {
         this.disabled = false;
       }
     });
+
+    this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
+      this.clientWalletInZeton = clientWallet;
+    });
   }
 
   setBetAmount(amount: number) {
@@ -84,13 +84,8 @@ export class WheelGameComponent implements OnInit {
     this.setLoaded('clientData');
   }
 
-  setClientWalletInZeton(amount: number) {
-    this.clientWalletInZeton = amount;
-    this.setLoaded('clientWallet');
-  }
-
   setBetStatus(status: boolean) {
-    this.userInforComponent.updateClientBalance();
+    this.userDataService.updateClientBalance();
     if (status) {
       this.betStatus = "win";
       this.audioService.playWinSound();

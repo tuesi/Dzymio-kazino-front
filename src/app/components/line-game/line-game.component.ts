@@ -4,7 +4,7 @@ import { ClientModel } from 'src/app/models/client.model';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
-import { UserInfoComponent } from '../user-info/user-info.component';
+import { UserDataService } from 'src/app/services/user/user-data.service';
 
 @Component({
   selector: 'app-line-game',
@@ -13,10 +13,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 })
 export class LineGameComponent implements OnInit {
 
-  constructor(private backendService: BackendService, private audioService: AudioService) { }
-
-  @ViewChild(UserInfoComponent)
-  private userInforComponent!: UserInfoComponent;
+  constructor(private backendService: BackendService, private audioService: AudioService, private userDataService: UserDataService) { }
 
   roomName = 'line';
 
@@ -31,8 +28,7 @@ export class LineGameComponent implements OnInit {
     ["line", false],
     ["messages", false],
     ["previous", false],
-    ["clientData", false],
-    ["clientWallet", false],
+    ["clientData", false]
   ]);
   loading = true;
 
@@ -62,6 +58,10 @@ export class LineGameComponent implements OnInit {
         this.disabled = false;
       }
     });
+
+    this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
+      this.clientWalletInZeton = clientWallet;
+    });
   }
 
   setBetAmount(amount: number) {
@@ -75,11 +75,6 @@ export class LineGameComponent implements OnInit {
     this.setLoaded('clientData');
   }
 
-  setClientWalletInZeton(amount: number) {
-    this.clientWalletInZeton = amount;
-    this.setLoaded('clientWallet');
-  }
-
   setLoaded(loadName: string) {
     this.itemsLoaded.forEach((value, key) => {
       if (key === loadName) {
@@ -90,7 +85,7 @@ export class LineGameComponent implements OnInit {
   }
 
   setBetStatus(value: boolean) {
-    this.userInforComponent.updateClientBalance();
+    this.userDataService.updateClientBalance();
     if (value) {
       this.audioService.playWinSound();
     } else {

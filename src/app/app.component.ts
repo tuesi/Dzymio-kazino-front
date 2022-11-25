@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserDataService } from './services/user/user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Jimmy\'s Casino';
+  showUserHeader = false;
+  constructor(private userDataService: UserDataService, private router: Router) {
+    userDataService.init();
+  }
+
+  hasRoute(): boolean {
+    return !this.router.url.includes('login');
+  }
 }

@@ -61,6 +61,14 @@
     height: 25px;
     border: none;
     border-radius: 5px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .logout-button-text {

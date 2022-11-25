@@ -1,5 +1,5 @@
 <div class="header-container">
-    <div class="back-button-container">
+    <div *ngIf="showBackButton" class="back-button-container">
         <button class="logout-button">
             <span class="logout-button-text" (click)="goBackToMenu()"> back </span>
         </button>

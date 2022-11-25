@@ -4,11 +4,7 @@ import { ClientModel } from 'src/app/models/client.model';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
-import { environment } from 'src/environments/environment.prod';
-import { UserInfoComponent } from '../user-info/user-info.component';
-
-const debilsAudio = "/assets/audio/debils.wav";
-const nepaejoAudio = "/assets/audio/nepaejo.wav";
+import { UserDataService } from 'src/app/services/user/user-data.service';
 
 @Component({
   selector: 'app-crash-game',
@@ -17,10 +13,7 @@ const nepaejoAudio = "/assets/audio/nepaejo.wav";
 })
 export class CrashGameComponent implements OnInit {
 
-  constructor(private backendService: BackendService, private audioService: AudioService) { }
-
-  @ViewChild(UserInfoComponent)
-  private userInforComponent!: UserInfoComponent;
+  constructor(private backendService: BackendService, private audioService: AudioService, private userDataService: UserDataService) { }
 
   roomName = 'crash';
 
@@ -37,8 +30,7 @@ export class CrashGameComponent implements OnInit {
     ["chrash", false],
     ["messages", false],
     ["previous", false],
-    ["clientData", false],
-    ["clientWallet", false],
+    ["clientData", false]
   ]);
   loading = true;
 
@@ -68,6 +60,10 @@ export class CrashGameComponent implements OnInit {
         this.disabled = false;
       }
     });
+
+    this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
+      this.clientWalletInZeton = clientWallet;
+    });
   }
 
   setBetAmount(amount: number) {
@@ -78,10 +74,7 @@ export class CrashGameComponent implements OnInit {
 
   setClientData(clientData: ClientModel) {
     this.clientData = clientData;
-  }
-
-  setClientWalletInZeton(amount: number) {
-    this.clientWalletInZeton = amount;
+    this.setLoaded('clientData');
   }
 
   setAutoStopAmount(amount: number) {
@@ -98,7 +91,7 @@ export class CrashGameComponent implements OnInit {
   }
 
   setBetStatus(value: boolean) {
-    this.userInforComponent.updateClientBalance();
+    this.userDataService.updateClientBalance();
     if (value) {
       this.audioService.playWinSound();
     } else {

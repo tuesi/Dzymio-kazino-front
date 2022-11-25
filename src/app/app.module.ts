@@ -27,6 +27,7 @@ import { CoinBetComponent } from './components/coin-bet/coin-bet.component';
 import { LineComponent } from './components/line/line.component';
 import { CrashComponent } from './components/crash/crash.component';
 import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
+import { UserDataService } from './services/user/user-data.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [BackendService],
+  providers: [BackendService, UserDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

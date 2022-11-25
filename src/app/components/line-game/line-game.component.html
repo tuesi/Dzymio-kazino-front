@@ -2,10 +2,6 @@
     <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
 <div class="line-game-main-container">
-    <div class="user-info-container">
-        <app-user-info (newUserEvent)="setClientData($event)"
-            (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
-    </div>
     <div class="timer-container">
         <div>
             <app-timer></app-timer>

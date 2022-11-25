@@ -1,14 +1,10 @@
-<!-- <div class="loading-container" *ngIf="loading">
+<div class="loading-container" *ngIf="loading">
     <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
-</div> -->
+</div>
 <div *ngIf="betStatus == 'win' || betStatus == 'lose'"
     [ngClass]="betStatus == 'win' ? 'status-overlay win-style' : betStatus == 'lose' ? 'status-overlay lose-style' : 'status-overlay'">
 </div>
 <div class="main-coin-game-container">
-    <div class="user-info-container">
-        <app-user-info (newUserEvent)="setClientData($event)"
-            (newClientWalletInZetonEvent)="setClientWalletInZeton($event)"></app-user-info>
-    </div>
     <div class="timer-container">
         <div>
             <app-timer></app-timer>

@@ -38,6 +38,10 @@ export class ApiService {
       } else {
         return new ClientWalletModel("0", "0", "0");
       }
-    }))
+    }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(new ClientWalletModel("0", "0", "0"));
+      }))
   }
 }

@@ -4,7 +4,7 @@ import { ClientModel } from 'src/app/models/client.model';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { AudioService } from 'src/app/services/audio/audio.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
-import { UserInfoComponent } from '../user-info/user-info.component';
+import { UserDataService } from 'src/app/services/user/user-data.service';
 
 @Component({
   selector: 'app-coin-game',
@@ -12,9 +12,6 @@ import { UserInfoComponent } from '../user-info/user-info.component';
   styleUrls: ['./coin-game.component.scss']
 })
 export class CoinGameComponent implements OnInit {
-
-  @ViewChild(UserInfoComponent)
-  private userInforComponent!: UserInfoComponent;
 
   roomName = 'coin';
 
@@ -30,12 +27,11 @@ export class CoinGameComponent implements OnInit {
   itemsLoaded = new Map<string, boolean>([
     ["messages", false],
     ["previous", false],
-    ["clientData", false],
-    ["clientWallet", false],
+    ["clientData", false]
   ]);
   loading = true;
 
-  constructor(private backendService: BackendService, private audioService: AudioService) { }
+  constructor(private backendService: BackendService, private audioService: AudioService, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     this.backendService.joinRoom(this.roomName);
@@ -65,6 +61,10 @@ export class CoinGameComponent implements OnInit {
         this.disabled = false;
       }
     });
+
+    this.userDataService.clientWalletInZeton.subscribe(clientWallet => {
+      this.clientWalletInZeton = clientWallet;
+    });
   }
 
   setBetPrediction(value: number) {
@@ -82,13 +82,8 @@ export class CoinGameComponent implements OnInit {
     this.setLoaded('clientData');
   }
 
-  setClientWalletInZeton(amount: number) {
-    this.clientWalletInZeton = amount;
-    this.setLoaded('clientWallet');
-  }
-
   setBetStatus(status: boolean) {
-    this.userInforComponent.updateClientBalance();
+    this.userDataService.updateClientBalance();
     if (status) {
       this.betStatus = "win";
       this.audioService.playWinSound();
