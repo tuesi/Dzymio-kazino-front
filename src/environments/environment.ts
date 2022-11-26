@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "https://back.debils.gay"
+  backendUrl: "http://localhost:3000"
 };
 
 /*

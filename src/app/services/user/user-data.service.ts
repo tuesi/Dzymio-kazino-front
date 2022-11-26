@@ -34,6 +34,5 @@ export class UserDataService {
         this.clientWalletInZeton.next(ConvertCurrencies.convertToZetonai(parseInt(data.GOLD), parseInt(data.SILVER), parseInt(data.COPPER)));
       }
     });
-
   }
 }
