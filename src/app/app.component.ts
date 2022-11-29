@@ -17,4 +17,8 @@ export class AppComponent {
   hasRoute(): boolean {
     return !this.router.url.includes('login') && !this.router.url.includes('unauthorized');
   }
+
+  isMainMenu(): boolean {
+    return !this.router.url.includes('main');
+  }
 }

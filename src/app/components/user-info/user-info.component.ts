@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
@@ -13,10 +13,9 @@ import { environment } from 'src/environments/environment';
 export class UserInfoComponent implements OnInit {
 
   constructor(private router: Router, private userDataService: UserDataService) {
-    this.showBackButton = router.url !== '/main' ? true : false;
   }
 
-  showBackButton = true;
+  @Input() showBackButton = true;
 
   client: ClientModel;
   avatar: string;
