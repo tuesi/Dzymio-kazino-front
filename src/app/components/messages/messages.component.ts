@@ -20,14 +20,14 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.listen('clientBetHistory').subscribe((messages) => {
-      let wheelMessages = messages as Array<MessageModel>;
+      let newMessages = messages as Array<MessageModel>;
       this.messageList = [];
-      wheelMessages.forEach(message => {
+      newMessages.forEach(message => {
         var avatar = zigabuguleAvatar;
-        // if (message.clientId && message.avatar) {
-        //   avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
-        // }
-        this.messageList.push(new MessageShowModel(avatar, message.message));
+        if (message.clientId && message.avatar) {
+          avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
+        }
+        this.messageList.push(new MessageShowModel(avatar, message.username, message.message));
       });
       setTimeout(() => {
         var chatHistory = document.getElementById("chat-box");

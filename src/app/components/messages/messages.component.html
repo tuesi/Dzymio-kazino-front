@@ -4,8 +4,11 @@
             <div *ngFor="let message of messageList" class="message-text-container">
                 <div class="message-text-container">
                     <span class="message-avatar-container"><img class="message-avatar" src={{message.avatar}}></span>
-                    <span class="chat-text">
-                        {{message.message}}
+                    <span>
+                        <span class="username-text">{{message.username}}</span>
+                        <span class="chat-text">
+                            {{message.message}}
+                        </span>
                     </span>
                 </div>
             </div>
