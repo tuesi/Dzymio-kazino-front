@@ -24,9 +24,9 @@ export class MessagesComponent implements OnInit {
       this.messageList = [];
       wheelMessages.forEach(message => {
         var avatar = zigabuguleAvatar;
-        if (message.clientId && message.avatar) {
-          avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
-        }
+        // if (message.clientId && message.avatar) {
+        //   avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
+        // }
         this.messageList.push(new MessageShowModel(avatar, message.message));
       });
       setTimeout(() => {
