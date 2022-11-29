@@ -35,12 +35,13 @@
     justify-content: center;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     gap: 5%;
 }
 
 .text-style {
     color: rgb(0, 0, 0);
-    font-size: 25px;
+    font-size: 2vw;
     font-weight: bold;
     font-family: 'Consolas';
     text-transform: uppercase;
@@ -55,6 +56,14 @@
 }
 
 .image-style {
+    width: 50%;
+    height: 50%;
+    min-width: 150px;
+    object-fit: contain;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
     &:hover {
         filter: opacity(0.8);
     }

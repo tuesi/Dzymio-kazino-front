@@ -3,7 +3,7 @@ import { MessageModel } from 'src/app/models/message.model';
 import { MessageShowModel } from 'src/app/models/messageShow.model';
 import { BackendService } from '../../services/backend/backend.service';
 
-const wheelAvatar = '../../../assets/wheelAvatar.png';
+const zigabuguleAvatar = '../../../assets/bugule.png';
 
 @Component({
   selector: 'app-messages',
@@ -23,7 +23,7 @@ export class MessagesComponent implements OnInit {
       let wheelMessages = messages as Array<MessageModel>;
       this.messageList = [];
       wheelMessages.forEach(message => {
-        var avatar = wheelAvatar;
+        var avatar = zigabuguleAvatar;
         if (message.clientId && message.avatar) {
           avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
         }
