@@ -132,36 +132,35 @@ export class CoinComponent implements OnInit, AfterViewInit {
     plane.castShadow = false;
     scene.add(plane);
     //scene.add(new THREE.CameraHelper(directionalLight.shadow.camera));
-    const animate = () => {
-      requestAnimationFrame(animate);
-      if (this.animate) {
-        this.coin.rotation.x += 0.1;
-        if (this.coin.position.z < 100 && this.coin.rotation.x < this.rotationNumber) {
-          //coin.scale.x += 0.01;
-          //coin.scale.z += 0.01;
-          this.coin.position.set(0, 0, this.coin.position.z + 0.5);
-        } else if (this.coin.position.z > 1) {
-          //coin.scale.x -= 0.01;
-          //coin.scale.z -= 0.01;
-          this.coin.position.set(0, 0, this.coin.position.z - 0.5);
-        }
-        if (this.coin.position.z <= 1) {
-          if (this.sideNumber == 1) {
-            this.coin.rotation.x = 1.55;
-          } else {
-            this.coin.rotation.x = 4.7;
-          }
-          this.animate = false;
-        }
-      }
-      //coin.rotation.y += 0.01;
-      //coin.rotation.z += 0.01;
+    // const animate = () => {
+    //   requestAnimationFrame(animate);
+    //   if (this.animate) {
+    //     this.coin.rotation.x += 0.1;
+    //     if (this.coin.position.z < 100 && this.coin.rotation.x < this.rotationNumber) {
+    //       //coin.scale.x += 0.01;
+    //       //coin.scale.z += 0.01;
+    //       this.coin.position.set(0, 0, this.coin.position.z + 0.5);
+    //     } else if (this.coin.position.z > 1) {
+    //       //coin.scale.x -= 0.01;
+    //       //coin.scale.z -= 0.01;
+    //       this.coin.position.set(0, 0, this.coin.position.z - 0.5);
+    //     }
+    //     if (this.coin.position.z <= 1) {
+    //       if (this.sideNumber == 1) {
+    //         this.coin.rotation.x = 1.55;
+    //       } else {
+    //         this.coin.rotation.x = 4.7;
+    //       }
+    //       this.animate = false;
+    //     }
+    //   }
+    //   //coin.rotation.y += 0.01;
+    //   //coin.rotation.z += 0.01;
 
-      renderer.render(scene, camera);
-    };
+    //   renderer.render(scene, camera);
+    // };
     //camera.position.z = 5;
     renderer.render(scene, camera);
-    animate();
   }
 
   private createScene() {
@@ -204,20 +203,20 @@ export class CoinComponent implements OnInit, AfterViewInit {
     return this.canvas.clientWidth / this.canvas.clientHeight;
   }
 
-  rollCoin() {
-    this.coin.rotation.x = 1.55;
-    this.coin.position.z = 1;
-    this.coin.translateY(1);
-    this.sideNumber = Math.floor(Math.random() * 2) + 1;
-    //15.6 blue z= 100
-    //20.3 yellow
-    if (this.sideNumber == 1) {
-      this.rotationNumber = 17.2;
-    } else {
-      this.rotationNumber = 15.6;
-    }
-    this.animate = true;
-  }
+  // rollCoin() {
+  //   this.coin.rotation.x = 1.55;
+  //   this.coin.position.z = 1;
+  //   this.coin.translateY(1);
+  //   this.sideNumber = Math.floor(Math.random() * 2) + 1;
+  //   //15.6 blue z= 100
+  //   //20.3 yellow
+  //   if (this.sideNumber == 1) {
+  //     this.rotationNumber = 17.2;
+  //   } else {
+  //     this.rotationNumber = 15.6;
+  //   }
+  //   this.animate = true;
+  // }
 
   // const scene = new THREE.Scene();
   //   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
