@@ -131,7 +131,7 @@ export class CoinComponent implements OnInit, AfterViewInit {
     plane.receiveShadow = true;
     plane.castShadow = false;
     scene.add(plane);
-    //scene.add(new THREE.CameraHelper(directionalLight.shadow.camera));
+    scene.add(new THREE.CameraHelper(directionalLight.shadow.camera));
     // const animate = () => {
     //   requestAnimationFrame(animate);
     //   if (this.animate) {
@@ -159,7 +159,7 @@ export class CoinComponent implements OnInit, AfterViewInit {
 
     //   renderer.render(scene, camera);
     // };
-    //camera.position.z = 5;
+    camera.position.z = 5;
     renderer.render(scene, camera);
   }
 
