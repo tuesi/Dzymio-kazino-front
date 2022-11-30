@@ -56,7 +56,7 @@
             <div>
                 <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
                     (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade"
-                    [reset]="reset" [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true"></app-payment>
+                    [reset]="reset" [clientWalletInZeton]="clientWalletInZeton" [crashBet]="true"></app-payment>
             </div>
 
         </div>
