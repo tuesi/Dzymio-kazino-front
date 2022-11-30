@@ -15,17 +15,16 @@
   object-fit: contain;
   border-radius: 25px;
   box-shadow: -1px 10px 29px -9px rgba(0, 0, 0, 0.71);
+  transition: all ease-out 0.1s;
 
   &:hover {
     width: 72%;
     box-shadow: -1px 10px 29px 0px rgba(0, 0, 0, 0.71);
-    transition: all ease-out 0.1s;
   }
 
   &:active {
     width: 65%;
     box-shadow: -1px 10px 29px -12px rgba(0, 0, 0, 0.71);
-    transition: all ease-out 0.1s;
   }
 }
 
