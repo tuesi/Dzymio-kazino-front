@@ -6,7 +6,7 @@
     "start": "ng serve --port $PORT --host 0.0.0.0 --disable-host-check --configuration production",
     "build": "ng build --configuration production",
     "test": "ng test",
-    "build-prod": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod"
+    "build-prod": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --configuration production"
   },
   "private": true,
   "dependencies": {
