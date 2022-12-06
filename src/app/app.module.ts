@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +28,6 @@ import { CrashComponent } from './components/crash/crash.component';
 import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
 import { UserDataService } from './services/user/user-data.service';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
-import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
   declarations: [
@@ -55,14 +53,12 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     UnauthorizedComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
     FormsModule,
-    HttpClientModule,
-    TransferHttpCacheModule
+    HttpClientModule
   ],
   providers: [BackendService, UserDataService],
   bootstrap: [AppComponent]
