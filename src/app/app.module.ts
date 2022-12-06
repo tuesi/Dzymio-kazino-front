@@ -54,7 +54,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     UnauthorizedComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
