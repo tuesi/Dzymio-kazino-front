@@ -29,6 +29,7 @@ import { CrashComponent } from './components/crash/crash.component';
 import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
 import { UserDataService } from './services/user/user-data.service';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     MatToolbarModule,
     MatProgressSpinnerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TransferHttpCacheModule
   ],
   providers: [BackendService, UserDataService],
   bootstrap: [AppComponent]
