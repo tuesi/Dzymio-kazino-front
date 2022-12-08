@@ -35,6 +35,7 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 }
 
 .input-and-name-container {
@@ -127,7 +128,7 @@
 .amount-text {
     color: rgb(0, 0, 0);
     padding: 5%;
-    font-size: 2vh;
+    font-size: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -150,13 +151,13 @@
 }
 
 .plus-button {
-    @include button (rgba(255, 255, 255, 0), 50%, 40px, 5vh);
+    @include button (rgba(255, 255, 255, 0), 50%, 40px, 30px);
     min-width: 20px;
     min-height: 20px;
 }
 
 .minus-button {
-    @include button (rgba(255, 255, 255, 0), 50%, 40px, 5vh);
+    @include button (rgba(255, 255, 255, 0), 50%, 40px, 30px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,7 +190,7 @@ input[type=number] {
 }
 
 .bet-button {
-    @include button(rgba(58, 58, 58, 0), 100%, 60px, 2.5vh, -10);
+    @include button(rgba(58, 58, 58, 0), 60%, 60px, 25px, -10);
     margin-bottom: 20%;
 
     &.invalidBalance {

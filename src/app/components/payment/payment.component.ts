@@ -297,11 +297,11 @@ export class PaymentComponent implements OnInit {
       case "colorBlue":
         return 3;
       case "oneToSix":
-        return 2;
+        return 3;
       case "sevenToTwelve":
-        return 2;
+        return 3;
       case "thirtheenToEighteen":
-        return 2;
+        return 3;
       case "lowerThanNine":
         return 2;
       case "moreThanNine":
