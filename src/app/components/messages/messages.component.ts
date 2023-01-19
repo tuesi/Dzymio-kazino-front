@@ -3,7 +3,7 @@ import { MessageModel } from 'src/app/models/message.model';
 import { MessageShowModel } from 'src/app/models/messageShow.model';
 import { BackendService } from '../../services/backend/backend.service';
 
-const zigabuguleAvatar = '../../../assets/bugule.png';
+const zigabuguleAvatar = '../../../assets/bugule.jpg';
 
 @Component({
   selector: 'app-messages',

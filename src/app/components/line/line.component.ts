@@ -9,12 +9,12 @@ import { BackendService } from 'src/app/services/backend/backend.service';
 export class LineComponent implements OnInit {
 
   itemList: string[] = [];
-  oneX: string = '../../../assets/1X.png';
-  zeroX: string = '../../../assets/0X.png';
-  oneFiveX: string = '../../../assets/1,5X.png';
-  twoX: string = '../../../assets/2X.png';
-  fourX: string = '../../../assets/4X.png';
-  tenX: string = '../../../assets/10X.png';
+  oneX: string = '../../../assets/1X_high.png';
+  zeroX: string = '../../../assets/0X_high.png';
+  oneFiveX: string = '../../../assets/1,5X_high.png';
+  twoX: string = '../../../assets/2X_high.png';
+  fourX: string = '../../../assets/4X_high.png';
+  tenX: string = '../../../assets/10X_high.png';
 
   itemCollection = [this.zeroX, this.oneX, this.oneFiveX, this.twoX, this.fourX, this.tenX];
   itemValues = [0, 1, 1.5, 2, 4, 10];

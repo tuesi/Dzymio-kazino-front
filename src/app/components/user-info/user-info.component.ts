@@ -32,7 +32,7 @@ export class UserInfoComponent implements OnInit {
       if (newClientData.avatar) {
         this.avatar = "https://cdn.discordapp.com/avatars/" + this.client.discordId + "/" + this.client.avatar + ".jpg";
       } else {
-        this.avatar = "/assets/bugule.png";
+        this.avatar = "/assets/bugule.jpg";
       }
       this.nick = newClientData.guildNick;
     });

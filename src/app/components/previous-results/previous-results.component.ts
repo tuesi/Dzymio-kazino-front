@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 
-const coinHead = '../../../assets/coin-head.png';
-const coinTail = '../../../assets/coin-tail.png';
+const coinHead = '../../../assets/coin-head.jpg';
+const coinTail = '../../../assets/coin-tail.jpg';
 
 const wheelResult1 = '../../../assets/wheel/results/wheelResult1.png';
 const wheelResult2 = '../../../assets/wheel/results/wheelResult2.png';
