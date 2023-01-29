@@ -81,7 +81,7 @@ export class CoinGameComponent implements OnInit {
   }
 
   setBetStatus(status: boolean) {
-    this.userDataService.updateClientBalance();
+    this.userDataService.updateClientLives();
     if (status) {
       this.betStatus = "win";
       this.audioService.playWinSound();
@@ -117,7 +117,7 @@ export class CoinGameComponent implements OnInit {
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betPrediction.toString();
-    if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction) {
+    if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction && this.betPrediction !== -1) {
       this.backendService.emit(new SocketEventModel('coin', 'bet', newBet));
       this.disabled = true;
       this.betMade = true;

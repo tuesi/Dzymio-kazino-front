@@ -1,0 +1,90 @@
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="emoji">emoji_events</mat-icon>
+            <span class="tabs">Pagrindinis</span>
+        </ng-template>
+        <table mat-table [dataSource]="leaderboardMain" class="mat-elevation-z8">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Vieta </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Vardas </th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="won">
+                <th mat-header-cell *matHeaderCellDef> Laimėjo </th>
+                <td mat-cell *matCellDef="let element" class="win"> {{element.won}} zetonų </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lost">
+                <th mat-header-cell *matHeaderCellDef> Pralaimėjo </th>
+                <td mat-cell *matCellDef="let element" class="lose"> {{element.lost}} zetonų </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef class='amount-label'> Bendras rezultatas </th>
+                <td mat-cell *matCellDef="let element" [ngClass]="(element.amount > 0) ? 'amount-win' : 'amount-lose'">
+                    {{element.amount}} Zetonų </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsMain"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsMain;"></tr>
+        </table>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="emoji">attach_money</mat-icon>
+            <span class="tabs">Top laimėtojai</span>
+        </ng-template>
+        <table mat-table [dataSource]="leaderboardWon">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Vieta </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Vardas </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="won">
+                <th mat-header-cell *matHeaderCellDef class='amount-label'> Laimėjo </th>
+                <td mat-cell *matCellDef="let element" class="amount win"> {{element.won}} zetonų </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsWon"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsWon;"></tr>
+        </table>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="emoji">money_off</mat-icon>
+            <span class="tabs">Top pralaimėtojai</span>
+        </ng-template>
+        <table mat-table [dataSource]="leaderboardLost">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Vieta </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Vardas </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lost">
+                <th mat-header-cell *matHeaderCellDef class='amount-label'> Pralaimėjo </th>
+                <td mat-cell *matCellDef="let element" class="amount lose"> {{element.lost}} zetonų </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsLost"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsLost;"></tr>
+        </table>
+    </mat-tab>
+</mat-tab-group>

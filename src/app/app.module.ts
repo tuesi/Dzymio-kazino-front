@@ -28,6 +28,10 @@ import { CrashComponent } from './components/crash/crash.component';
 import { CrashBetComponent } from './components/crash-bet/crash-bet.component';
 import { UserDataService } from './services/user/user-data.service';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,8 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     LineComponent,
     CrashComponent,
     CrashBetComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    LeaderboardComponent
   ],
   imports: [
     AppRoutingModule,
@@ -58,7 +63,10 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     MatToolbarModule,
     MatProgressSpinnerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [BackendService, UserDataService],
   bootstrap: [AppComponent]

@@ -83,7 +83,7 @@ export class WheelGameComponent implements OnInit {
   }
 
   setBetStatus(status: boolean) {
-    this.userDataService.updateClientBalance();
+    this.userDataService.updateClientLives();
     if (status) {
       this.betStatus = "win";
       this.audioService.playWinSound();

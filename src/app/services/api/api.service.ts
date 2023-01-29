@@ -4,6 +4,8 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { ClientModel } from '../../models/client.model';
 import { ClientWalletModel } from '../../models/clientWallet.model';
 import { environment } from '../../../environments/environment';
+import { ClientLivesModel } from 'src/app/models/clientLives.model';
+import { LeaderboardDataModel } from 'src/app/models/leaderboardData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +45,27 @@ export class ApiService {
         console.log(err);
         return of(new ClientWalletModel("0", "0", "0"));
       }))
+  }
+
+  getUserLives(): Observable<ClientLivesModel> {
+    return this.httpClient.get<ClientLivesModel>(environment.backendUrl + '/api/lives/getLives', {
+      withCredentials: true,
+    }).pipe(map((clientLives: ClientLivesModel) => {
+      if (clientLives) {
+        return clientLives;
+      } else {
+        return new ClientLivesModel();
+      }
+    }));
+  }
+
+  getLeaderboards(): Observable<LeaderboardDataModel[]> {
+    return this.httpClient.get<LeaderboardDataModel[]>(environment.backendUrl + '/api/leaderboard/getLeaderboard').pipe(map((leaderboard: LeaderboardDataModel[]) => {
+      if (leaderboard) {
+        return leaderboard;
+      } else {
+        return [];
+      }
+    }))
   }
 }

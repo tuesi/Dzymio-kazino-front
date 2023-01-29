@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BetResponseModel } from 'src/app/models/betResponse.model';
+import { UserDataService } from 'src/app/services/user/user-data.service';
 import { ConvertCurrencies } from 'src/app/utils/convertCurrencies';
 import { BackendService } from '../../services/backend/backend.service';
 
@@ -9,6 +10,8 @@ import { BackendService } from '../../services/backend/backend.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
+
+  constructor(private backendService: BackendService, private userDataService: UserDataService) { }
 
   zetonai = 0;
   piniginiai = 0;
@@ -22,6 +25,8 @@ export class PaymentComponent implements OnInit {
   betResponseText = '';
   enoughBalance = true;
   everythingIsSelected = true;
+  coinBetValue = -1;
+  wheelBetValue = '';
 
   winMakseiderAmount = 0;
   winPiniginiaiAmount = 0;
@@ -31,6 +36,7 @@ export class PaymentComponent implements OnInit {
   @Input() betMade = false;
   @Input() set wheelBet(value: string) {
     if (value) {
+      this.wheelBetValue = value;
       this.betResponseText = '';
       this.betText = this.betToText(value);
       this.betCof = this.betCofSet(value).toString() + ".00";
@@ -41,8 +47,10 @@ export class PaymentComponent implements OnInit {
   @Input() set coinBet(value: number) {
     this.betResponseText = '';
     if (value == 1) {
+      this.coinBetValue = 1;
       this.betText = "Iškris Džminio neutrono moneta";
     } else if (value == 2) {
+      this.coinBetValue = 2;
       this.betText = "Iškris Noooo moneta";
     }
     this.betCof = "2.00";
@@ -65,13 +73,11 @@ export class PaymentComponent implements OnInit {
   @Output() newSubmitEvent = new EventEmitter();
   @Output() newBetResponseEvent = new EventEmitter<boolean>();
 
-  constructor(private backendService: BackendService) { }
-
   ngOnInit(): void {
     this.backendService.listen('betStatus').subscribe(response => {
       this.betResponse = response as BetResponseModel;
       this.setBetResultText(this.betResponse.amount);
-      if (this.betResponse.status) {
+      if (this.betResponse.status == true) {
         this.newBetResponseEvent.emit(true);
       } else {
         this.newBetResponseEvent.emit(false);
@@ -172,12 +178,13 @@ export class PaymentComponent implements OnInit {
     this.winPiniginiaiAmount = 0;
     this.winZetonaiAmount = 0;
     this.wheelBet = '';
-    this.coinBet = -1;
+    this.coinBetValue = -1;
     this.enoughBalance = true;
     this.betResponse = new BetResponseModel;
     this.winAmountSet = false;
     this.everythingIsSelected = true;
     this.betMade = false;
+    this.wheelBetValue = '';
   }
 
   sendBet() {
@@ -186,6 +193,7 @@ export class PaymentComponent implements OnInit {
       this.betMade = true;
       this.enoughBalance = true;
       this.everythingIsSelected = true;
+      this.userDataService.updateClientBalance();
     }
     if (!this.isBetMade || this.all == 0) {
       this.everythingIsSelected = false;
@@ -196,7 +204,17 @@ export class PaymentComponent implements OnInit {
   }
 
   isBetMade(): boolean {
-    return ((this.wheelBet !== '' || this.coinBet !== -1 || this.wheelBet !== undefined || this.coinBet !== undefined) || this.lineBet == true || this.crashBet == true);
+    if (this.wheelBetValue !== '' && this.wheelBetValue !== undefined) {
+      return true;
+    } else if (this.coinBetValue !== undefined && this.coinBetValue !== -1) {
+      return true;
+    } else if (this.lineBet == true) {
+      return true;
+    } else if (this.crashBet == true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   calculateWinAmount() {

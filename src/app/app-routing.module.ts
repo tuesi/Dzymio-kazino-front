@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { WheelGameComponent } from './components/wheel-game/wheel-game.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'crash',
     component: CrashGameComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'top',
+    component: LeaderboardComponent,
     canActivate: [AuthGuard]
   }
 ];

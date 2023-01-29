@@ -89,7 +89,7 @@ export class CrashGameComponent implements OnInit {
   }
 
   setBetStatus(value: boolean) {
-    this.userDataService.updateClientBalance();
+    this.userDataService.updateClientLives();
     if (value) {
       this.audioService.playWinSound();
     } else {

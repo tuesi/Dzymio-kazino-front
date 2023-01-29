@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
+import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserDataService } from 'src/app/services/user/user-data.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,6 +22,7 @@ export class UserInfoComponent implements OnInit {
   avatar: string;
   nick: string;
   balance: ClientWalletModel;
+  lives: Number;
 
   ngOnInit(): void {
     this.userDataService.balance.subscribe(newBalance => {
@@ -35,6 +37,10 @@ export class UserInfoComponent implements OnInit {
         this.avatar = "/assets/bugule.jpg";
       }
       this.nick = newClientData.guildNick;
+    });
+
+    this.userDataService.clientLives.subscribe(clientLives => {
+      this.lives = clientLives.lives;
     });
   }
 
