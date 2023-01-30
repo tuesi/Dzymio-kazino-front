@@ -20,32 +20,38 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
   {
     path: 'wheel',
     component: WheelGameComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
   {
     path: 'coin',
     component: CoinGameComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
   {
     path: 'list',
     component: LineGameComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
   {
     path: 'crash',
     component: CrashGameComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   },
   {
     path: 'top',
     component: LeaderboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
   }
 ];
 
