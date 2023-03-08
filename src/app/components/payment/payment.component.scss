@@ -204,7 +204,7 @@ input[type=number] {
 }
 
 .bet-button-confirm {
-    @include button(rgba(132, 245, 40, 0.438), 100%, 60px, 2.5vh, -10);
+    @include button(rgba(132, 245, 40, 0.438), 60%, 60px, 2.5vh, -10);
     margin-bottom: 20%;
 }
 
@@ -297,5 +297,15 @@ input[type=number] {
         align-items: center;
         justify-content: center;
         width: 100%;
+    }
+
+    .winnings-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 60%;
+        margin-top: 5%;
+        height: 100px;
     }
 }

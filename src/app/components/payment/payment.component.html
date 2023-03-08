@@ -55,10 +55,10 @@
         <span class="bet-prediction-amount-text">{{winZetonaiAmount}} Z</span>
     </div>
     <div *ngIf="!winAmountSet && !crashBet && !lineBet" class="winnings-space-fill-container"></div>
-    <div *ngIf="betResponseText != '' && betResponse.status" class="bet-status">
+    <div *ngIf="betResponseText != '' && betResponse.status == true" class="bet-status">
         <span class="win-text">Laimėjote: {{betResponseText}} !</span>
     </div>
-    <div *ngIf="betResponseText != '' && !betResponse.status" class="bet-status">
+    <div *ngIf="betResponseText != '' && betResponse.status == false" class="bet-status">
         <span class="lose-text">Pralaimėjote: {{betResponseText}}</span>
     </div>
     <div *ngIf="!betMade" class="bet-button-container">

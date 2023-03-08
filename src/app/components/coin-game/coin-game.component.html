@@ -35,12 +35,12 @@
             </div>
 
         </div>
-        <div class="payment-container">
-            <div>
-                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newBetResponseEvent)="setBetStatus($event)"
-                    (newSubmitEvent)="sendBet()" [disabled]="disabled" [coinBet]="betPrediction" [betMade]="betMade"
-                    [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
-            </div>
+    </div>
+    <div class="payment-container">
+        <div>
+            <app-payment (newBetAmountEvent)="setBetAmount($event)" (newBetResponseEvent)="setBetStatus($event)"
+                (newSubmitEvent)="sendBet()" [disabled]="disabled" [coinBet]="betPrediction" [betMade]="betMade"
+                [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
         </div>
     </div>
 </div>

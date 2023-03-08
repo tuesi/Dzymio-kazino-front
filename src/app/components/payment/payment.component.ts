@@ -180,7 +180,6 @@ export class PaymentComponent implements OnInit {
     this.wheelBet = '';
     this.coinBetValue = -1;
     this.enoughBalance = true;
-    this.betResponse = new BetResponseModel;
     this.winAmountSet = false;
     this.everythingIsSelected = true;
     this.betMade = false;
@@ -189,6 +188,7 @@ export class PaymentComponent implements OnInit {
 
   sendBet() {
     if (this.clientWalletInZeton >= this.all && this.all != 0 && this.isBetMade()) {
+      this.betResponse = new BetResponseModel();
       this.newSubmitEvent.emit();
       this.betMade = true;
       this.enoughBalance = true;

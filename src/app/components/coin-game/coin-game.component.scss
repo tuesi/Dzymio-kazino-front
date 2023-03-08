@@ -52,19 +52,19 @@ body {
             width: 100%;
         }
     }
+}
 
-    .payment-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 80%;
-        height: 100%;
-        margin-top: 5%;
+.payment-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    margin-top: 5%;
 
-        >div {
-            width: 50%;
-            min-width: 450px;
-        }
+    >div {
+        width: 50%;
+        min-width: 450px;
     }
 }
 
@@ -201,17 +201,17 @@ body {
                 width: 100%;
             }
         }
+    }
 
-        .payment-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-            height: 100%;
+    .payment-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 3%;
+        width: 100%;
 
-            >div {
-                width: 100%;
-            }
+        >div {
+            width: 100%;
         }
     }
 }

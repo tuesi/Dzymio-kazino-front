@@ -1,7 +1,7 @@
 <div class="header-container">
     <div *ngIf="showBackButton" class="back-button-container">
-        <button class="logout-button">
-            <span class="logout-button-text" (click)="goBackToMenu()"> back </span>
+        <button class="logout-button" (click)="goBackToMenu()">
+            <span class="logout-button-text"> back </span>
         </button>
     </div>
     <div *ngIf="!showBackButton" class="back-button-empty-container">
