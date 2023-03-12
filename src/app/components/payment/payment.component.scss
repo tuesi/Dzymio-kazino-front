@@ -190,7 +190,7 @@ input[type=number] {
 }
 
 .bet-button {
-    @include button(rgba(58, 58, 58, 0), 60%, 60px, 25px, -10);
+    @include button(rgba(58, 58, 58, 0), 60%, 60px, 2.5vh, -10);
     margin-bottom: 20%;
 
     &.invalidBalance {
@@ -304,8 +304,17 @@ input[type=number] {
         align-items: flex-start;
         justify-content: space-between;
         flex-direction: row;
-        width: 60%;
+        width: 90%;
         margin-top: 5%;
+        height: 100px;
+    }
+
+    .bet-text-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 80%;
         height: 100px;
     }
 }
