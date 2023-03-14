@@ -53,8 +53,8 @@ export class PaymentComponent implements OnInit {
       this.coinBetValue = 2;
       this.betText = "Iškris Noooo moneta";
     }
-    this.betCof = "2.00";
-    this.multiply = 2;
+    this.betCof = "1.94";
+    this.multiply = 1.94;
     this.calculateWinAmount();
   }
 
