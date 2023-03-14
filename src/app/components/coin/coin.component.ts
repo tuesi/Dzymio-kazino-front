@@ -87,7 +87,7 @@ export class CoinComponent implements OnInit, AfterViewInit {
     const headTexture = new THREE.TextureLoader().load('../../../assets/coin-head_high.jpg');
     const tailTexture = new THREE.TextureLoader().load('../../../assets/coin-tail_high.jpg');
     sideTexture.wrapS = THREE.RepeatWrapping;
-    sideTexture.repeat.set(10, 2);
+    sideTexture.repeat.set(14, 0);
 
     headTexture.center.x = 0.5;
     headTexture.center.y = 0.5;
