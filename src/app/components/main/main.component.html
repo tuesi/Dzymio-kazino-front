@@ -3,11 +3,17 @@
         <div class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuWheel.png" routerLink="/wheel">
         </div>
-        <div class="item-container">
+        <div *ngIf="isMember" class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuCoin.png" routerLink="/coin">
         </div>
-        <div class="item-container">
+        <div *ngIf="!isMember" class="item-container">
+            <img class="menu-item" src="../../../assets/mainMenuCoinLocked.png">
+        </div>
+        <div *ngIf="isMember" class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuLine.png" routerLink="/list">
+        </div>
+        <div *ngIf="!isMember" class="item-container">
+            <img class="menu-item" src="../../../assets/mainMenuLineLocked.png">
         </div>
         <div class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuCrash.png" routerLink="/crash">

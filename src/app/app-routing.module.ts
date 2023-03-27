@@ -9,6 +9,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { WheelGameComponent } from './components/wheel-game/wheel-game.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { AuthGuard } from './services/auth/auth.guard';
+import { MembershipAuthGuard } from './services/auth/membershipAuth.guard';
 
 const routes: Routes = [
   {
@@ -32,13 +33,13 @@ const routes: Routes = [
   {
     path: 'coin',
     component: CoinGameComponent,
-    canActivate: [AuthGuard],
+    canActivate: [MembershipAuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'list',
     component: LineGameComponent,
-    canActivate: [AuthGuard],
+    canActivate: [MembershipAuthGuard],
     pathMatch: 'full'
   },
   {
