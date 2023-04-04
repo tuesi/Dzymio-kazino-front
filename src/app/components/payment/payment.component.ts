@@ -26,6 +26,7 @@ export class PaymentComponent implements OnInit {
   enoughBalance = true;
   everythingIsSelected = true;
   coinBetValue = -1;
+  higherLowerBetValue = -1;
   wheelBetValue = '';
 
   winMakseiderAmount = 0;
@@ -56,6 +57,20 @@ export class PaymentComponent implements OnInit {
     this.betCof = "1.94";
     this.multiply = 1.94;
     this.calculateWinAmount();
+  }
+
+  @Input() set higherLowerBet(value: number) {
+    this.betResponseText = '';
+    if (value === 0) {
+      this.higherLowerBetValue = 0;
+      this.betText = "Tiek pat"
+    } else if (value === 1) {
+      this.higherLowerBetValue = 1;
+      this.betText = "Daugiau"
+    } else if (value === 2) {
+      this.higherLowerBetValue = 2;
+      this.betText = "Mažiau"
+    }
   }
 
   @Input() lineBet = false;
@@ -184,6 +199,7 @@ export class PaymentComponent implements OnInit {
     this.everythingIsSelected = true;
     this.betMade = false;
     this.wheelBetValue = '';
+    this.higherLowerBetValue = -1;
   }
 
   sendBet() {
@@ -207,6 +223,8 @@ export class PaymentComponent implements OnInit {
     if (this.wheelBetValue !== '' && this.wheelBetValue !== undefined) {
       return true;
     } else if (this.coinBetValue !== undefined && this.coinBetValue !== -1) {
+      return true;
+    } else if (this.higherLowerBetValue !== undefined && this.higherLowerBetValue !== -1) {
       return true;
     } else if (this.lineBet == true) {
       return true;

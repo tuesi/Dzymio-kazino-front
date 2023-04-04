@@ -10,7 +10,7 @@ export class CrashComponent implements OnInit {
 
   @Output() loadingComplete = new EventEmitter();
 
-  crashNumber = 1.00;
+  crashNumber = 0.00;
 
   constructor(private backendService: BackendService) { }
 

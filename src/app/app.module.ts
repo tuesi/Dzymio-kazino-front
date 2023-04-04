@@ -32,6 +32,11 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { HigherLowerGameComponent } from './components/higher-lower-game/higher-lower-game.component';
+import { HigherLowerComponent } from './components/higher-lower/higher-lower.component';
+import { RockPeperScissorsGameComponent } from './components/rock-peper-scissors-game/rock-peper-scissors-game.component';
+import { RockPeperScissorsComponent } from './components/rock-peper-scissors/rock-peper-scissors.component';
+import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lower-bet.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +60,12 @@ import { MatIconModule } from '@angular/material/icon';
     CrashComponent,
     CrashBetComponent,
     UnauthorizedComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    HigherLowerGameComponent,
+    HigherLowerComponent,
+    RockPeperScissorsGameComponent,
+    RockPeperScissorsComponent,
+    HigherLowerBetComponent
   ],
   imports: [
     AppRoutingModule,
