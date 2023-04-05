@@ -16,6 +16,9 @@ export class HigherLowerComponent implements OnInit {
     this.backendService.listen('higherLowerValue').subscribe(higherLowerValue => {
       this.number = higherLowerValue as number;
     });
+    this.backendService.listen('initialHigherLowerPos').subscribe(higherLowerInitialValue => {
+      this.number = higherLowerInitialValue as number;
+    })
   }
 
 }

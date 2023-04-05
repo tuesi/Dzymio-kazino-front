@@ -41,6 +41,7 @@ const tenResult = '../../../assets/10X.png';
 export class PreviousResultsComponent implements OnInit {
 
   crash = false;
+  higherLower = false;
 
   previousEventList: String[] = [];
 
@@ -106,6 +107,18 @@ export class PreviousResultsComponent implements OnInit {
 
     this.backendService.listen('previousCrashResults').subscribe(previous => {
       this.crash = true;
+      this.previousEventList = previous as Array<string>;
+      setTimeout(() => {
+        var chatHistory = document.getElementById("item-box");
+        if (chatHistory) {
+          chatHistory.scrollLeft = chatHistory.scrollWidth;
+          this.loadingComplete.emit('previous');
+        }
+      }, 50);
+    })
+
+    this.backendService.listen('previousHigherLower').subscribe(previous => {
+      this.higherLower = true;
       this.previousEventList = previous as Array<string>;
       setTimeout(() => {
         var chatHistory = document.getElementById("item-box");

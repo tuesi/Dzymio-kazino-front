@@ -115,7 +115,7 @@ export class CrashGameComponent implements OnInit {
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betAutoStopNuber > 1 ? this.betAutoStopNuber.toString() : '0';
     if (newBet.clientId && newBet.clientNick && newBet.betAmount) {
-      this.backendService.emit(new SocketEventModel('crash', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel(this.roomName, 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }
