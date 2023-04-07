@@ -1,6 +1,10 @@
 .user-info-container {
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0px;
     z-index: 10;
+}
+
+.info-padding {
+    padding-top: 100px;
 }
