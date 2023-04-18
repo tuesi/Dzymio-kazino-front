@@ -11,6 +11,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { AuthGuard } from './services/auth/auth.guard';
 import { MembershipAuthGuard } from './services/auth/membershipAuth.guard';
 import { HigherLowerGameComponent } from './components/higher-lower-game/higher-lower-game.component';
+import { MemberShopListComponent } from './components/member-shop-list/member-shop-list.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,12 @@ const routes: Routes = [
   {
     path: 'higher-lower',
     component: HigherLowerGameComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'member-list',
+    component: MemberShopListComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },

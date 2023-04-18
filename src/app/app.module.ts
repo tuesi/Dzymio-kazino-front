@@ -37,6 +37,9 @@ import { HigherLowerComponent } from './components/higher-lower/higher-lower.com
 import { RockPeperScissorsGameComponent } from './components/rock-peper-scissors-game/rock-peper-scissors-game.component';
 import { RockPeperScissorsComponent } from './components/rock-peper-scissors/rock-peper-scissors.component';
 import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lower-bet.component';
+import { MemberShopListComponent } from './components/member-shop-list/member-shop-list.component';
+import { MemberBuyComponent } from './components/member-buy/member-buy.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,9 @@ import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lo
     HigherLowerComponent,
     RockPeperScissorsGameComponent,
     RockPeperScissorsComponent,
-    HigherLowerBetComponent
+    HigherLowerBetComponent,
+    MemberShopListComponent,
+    MemberBuyComponent
   ],
   imports: [
     AppRoutingModule,
@@ -76,7 +81,8 @@ import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lo
     HttpClientModule,
     MatTabsModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [BackendService, UserDataService],
   bootstrap: [AppComponent]

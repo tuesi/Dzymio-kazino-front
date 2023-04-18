@@ -7,13 +7,13 @@
             <img class="menu-item" src="../../../assets/mainMenuCoin.png" routerLink="/coin">
         </div>
         <div *ngIf="!isMember" class="item-container">
-            <img class="menu-item" src="../../../assets/mainMenuCoinLocked.png">
+            <img class="menu-item" src="../../../assets/mainMenuCoinLocked.png" routerLink="/member-list">
         </div>
         <div *ngIf="isMember" class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuLine.png" routerLink="/list">
         </div>
         <div *ngIf="!isMember" class="item-container">
-            <img class="menu-item" src="../../../assets/mainMenuLineLocked.png">
+            <img class="menu-item" src="../../../assets/mainMenuLineLocked.png" routerLink="/member-list">
         </div>
         <div class="item-container">
             <img class="menu-item" src="../../../assets/mainMenuCrash.png" routerLink="/crash">

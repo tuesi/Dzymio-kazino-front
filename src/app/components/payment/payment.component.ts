@@ -71,6 +71,9 @@ export class PaymentComponent implements OnInit {
       this.higherLowerBetValue = 2;
       this.betText = "Mažiau"
     }
+    this.betCof = "2";
+    this.multiply = 2;
+    this.calculateWinAmount();
   }
 
   @Input() lineBet = false;

@@ -49,7 +49,7 @@
 @media only screen and (max-width: 900px) {
     .main-game-container {
         display: flex;
-        align-items: stretch;
+        align-items: center;
         justify-content: center;
         flex-direction: column;
         width: 100%;
@@ -59,7 +59,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            height: 100%;
+            height: 250px;
             width: 100%;
             margin-left: 0;
 
@@ -72,15 +72,23 @@
             }
         }
 
-        .messages-container {
+        .message-container {
             display: flex;
-            width: 40%;
-            height: 500px;
-            margin-top: 10%;
+            width: 70%;
+            height: 300px;
+            margin-top: 0%;
 
             >div {
                 width: 100%;
             }
         }
+    }
+
+    .previous-result-container {
+        padding: 5%;
+    }
+
+    .timer-container {
+        padding: 5%;
     }
 }
