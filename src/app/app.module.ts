@@ -40,6 +40,7 @@ import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lo
 import { MemberShopListComponent } from './components/member-shop-list/member-shop-list.component';
 import { MemberBuyComponent } from './components/member-buy/member-buy.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MemberInfoComponent } from './components/member-info/member-info.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RockPeperScissorsComponent,
     HigherLowerBetComponent,
     MemberShopListComponent,
-    MemberBuyComponent
+    MemberBuyComponent,
+    MemberInfoComponent
   ],
   imports: [
     AppRoutingModule,

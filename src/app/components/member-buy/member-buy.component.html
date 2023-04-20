@@ -1,9 +1,9 @@
-<div>
+<div class="dialog-container">
     <h2 mat-dialog-title>Prenumeruoti</h2>
     <div mat-dialog-content>Ar norite prenumeruoti?</div>
     <div mat-dialog-content>Kiekvieną savaitę mokėsite 30 piniginių</div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="dialogRef.close(false)">Ne</button>
-        <button mat-button color="primary" (click)="dialogRef.close(true)">Prenumeruoti</button>
+    <div mat-dialog-actions class="dialog-buttons">
+        <button mat-button (click)="dialogRef.close(false)" class="dialog-button">Ne</button>
+        <button mat-button color="primary" (click)="dialogRef.close(true)" class="dialog-button">Prenumeruoti</button>
     </div>
 </div>

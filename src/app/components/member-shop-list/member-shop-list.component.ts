@@ -12,8 +12,8 @@ export class MemberShopListComponent {
 
   openConfirmationDialog(): void {
     const dialogRef = this.dialog.open(MemberBuyComponent, {
-      width: '250px',
-      data: { message: 'Do you want to subscribe?' }
+      panelClass: 'dialog-background',
+      data: { message: 'Ar norite prenumeruoti?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -7,6 +7,7 @@
     <div *ngIf="!showBackButton" class="back-button-empty-container">
     </div>
     <div class="user-info-container">
+        <span class="member-text" (click)="openInfoDialog()">PRENUMERUOTA</span>
         <div class="user-photo-container">
             <div *ngIf="avatar" class="oval" [ngStyle]="{'background-image': 'url(' + avatar + ')'}">
             </div>
@@ -25,8 +26,8 @@
         </div>
     </div>
     <div class="logout-container">
-        <button class="logout-button">
-            <span class="logout-button-text" (click)="logout()">Logout</span>
+        <button class="logout-button" (click)="logout()">
+            <span class="logout-button-text">Logout</span>
         </button>
     </div>
 </div>

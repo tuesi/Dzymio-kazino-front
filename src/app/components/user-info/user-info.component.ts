@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserDataService } from 'src/app/services/user/user-data.service';
 import { environment } from 'src/environments/environment';
+import { MemberInfoComponent } from '../member-info/member-info.component';
 
 @Component({
   selector: 'app-user-info',
@@ -13,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor(private router: Router, private userDataService: UserDataService) {
+  constructor(private router: Router, private userDataService: UserDataService, private dialog: MatDialog) {
   }
 
   @Input() showBackButton = true;
@@ -50,5 +52,19 @@ export class UserInfoComponent implements OnInit {
 
   logout() {
     window.location.href = environment.backendUrl + '/api/auth/logout';
+  }
+
+  openInfoDialog(): void {
+    const dialogRef = this.dialog.open(MemberInfoComponent, {
+      panelClass: 'dialog-background',
+      data: { message: 'Prenumeratos informacia' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        // User confirmed action
+      }
+    });
   }
 }
