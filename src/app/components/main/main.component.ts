@@ -8,13 +8,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   isMember = false;
 
-  ngOnInit(): void {
-    //get if user is member
-    this.isMember = this.authService.getIsMember();
-  }
+  ngOnInit(): void { }
 
 }

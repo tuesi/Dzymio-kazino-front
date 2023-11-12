@@ -37,10 +37,7 @@ import { HigherLowerComponent } from './components/higher-lower/higher-lower.com
 import { RockPeperScissorsGameComponent } from './components/rock-peper-scissors-game/rock-peper-scissors-game.component';
 import { RockPeperScissorsComponent } from './components/rock-peper-scissors/rock-peper-scissors.component';
 import { HigherLowerBetComponent } from './components/higher-lower-bet/higher-lower-bet.component';
-import { MemberShopListComponent } from './components/member-shop-list/member-shop-list.component';
-import { MemberBuyComponent } from './components/member-buy/member-buy.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MemberInfoComponent } from './components/member-info/member-info.component';
 
 @NgModule({
   declarations: [
@@ -69,10 +66,7 @@ import { MemberInfoComponent } from './components/member-info/member-info.compon
     HigherLowerComponent,
     RockPeperScissorsGameComponent,
     RockPeperScissorsComponent,
-    HigherLowerBetComponent,
-    MemberShopListComponent,
-    MemberBuyComponent,
-    MemberInfoComponent
+    HigherLowerBetComponent
   ],
   imports: [
     AppRoutingModule,
