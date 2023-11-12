@@ -68,4 +68,28 @@ export class ApiService {
       }
     }))
   }
+
+  memberSubscribe(): Observable<boolean> {
+    return this.httpClient.get<ClientWalletModel>(environment.backendUrl + '/api/jimmy/subscribe', {
+      withCredentials: true,
+    }).pipe(map(() => {
+      return true;
+    }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(true);
+      }))
+  }
+
+  memberCancel(): Observable<boolean> {
+    return this.httpClient.get<ClientWalletModel>(environment.backendUrl + '/api/jimmy/subscribe-cancel', {
+      withCredentials: true,
+    }).pipe(map(() => {
+      return true;
+    }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(true);
+      }))
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BetModel } from 'src/app/models/bet.model';
 import { ClientModel } from 'src/app/models/client.model';
 import { SocketEventModel } from 'src/app/models/socketEvent.model';
@@ -7,30 +7,24 @@ import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserDataService } from 'src/app/services/user/user-data.service';
 
 @Component({
-  selector: 'app-crash-game',
-  templateUrl: './crash-game.component.html',
-  styleUrls: ['./crash-game.component.scss']
+  selector: 'app-higher-lower-game',
+  templateUrl: './higher-lower-game.component.html',
+  styleUrls: ['./higher-lower-game.component.scss']
 })
-export class CrashGameComponent implements OnInit {
+export class HigherLowerGameComponent implements OnInit {
 
   constructor(private backendService: BackendService, private audioService: AudioService, private userDataService: UserDataService) { }
 
-  roomName = 'crash';
+  roomName = 'higherLower';
 
-  betAmount = 0;
+  betPrediction = -1;
   clientData: ClientModel;
   clientWalletInZeton = 0;
   disabled = false;
   betMade = false;
+  betStatus = 'none';
+  betAmount = 0;
   reset = false;
-
-  betAutoStopNuber = 0;
-
-  itemsLoaded = new Map<string, boolean>([
-    ["messages", false],
-    ["previous", false]
-  ]);
-  loading = true;
 
   ngOnInit(): void {
     this.backendService.joinRoom(this.roomName);
@@ -48,7 +42,8 @@ export class CrashGameComponent implements OnInit {
         this.betMade = false;
         this.reset = true;
         this.betAmount = 0;
-        this.betAutoStopNuber = 0;
+        this.betPrediction = -1;
+        this.betStatus = 'none';
       }
     });
 
@@ -69,15 +64,10 @@ export class CrashGameComponent implements OnInit {
     });
   }
 
-  setBetAmount(amount: number) {
-    if (this.clientWalletInZeton >= amount) {
-      this.betAmount = amount;
-    }
-  }
-
-  setAutoStopAmount(amount: number) {
-    this.betAutoStopNuber = amount;
-  }
+  itemsLoaded = new Map<string, boolean>([
+    ["messages", false]
+  ]);
+  loading = false;
 
   setLoaded(loadName: string) {
     this.itemsLoaded.forEach((value, key) => {
@@ -86,15 +76,6 @@ export class CrashGameComponent implements OnInit {
       }
     });
     this.loading = !this.checkLoadingStatus();
-  }
-
-  setBetStatus(value: boolean) {
-    this.userDataService.updateClientLives();
-    if (value) {
-      this.audioService.playWinSound();
-    } else {
-      this.audioService.playLoseSound();
-    }
   }
 
   checkLoadingStatus(): boolean {
@@ -107,18 +88,36 @@ export class CrashGameComponent implements OnInit {
     return count === this.itemsLoaded.size;
   }
 
+  setBetPrediction(value: number) {
+    this.betPrediction = value;
+  }
+
+  setBetAmount(amount: number) {
+    if (this.clientWalletInZeton >= amount) {
+      this.betAmount = amount;
+    }
+  }
+
   sendBet() {
     this.userDataService.updateClientData();
     let newBet = new BetModel();
     newBet.clientId = this.clientData.discordId;
     newBet.clientNick = this.clientData.guildNick;
     newBet.betAmount = this.betAmount;
-    newBet.prediction = this.betAutoStopNuber > 1 ? this.betAutoStopNuber.toString() : '0';
-    if (newBet.clientId && newBet.clientNick && newBet.betAmount) {
+    newBet.prediction = this.betPrediction.toString();
+    if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction && this.betPrediction !== -1) {
       this.backendService.emit(new SocketEventModel(this.roomName, 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }
   }
 
+  setBetStatus(value: boolean) {
+    this.userDataService.updateClientLives();
+    if (value) {
+      this.audioService.playWinSound();
+    } else {
+      this.audioService.playLoseSound();
+    }
+  }
 }

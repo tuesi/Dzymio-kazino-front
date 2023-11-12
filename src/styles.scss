@@ -28,6 +28,11 @@ body {
     stroke: #000000 !important;
 }
 
+.dialog-background .mat-dialog-container {
+    background-color: black;
+    width: 600px;
+}
+
 [hidden] {
     display: none !important
 }

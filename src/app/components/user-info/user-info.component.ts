@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/models/client.model';
 import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserDataService } from 'src/app/services/user/user-data.service';
 import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-user-info',
@@ -13,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor(private router: Router, private userDataService: UserDataService) {
+  constructor(private router: Router, private userDataService: UserDataService, private dialog: MatDialog, private api: ApiService) {
   }
 
   @Input() showBackButton = true;

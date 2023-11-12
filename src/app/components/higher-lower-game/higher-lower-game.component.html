@@ -1,0 +1,41 @@
+<div class="loading-container" *ngIf="loading">
+    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
+
+<div>
+    <div class="timer-container">
+        <div>
+            <app-timer></app-timer>
+        </div>
+    </div>
+    <div class="main-game-container">
+        <div class="higher-lower-number-container">
+            <div>
+                <app-higher-lower></app-higher-lower>
+            </div>
+        </div>
+        <div class="message-container">
+            <div>
+                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
+            </div>
+        </div>
+    </div>
+    <div class="previous-result-container">
+        <div>
+            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
+        </div>
+    </div>
+    <div>
+        <div>
+            <app-higher-lower-bet (newPredictionEvent)="setBetPrediction($event)" [disabled]="disabled"
+                [reset]="reset"></app-higher-lower-bet>
+        </div>
+        <div class="payment-container">
+            <div>
+                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newBetResponseEvent)="setBetStatus($event)"
+                    (newSubmitEvent)="sendBet()" [disabled]="disabled" [higherLowerBet]="betPrediction"
+                    [betMade]="betMade" [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
+            </div>
+        </div>
+    </div>
+</div>

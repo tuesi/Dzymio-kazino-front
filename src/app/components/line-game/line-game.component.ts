@@ -109,7 +109,7 @@ export class LineGameComponent implements OnInit {
     newBet.betAmount = this.betAmount;
     newBet.prediction = '';
     if (newBet.clientId && newBet.clientNick && newBet.betAmount) {
-      this.backendService.emit(new SocketEventModel('line', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel(this.roomName, 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

@@ -118,7 +118,7 @@ export class CoinGameComponent implements OnInit {
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betPrediction.toString();
     if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction && this.betPrediction !== -1) {
-      this.backendService.emit(new SocketEventModel('coin', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel(this.roomName, 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

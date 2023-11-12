@@ -1,0 +1,70 @@
+@mixin button ($color, $width: 120px, $height: 40px, $fontSize: 40px) {
+    width: $width;
+    height: $height;
+    color: rgb(0, 0, 0);
+    background-color: $color;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    font-size: $fontSize;
+    line-height: 10%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+    border-spacing: 10px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    &.select-style {
+        outline-color: rgb(0, 0, 0);
+        outline-style: solid;
+        outline-width: 3px;
+        outline-offset: .2rem;
+        transition: all ease-out 0.1s;
+        background-color: saturate($color, 20%);
+    }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: desaturate($color, 50%);
+    }
+}
+
+.button-style {
+    @include button(rgba(58, 58, 58, 0), 15%, 50px, 2vh);
+}
+
+.higher-lower-bet-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5%;
+    gap: 2%;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .button-style {
+        @include button(rgba(58, 58, 58, 0), 50%, 50px, 2vh);
+        margin-bottom: 2%;
+    }
+
+    .higher-lower-bet-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 5%;
+        width: 100%;
+
+    }
+}

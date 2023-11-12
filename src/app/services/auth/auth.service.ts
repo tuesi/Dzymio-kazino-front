@@ -1,7 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map, of, catchError } from 'rxjs';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Observable, map, of, catchError, switchMap } from 'rxjs';
+import { AuthModel } from 'src/app/models/auth.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -10,6 +11,8 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
+
+  private isMember = false;
 
   isAuthenticated(): Observable<boolean> {
     return this.httpClient.get(environment.backendUrl + '/api/auth', {

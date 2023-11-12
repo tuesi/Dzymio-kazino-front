@@ -2,7 +2,7 @@
     <span class="main-pay-text">STATYMAS</span>
     <div *ngIf="betText" class="bet-text-container">
         <span class="bet-prediction-text">{{betText}}</span>
-        <span class="bet-prediction-text">{{betCof}}</span>
+        <span *ngIf="betCof" class="bet-prediction-text">: {{betCof}}X</span>
     </div>
     <div *ngIf="!betText && !crashBet && !lineBet" class="bet-text-space-fillcontainer"></div>
     <div class="all-input-container">

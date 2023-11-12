@@ -120,7 +120,7 @@ export class WheelGameComponent implements OnInit {
     newBet.betAmount = this.betAmount;
     newBet.prediction = this.betPrediction;
     if (newBet.clientId && newBet.clientNick && newBet.betAmount && newBet.prediction) {
-      this.backendService.emit(new SocketEventModel('wheel', 'bet', newBet));
+      this.backendService.emit(new SocketEventModel(this.roomName, 'bet', newBet));
       this.disabled = true;
       this.betMade = true;
     }

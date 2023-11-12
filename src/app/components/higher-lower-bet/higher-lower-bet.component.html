@@ -1,0 +1,9 @@
+<div class="higher-lower-bet-container">
+    <button [ngClass]="higher ? 'button-style select-style' : 'button-style'" [disabled]="disabled"
+        (click)="selectBet(1)">DAUGIAU</button>
+    <button [ngClass]="equal ? 'button-style select-style' : 'button-style'" [disabled]="disabled"
+        (click)="selectBet(0)">TIEK
+        PAT</button>
+    <button [ngClass]="lower ? 'button-style select-style' : 'button-style'" [disabled]="disabled"
+        (click)="selectBet(2)">MAŽIAU</button>
+</div>
