@@ -6,7 +6,6 @@ import { ClientWalletModel } from 'src/app/models/clientWallet.model';
 import { BackendService } from 'src/app/services/backend/backend.service';
 import { UserDataService } from 'src/app/services/user/user-data.service';
 import { environment } from 'src/environments/environment';
-import { MemberInfoComponent } from '../member-info/member-info.component';
 import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
@@ -53,19 +52,5 @@ export class UserInfoComponent implements OnInit {
 
   logout() {
     window.location.href = environment.backendUrl + '/api/auth/logout';
-  }
-
-  openInfoDialog(): void {
-    const dialogRef = this.dialog.open(MemberInfoComponent, {
-      panelClass: 'dialog-background',
-      data: { message: 'Prenumeratos informacija' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // User confirmed action
-        this.api.memberCancel();
-      }
-    });
   }
 }
