@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/cs2/binglo/cs2debils/match",
-            "destination": "https://csstats.vercel.app/"
+            "destination": "https://csstats.vercel.app/match"
         }
     ]
 }
