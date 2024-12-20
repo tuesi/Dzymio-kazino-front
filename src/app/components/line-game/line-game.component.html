@@ -2,39 +2,37 @@
     <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
 <div class="line-game-main-container">
-    <div class="timer-container">
-        <div>
-            <app-timer></app-timer>
-        </div>
-    </div>
     <div class="main-game-container">
+        <div class="timer-container-small">
+            <div>
+                <app-timer></app-timer>
+            </div>
+        </div>
         <div class="line-container">
             <div>
                 <app-line (loadingComplete)="setLoaded($event)"></app-line>
             </div>
 
         </div>
-        <div class="messages-container">
+        <div class="previous-result-container">
             <div>
-                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
+                <app-previous-results [roomName]="roomName"
+                    (loadingComplete)="setLoaded($event)"></app-previous-results>
             </div>
-
         </div>
     </div>
-    <div class="previous-result-container">
-        <div>
-            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
-        </div>
-    </div>
-
     <div class="payment-container">
-        <div>
-            <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
-                (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade" [reset]="reset"
-                [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true">
-            </app-payment>
-        </div>
-
+        <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+            (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade" [reset]="reset"
+            [clientWalletInZeton]="clientWalletInZeton" [lineBet]="true">
+        </app-payment>
     </div>
-
+    <div class="display-container">
+        <div class="timer-container">
+            <app-timer></app-timer>
+        </div>
+        <div class="messages-container">
+            <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
+        </div>
+    </div>
 </div>

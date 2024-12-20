@@ -5,41 +5,45 @@
     [ngClass]="betStatus == 'win' ? 'status-overlay win-style' : betStatus == 'lose' ? 'status-overlay lose-style' : 'status-overlay'">
 </div>
 <div class="wheel-game-container">
-    <div class="timer-container">
-        <div>
-            <app-timer></app-timer>
-        </div>
-    </div>
     <div class="first-group-container">
+        <div class="timer-container-small">
+            <div>
+                <app-timer></app-timer>
+            </div>
+        </div>
         <div class="wheel-container">
             <div>
                 <app-wheel (loadingComplete)="setLoaded($event)"></app-wheel>
             </div>
         </div>
-        <div class="messages-container">
+        <div class="previous-result-container">
             <div>
-                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
+                <app-previous-results [roomName]="roomName"
+                    (loadingComplete)="setLoaded($event)"></app-previous-results>
             </div>
         </div>
     </div>
-    <div class="previous-result-container">
-        <div>
-            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
-        </div>
-    </div>
-    <div class="second-group-container">
+    <div class="predictions-outer-container">
         <div class="predictions-container">
             <div>
                 <app-bet (newPredictionEvent)="setBetPrediction($event)" [disabled]="disabled" [reset]="reset">
                 </app-bet>
             </div>
         </div>
-        <div class="amout-container">
-            <div>
-                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
-                    (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [wheelBet]="betPrediction"
-                    [betMade]="betMade" [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
-            </div>
+    </div>
+    <div class="amout-container">
+        <div>
+            <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+                (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [wheelBet]="betPrediction"
+                [betMade]="betMade" [reset]="reset" [clientWalletInZeton]="clientWalletInZeton"></app-payment>
+        </div>
+    </div>
+    <div class="display-container">
+        <div class="timer-container">
+            <app-timer></app-timer>
+        </div>
+        <div class="messages-container">
+            <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
         </div>
     </div>
 </div>

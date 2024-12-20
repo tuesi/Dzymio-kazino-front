@@ -10,10 +10,7 @@
     line-height: $lineHeight;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-    border-width: 2px;
-    border-spacing: 10px;
+    background-color: rgba(225, 237, 248, 0.947);
 
     &:hover {
         opacity: 0.8;
@@ -34,7 +31,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 350px;
+    min-width: 200px;
     height: 100%;
 }
 
@@ -102,10 +100,7 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0);
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
+    background-color: rgba(225, 237, 248, 0.947);
 
     &:focus {
         border-style: solid;
@@ -118,6 +113,11 @@
         transition: all ease-out 0.1s;
         ;
     }
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+        background-color: rgba(225, 237, 248, 0);
+    }
 }
 
 .input-and-buttons-container {
@@ -126,30 +126,38 @@
 }
 
 .amount-text {
-    color: rgb(0, 0, 0);
+    color: rgba(225, 237, 248, 0.947);
     padding: 5%;
     font-size: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    &:disabled {
+        color: rgba(255, 255, 255, 0.363);
+    }
 }
 
 .bet-prediction-text {
     text-align: center;
     font-weight: 500;
     font-size: 2.5vh;
-    color: rgb(0, 0, 0);
+    color: rgba(225, 237, 248, 0.947);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    white-space: nowrap;
 }
 
 .bet-prediction-amount-text {
     font-size: 2.5vh;
-    color: rgb(0, 0, 0);
+    color: rgba(225, 237, 248, 0.947);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-left: 10px;
+    white-space: nowrap;
 }
 
 .main-pay-text {
     font-size: 30px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgba(225, 237, 248, 0.947);
+    margin-bottom: 2%;
 }
 
 .plus-button {
@@ -184,11 +192,10 @@ input[type=number] {
 .winnings-container {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
-    margin-top: 5%;
-    height: 100px;
+    padding-top: 20px;
 }
 
 .bet-button {
@@ -214,9 +221,10 @@ input[type=number] {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     height: 100px;
+    gap: 20%;
 }
 
 .bet-button-container {
@@ -225,7 +233,7 @@ input[type=number] {
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    margin-top: 5%;
+    height: 50%;
 }
 
 .bet-status {
@@ -254,7 +262,8 @@ input[type=number] {
 }
 
 .winnings-space-fill-container {
-    margin-top: 5%;
+    height: 50px;
+    padding-top: 20px;
 }
 
 .error-container {
@@ -280,42 +289,5 @@ input[type=number] {
 
     100% {
         -webkit-transform: translate(12px, 0);
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .input-and-name-inner-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    .all-input-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .winnings-container {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        flex-direction: row;
-        width: 90%;
-        margin-top: 5%;
-        height: 100px;
-    }
-
-    .bet-text-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
-        height: 100px;
     }
 }

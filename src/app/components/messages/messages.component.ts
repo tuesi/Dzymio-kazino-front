@@ -27,7 +27,7 @@ export class MessagesComponent implements OnInit {
         if (message.clientId && message.avatar) {
           avatar = "https://cdn.discordapp.com/avatars/" + message.clientId + "/" + message.avatar + ".jpg";
         }
-        this.messageList.push(new MessageShowModel(avatar, message.username, message.message));
+        this.messageList.push(new MessageShowModel(avatar, message.username ?? 'Debils', message.message));
       });
       setTimeout(() => {
         var chatHistory = document.getElementById("chat-box");

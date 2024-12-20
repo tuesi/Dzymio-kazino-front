@@ -3,7 +3,7 @@
         <span class="stop-bet-text">Automatinio sustabdymo įvedimas</span>
         <span class="small-text">(Įvedus norimą skaičių spausti pativrtinit ir atlikti statymą)</span>
         <div class="stop-bet-amount-input-container">
-            <input type="number" class="stop-bet-amount-input" [(ngModel)]="autoStopAmount">
+            <input type="number" class="stop-bet-amount-input" [(ngModel)]="autoStopAmount" [disabled]="disabled">
             <button
                 [ngClass]="autoStopPressed ? 'stop-bet-amount-confirm-button select-style' : 'stop-bet-amount-confirm-button'"
                 (click)="setAutoStop()" [disabled]="disabled">PATVIRTINTI</button>

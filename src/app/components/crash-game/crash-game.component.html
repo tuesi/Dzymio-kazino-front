@@ -2,63 +2,44 @@
     <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
 <div class="crash-game-container">
-    <div class="timer-container">
+    <div class="crash-main-container">
+        <div class="timer-container-small">
+            <div>
+                <app-timer></app-timer>
+            </div>
+        </div>
+        <div class="crash-container">
+            <div>
+                <app-crash (loadingComplete)="setLoaded($event)"></app-crash>
+            </div>
+        </div>
+        <div class="previous-result-container">
+            <div>
+                <app-previous-results [roomName]="roomName"
+                    (loadingComplete)="setLoaded($event)"></app-previous-results>
+            </div>
+        </div>
+    </div>
+    <div class="crash-bet-container">
         <div>
+            <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)" [resetCrashBet]="reset"
+                [disabled]="disabled"></app-crash-bet>
+        </div>
+    </div>
+    <div class="payment-container">
+        <div>
+            <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
+                (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade" [reset]="reset"
+                [clientWalletInZeton]="clientWalletInZeton" [crashBet]="true"></app-payment>
+        </div>
+
+    </div>
+    <div class="display-container">
+        <div class="timer-container">
             <app-timer></app-timer>
         </div>
-    </div>
-    <div class="crash-main-container" id="largeScreen">
-        <div class="crash-bet-container">
-            <div>
-                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)" [resetCrashBet]="reset"
-                    [disabled]="disabled"></app-crash-bet>
-            </div>
-        </div>
-        <div class="crash-container">
-            <div>
-                <app-crash (loadingComplete)="setLoaded($event)"></app-crash>
-            </div>
-        </div>
         <div class="messages-container">
-            <div>
-                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
-            </div>
-
-        </div>
-    </div>
-    <div class="crash-main-container" id="smallScreen">
-        <div class="crash-container">
-            <div>
-                <app-crash (loadingComplete)="setLoaded($event)"></app-crash>
-            </div>
-        </div>
-        <div class="crash-bet-container">
-            <div>
-                <app-crash-bet (newAutoStopEvent)="setAutoStopAmount($event)" [resetCrashBet]="reset"
-                    [disabled]="disabled"></app-crash-bet>
-            </div>
-        </div>
-        <div class="messages-container">
-            <div>
-                <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
-            </div>
-
-        </div>
-    </div>
-    <div class="previous-result-container">
-        <div>
-            <app-previous-results [roomName]="roomName" (loadingComplete)="setLoaded($event)"></app-previous-results>
-        </div>
-    </div>
-
-    <div class="secondary-component-container">
-        <div class="payment-container">
-            <div>
-                <app-payment (newBetAmountEvent)="setBetAmount($event)" (newSubmitEvent)="sendBet()"
-                    (newBetResponseEvent)="setBetStatus($event)" [disabled]="disabled" [betMade]="betMade"
-                    [reset]="reset" [clientWalletInZeton]="clientWalletInZeton" [crashBet]="true"></app-payment>
-            </div>
-
+            <app-messages (loadingComplete)="setLoaded($event)"></app-messages>
         </div>
     </div>
 </div>

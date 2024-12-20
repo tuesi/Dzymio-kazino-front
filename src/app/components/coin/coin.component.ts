@@ -126,7 +126,7 @@ export class CoinComponent implements OnInit, AfterViewInit {
     scene.add(this.coin);
     //Create a plane that receives shadows (but does not cast them)
     const planeGeometry = new THREE.PlaneGeometry(4, 4);
-    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x58c9fa })
+    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0xfff, transparent: true, opacity: 0 })
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.receiveShadow = true;
     plane.castShadow = false;

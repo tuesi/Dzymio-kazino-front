@@ -15,6 +15,8 @@ export class AuthService {
   private isMember = false;
 
   isAuthenticated(): Observable<boolean> {
+    //TODO change back
+    return of(true);
     return this.httpClient.get(environment.backendUrl + '/api/auth', {
       withCredentials: true,
     }).pipe(map(response => {
